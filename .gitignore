@@ -1,0 +1,18 @@
+# Ignore Obsidian plugins folder
+.obsidian/plugins/
+
+# Optionally, you can also ignore other Obsidian folders if needed:
+# .obsidian/icons/
+# .obsidian/themes/
+
+# Keep other .obsidian configuration files
+!.obsidian/*.json
+
+# Ignore trash folder
+.trash/
+
+# Ignore VSCode folder (contains nested git)
+.vscode/
+
+# Ignore Python virtual environment
+.venv/

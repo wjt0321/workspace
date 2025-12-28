@@ -1,0 +1,10 @@
+# Claude Code ignore file
+# This file specifies patterns that Claude Code should ignore
+
+# Ignore Obsidian plugins folder
+.obsidian/plugins/
+
+# You can also add other patterns if needed
+# .DS_Store
+# *.tmp
+# node_modules/

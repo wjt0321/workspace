@@ -1,0 +1,97 @@
+{
+  "name": "美文收集自动化工作流",
+  "nodes": [
+    {
+      "parameters": {
+        "cronExpression": "0 9 * * *"
+      },
+      "id": "cron-trigger-001",
+      "name": "定时触发器",
+      "type": "n8n-nodes-base.cronTrigger",
+      "typeVersion": 1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "bucketName": "cherrystudio",
+        "key": "美文总索引.md"
+      },
+      "id": "s3-read-001",
+      "name": "读取总索引",
+      "type": "n8n-nodes-base.awsS3",
+      "typeVersion": 1,
+      "position": [460, 300],
+      "credentials": {
+        "aws": {
+          "id": "YOUR_CREDENTIAL_ID",
+          "name": "R2 Account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "gpt-4",
+        "prompt": "分析以下美文总索引内容，提取：\n1. 各文件夹现有文章数量和标题\n2. 已收录作家名单和作品分布\n3. 题材覆盖情况\n4. 潜在重复风险作品\n\n总索引内容：\n{{ $binary.data }}\n\n请以JSON格式返回分析结果。"
+      },
+      "id": "llm-001",
+      "name": "LLM分析索引",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1,
+      "position": [680, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const levels = [\n  {\n    key: '初中生美文',\n    name: '初中生美文',\n    snippetFile: '初中生美文/初中生美文精选100篇.md',\n    indexFile: '初中生美文/美文收集索引.md',\n    templateFile: '初中生美文/美文赏析与教学通用模版.md'\n  },\n  {\n    key: '高中生美文',\n    name: '高中生美文',\n    snippetFile: '高中生美文/高中生美文精选100篇.md',\n    indexFile: '高中生美文/美文收集索引.md',\n    templateFile: '高中生美文/美文赏析与教学通用模版.md'\n  },\n  {\n    key: '大学生美文',\n    name: '大学生美文',\n    snippetFile: '大学生美文/经典散文片段.md',\n    indexFile: '大学生美文/美文收集索引.md',\n    templateFile: '大学生美文/美文赏析与研究通用模版.md'\n  },\n  {\n    key: '成人美文',\n    name: '成人美文',\n    snippetFile: '成人美文/经典散文片段.md',\n    indexFile: '成人美文/美文收集索引.md',\n    templateFile: '成人美文/美文赏析与人生通用模版.md'\n  }\n];\n\nconst today = new Date().getDay();\nconst selected = levels[today % 4];\n\nreturn { json: selected };"
+      },
+      "id": "code-001",
+      "name": "选择收录级别",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [900, 300]
+    }
+  ],
+  "connections": {
+    "定时触发器": {
+      "main": [
+        [
+          {
+            "node": "读取总索引",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "读取总索引": {
+      "main": [
+        [
+          {
+            "node": "LLM分析索引",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LLM分析索引": {
+      "main": [
+        [
+          {
+            "node": "选择收录级别",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-12-26T00:00:00.000Z",
+  "versionId": "1.0.0"
+}

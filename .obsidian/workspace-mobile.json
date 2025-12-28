@@ -1,0 +1,247 @@
+{
+  "main": {
+    "id": "5f95479a7195374d",
+    "type": "split",
+    "children": [
+      {
+        "id": "6b2cc531107c0007",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "3098e8383e0efd78",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "n8n-nodes/1.n8n美文收集自动化工作流方案.md",
+                "mode": "preview",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "1.n8n美文收集自动化工作流方案"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "4b39db3d8677c0ed",
+    "type": "mobile-drawer",
+    "children": [
+      {
+        "id": "9f2ecaeb1938c43c",
+        "type": "leaf",
+        "state": {
+          "type": "file-explorer",
+          "state": {
+            "sortOrder": "alphabetical",
+            "autoReveal": false
+          },
+          "icon": "lucide-folder-closed",
+          "title": "文件列表"
+        }
+      },
+      {
+        "id": "93679c8c23626891",
+        "type": "leaf",
+        "state": {
+          "type": "search",
+          "state": {
+            "query": "",
+            "matchingCase": false,
+            "explainSearch": false,
+            "collapseAll": false,
+            "extraContext": false,
+            "sortOrder": "alphabetical"
+          },
+          "icon": "lucide-search",
+          "title": "Search"
+        }
+      },
+      {
+        "id": "5a2e32c0628a0f3e",
+        "type": "leaf",
+        "state": {
+          "type": "tag",
+          "state": {
+            "sortOrder": "frequency",
+            "useHierarchy": true,
+            "showSearch": false,
+            "searchQuery": ""
+          },
+          "icon": "lucide-tags",
+          "title": "Tags"
+        }
+      },
+      {
+        "id": "e622e870d0a6a136",
+        "type": "leaf",
+        "state": {
+          "type": "all-properties",
+          "state": {
+            "sortOrder": "frequency",
+            "showSearch": false,
+            "searchQuery": ""
+          },
+          "icon": "lucide-archive",
+          "title": "All properties"
+        }
+      },
+      {
+        "id": "8824be021ab4727c",
+        "type": "leaf",
+        "state": {
+          "type": "bookmarks",
+          "state": {},
+          "icon": "lucide-bookmark",
+          "title": "书签"
+        }
+      }
+    ],
+    "currentTab": 0
+  },
+  "right": {
+    "id": "316fbb619bd966d0",
+    "type": "mobile-drawer",
+    "children": [
+      {
+        "id": "5c16362a36a8c837",
+        "type": "leaf",
+        "state": {
+          "type": "backlink",
+          "state": {
+            "file": "n8n教程资源库/07_详细内容/02_n8n安装教程.md",
+            "collapseAll": false,
+            "extraContext": false,
+            "sortOrder": "alphabetical",
+            "showSearch": false,
+            "searchQuery": "",
+            "backlinkCollapsed": false,
+            "unlinkedCollapsed": true
+          },
+          "icon": "links-coming-in",
+          "title": "反向链接"
+        }
+      },
+      {
+        "id": "d0baae0e41a6cae2",
+        "type": "leaf",
+        "state": {
+          "type": "outgoing-link",
+          "state": {
+            "linksCollapsed": false,
+            "unlinkedCollapsed": true
+          },
+          "icon": "links-going-out",
+          "title": "Outgoing links"
+        }
+      },
+      {
+        "id": "66e1bd967dcf3f5c",
+        "type": "leaf",
+        "state": {
+          "type": "outline",
+          "state": {
+            "followCursor": false,
+            "showSearch": false,
+            "searchQuery": ""
+          },
+          "icon": "lucide-list",
+          "title": "Outline"
+        }
+      },
+      {
+        "id": "a70f433c7a45506c",
+        "type": "leaf",
+        "state": {
+          "type": "copilot-chat-view",
+          "state": {},
+          "icon": "message-square",
+          "title": "Copilot"
+        }
+      },
+      {
+        "id": "f8b15d5c303f0528",
+        "type": "leaf",
+        "state": {
+          "type": "footnotes",
+          "state": {
+            "file": "大学生美文/03.窗-钱钟书.md"
+          },
+          "icon": "lucide-file-signature",
+          "title": "脚注"
+        }
+      }
+    ],
+    "currentTab": 3
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "markdown-importer:打开 Markdown 格式转换器": false,
+      "remotely-save:Remotely Save": false,
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "bases:创建新数据库": false,
+      "obsidian-kanban:创建新看板": false,
+      "iconic:打开规则书": false,
+      "fuzzy-chinese-pinyin:FuzzySearch": false,
+      "excalidraw-cn:Create New Excalidraw File": false,
+      "obsidian-excalidraw-plugin:新建绘图文件": false,
+      "copilot:Open Copilot Chat": false
+    }
+  },
+  "active": "3098e8383e0efd78",
+  "lastOpenFiles": [
+    "n8n美文收集自动化工作流方案.md",
+    "n8n-nodes/6.全部文件更新完成.md",
+    "n8n-nodes/2.QUICKSTART.md",
+    "n8n-nodes/4.更新说明-实际R2结构版.md",
+    "n8n-nodes/3.workflow-guide.md",
+    "n8n-nodes/1.n8n美文收集自动化工作流方案.md",
+    "n8n-nodes/5.最终结构更新说明-无articles子目录.md",
+    "n8n-nodes/README.md",
+    "n8n-nodes/workflow-guide.md",
+    "n8n-nodes/QUICKSTART.md",
+    "高中生美文/13.故都的秋-郁达夫.md",
+    "更新说明-实际R2结构版.md",
+    "初中生美文/23.北京的春节-老舍.md",
+    "n8n实战之美文收集/6.n8n美文收集初创.md",
+    "n8n-nodes/example-partial-workflow.json",
+    "n8n-nodes",
+    "高中生美文/04.记念刘和珍君-鲁迅.md",
+    "小学生美文/25.背影-朱自清.md",
+    "小学生美文/27.匆匆-朱自清.md",
+    "小学生美文/26.繁星-巴金.md",
+    "美文收集标准操作程序(SOP).md",
+    "GEMINI.md",
+    "初中生美文/22.昆明的雨-汪曾祺.md",
+    "大学生美文/24.浙江的感兴-王佐良.md",
+    "外语学习/外语学习计划自动化方案（无n8n版）.md",
+    "高中生美文/22.孔乙己-鲁迅.md",
+    "大学生美文/23.老王-杨绛.md",
+    "高中生美文/21.拿来主义-鲁迅.md",
+    "AI前沿消息（一周）",
+    "n8n实战之美文收集",
+    "成人美文",
+    "高中生美文",
+    "大学生美文",
+    "初中生美文",
+    "剪藏的文档",
+    "nul"
+  ]
+}

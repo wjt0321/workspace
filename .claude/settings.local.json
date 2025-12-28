@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(wc:*)",
+      "Edit",
+      "Bash(echo:*)",
+      "Bash(find:*)"
+    ]
+  }
+}
