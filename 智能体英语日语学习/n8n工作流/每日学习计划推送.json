@@ -1,0 +1,156 @@
+{
+    "name": "每日学习计划推送",
+    "nodes": [
+        {
+            "parameters": {
+                "rule": {
+                    "interval": [
+                        {
+                            "field": "hours",
+                            "triggerAtHour": 8
+                        }
+                    ]
+                }
+            },
+            "id": "schedule-trigger",
+            "name": "每天8点触发",
+            "type": "n8n-nodes-base.scheduleTrigger",
+            "typeVersion": 1,
+            "position": [
+                250,
+                300
+            ]
+        },
+        {
+            "parameters": {
+                "url": "https://open.bigmodel.cn/api/paas/v4/chat/completions",
+                "sendHeaders": true,
+                "headerParameters": {
+                    "parameters": [
+                        {
+                            "name": "Authorization",
+                            "value": "Bearer {{$env.ZHIPU_API_KEY}}"
+                        },
+                        {
+                            "name": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ]
+                },
+                "sendBody": true,
+                "bodyParameters": {
+                    "parameters": [
+                        {
+                            "name": "model",
+                            "value": "glm-4-flash"
+                        },
+                        {
+                            "name": "messages",
+                            "value": "={{ JSON.stringify([{role: 'system', content: '你是一位专业的英语和日语学习规划师。请根据间隔重复原则生成学习计划。'}, {role: 'user', content: '请生成今日的英语和日语学习计划，包括：1.需要复习的词汇(5个英语+5个日语) 2.新学内容建议 3.听力练习(15分钟) 4.口语练习建议'}]) }}"
+                        }
+                    ]
+                }
+            },
+            "id": "zhipu-request",
+            "name": "调用智谱AI",
+            "type": "n8n-nodes-base.httpRequest",
+            "typeVersion": 4,
+            "position": [
+                450,
+                300
+            ]
+        },
+        {
+            "parameters": {
+                "values": {
+                    "string": [
+                        {
+                            "name": "planContent",
+                            "value": "={{ $json.choices[0].message.content }}"
+                        },
+                        {
+                            "name": "date",
+                            "value": "={{ new Date().toISOString().split('T')[0] }}"
+                        }
+                    ]
+                }
+            },
+            "id": "set-data",
+            "name": "格式化数据",
+            "type": "n8n-nodes-base.set",
+            "typeVersion": 3,
+            "position": [
+                650,
+                300
+            ]
+        },
+        {
+            "parameters": {
+                "url": "=https://api.telegram.org/bot{{ $env.TELEGRAM_BOT_TOKEN }}/sendMessage",
+                "sendBody": true,
+                "bodyParameters": {
+                    "parameters": [
+                        {
+                            "name": "chat_id",
+                            "value": "={{ $env.TELEGRAM_CHAT_ID }}"
+                        },
+                        {
+                            "name": "text",
+                            "value": "=📚 *{{ $json.date }} 学习计划*\n\n{{ $json.planContent }}\n\n---\n💪 加油！今天也要好好学习！"
+                        },
+                        {
+                            "name": "parse_mode",
+                            "value": "Markdown"
+                        }
+                    ]
+                }
+            },
+            "id": "telegram-send",
+            "name": "Telegram推送",
+            "type": "n8n-nodes-base.httpRequest",
+            "typeVersion": 4,
+            "position": [
+                850,
+                300
+            ]
+        }
+    ],
+    "connections": {
+        "每天8点触发": {
+            "main": [
+                [
+                    {
+                        "node": "调用智谱AI",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "调用智谱AI": {
+            "main": [
+                [
+                    {
+                        "node": "格式化数据",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "格式化数据": {
+            "main": [
+                [
+                    {
+                        "node": "Telegram推送",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    },
+    "settings": {
+        "executionOrder": "v1"
+    }
+}

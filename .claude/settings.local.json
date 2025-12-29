@@ -4,7 +4,9 @@
       "Bash(wc:*)",
       "Edit",
       "Bash(echo:*)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(ls:*)",
+      "Bash(help:*)"
     ]
   }
 }

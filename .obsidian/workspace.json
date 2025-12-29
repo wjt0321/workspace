@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "4300dcaa2a3aa44f",
+        "id": "3a82a9af88e7a6e9",
         "type": "tabs",
         "children": [
           {
-            "id": "c0a5e327de5ac27c",
+            "id": "b017c057ab189d65",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "n8n-nodes/1.n8n美文收集自动化工作流方案.md",
+                "file": "成人美文/经典散文片段.md",
                 "mode": "preview",
                 "source": false,
                 "backlinks": true,
@@ -28,7 +28,7 @@
                 }
               },
               "icon": "lucide-file",
-              "title": "1.n8n美文收集自动化工作流方案"
+              "title": "经典散文片段"
             }
           }
         ]
@@ -246,43 +246,43 @@
       "periodic-notes:Open today": false
     }
   },
-  "active": "c0a5e327de5ac27c",
+  "active": "b017c057ab189d65",
   "lastOpenFiles": [
+    "成人美文/25.敬畏生命-张晓风.md",
+    "成人美文/经典散文片段.md",
+    "成人美文/24.江南的冬景-郁达夫.md",
+    "成人美文/23.葡萄月令-汪曾祺.md",
+    "n8n-nodes/完善版工作流/部署说明.md",
+    "n8n-nodes/完善版工作流/README.md",
+    "智能学习系统/配置/n8n工作流/自动备份.json",
+    "智能学习系统/配置/n8n工作流/词库自动更新.json",
+    "智能学习系统/配置/Coze配置/英语学习助手.json",
+    "智能学习系统/配置/n8n工作流",
+    "智能学习系统/配置/Coze配置",
+    "智能学习系统/配置",
+    "智能学习系统",
+    "智能学习系统/系统总结.md",
+    "智能学习系统/实施指南.md",
+    "智能学习系统/快速开始.md",
+    "智能学习系统/学习记录/学习记录模板.md",
+    "智能学习系统/题库/CET4/阅读理解模板.md",
+    "智能学习系统/题库/日语N4/読解問題テンプレート.md",
+    "智能学习系统/配置/Obsidian插件配置指南.md",
+    "智能学习系统/配置/GoogleSheets配置指南.md",
+    "智能学习系统/配置/国内替代方案配置指南.md",
+    "智能学习系统/配置/API配置说明.md",
+    "智能学习系统/词汇库/CET4/单词卡片模板.md",
+    "智能学习系统/词汇库/日语N4/単語カードテンプレート.md",
+    "n8n-nodes/1.n8n美文收集自动化工作流方案.md",
     "初中生美文/01.散步-莫怀戚.md",
     "初中生美文/初中生美文精选100篇.md",
-    "n8n-nodes/1.n8n美文收集自动化工作流方案.md",
     "n8n-nodes/README.md",
     "n8n-nodes/去掉小学生美文更新说明.md",
     "n8n-nodes/2.QUICKSTART.md",
     "n8n-nodes/6.全部文件更新完成.md",
     "n8n-nodes/4.更新说明-实际R2结构版.md",
-    "n8n-nodes/3.workflow-guide.md",
-    "n8n-nodes/5.最终结构更新说明-无articles子目录.md",
-    "更新说明-实际R2结构版.md",
-    "n8n-nodes/n8n美文收集自动化工作流方案.md",
-    "n8n-nodes/最终结构更新说明-无articles子目录.md",
-    "n8n美文收集自动化工作流方案.md",
-    "最终结构更新说明-无articles子目录.md",
     "最终结构更新说明-无articles子目录.md.tmp.23476.1766795422495",
     "n8n美文收集自动化工作流方案.md.tmp.23476.1766795401670",
-    "n8n美文收集自动化工作流方案.md.tmp.23476.1766795390958",
-    "n8n美文收集自动化工作流方案.md.tmp.23476.1766795384876",
-    "n8n美文收集自动化工作流方案.md.tmp.23476.1766795374719",
-    "成人美文/01.桃花心木-林清玄.md",
-    "初中生美文/02.秋天的怀念-史铁生.md",
-    "初中生美文/未命名",
-    "成人美文/articles",
-    "n8n-nodes/workflow-guide.md",
-    "n8n-nodes/QUICKSTART.md",
-    "Hugging Face Spaces 上部署 n8n 并连接 Supabase 数据库的完整指南.md",
-    "n8n-nodes/example-partial-workflow.json.tmp.5428.1766766232985",
-    "n8n-nodes/QUICKSTART.md.tmp.5428.1766765682058",
-    "n8n-nodes/workflow-guide.md.tmp.5428.1766765649806",
-    "美文总索引.md",
-    "初中生美文/美文收集索引.md",
-    "初中生美文/23.北京的春节-老舍.md",
-    "n8n实战之美文收集/3.本地化部署案例Gemini的答案.md",
-    "n8n实战之美文收集/6.n8n美文收集初创.md",
-    "n8n实战之美文收集/2.实战案例Gemini的答案.md"
+    "n8n美文收集自动化工作流方案.md.tmp.23476.1766795390958"
   ]
 }

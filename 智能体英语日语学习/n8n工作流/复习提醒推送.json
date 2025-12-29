@@ -1,0 +1,121 @@
+{
+    "name": "复习提醒推送",
+    "nodes": [
+        {
+            "parameters": {
+                "rule": {
+                    "interval": [
+                        {
+                            "field": "hours",
+                            "triggerAtHour": 20
+                        }
+                    ]
+                }
+            },
+            "id": "schedule-trigger",
+            "name": "每天20点触发",
+            "type": "n8n-nodes-base.scheduleTrigger",
+            "typeVersion": 1,
+            "position": [
+                250,
+                300
+            ]
+        },
+        {
+            "parameters": {
+                "url": "https://open.bigmodel.cn/api/paas/v4/chat/completions",
+                "sendHeaders": true,
+                "headerParameters": {
+                    "parameters": [
+                        {
+                            "name": "Authorization",
+                            "value": "Bearer {{$env.ZHIPU_API_KEY}}"
+                        },
+                        {
+                            "name": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ]
+                },
+                "sendBody": true,
+                "bodyParameters": {
+                    "parameters": [
+                        {
+                            "name": "model",
+                            "value": "glm-4-flash"
+                        },
+                        {
+                            "name": "messages",
+                            "value": "={{ JSON.stringify([{role: 'system', content: '你是一位学习助手，负责生成每日复习提醒。'}, {role: 'user', content: '请生成今日的复习提醒，包括：1.今日学习总结回顾问题 2.3个英语词汇快速复习 3.3个日语词汇快速复习 4.明日预习提示'}]) }}"
+                        }
+                    ]
+                }
+            },
+            "id": "zhipu-review",
+            "name": "生成复习内容",
+            "type": "n8n-nodes-base.httpRequest",
+            "typeVersion": 4,
+            "position": [
+                450,
+                300
+            ]
+        },
+        {
+            "parameters": {
+                "url": "=https://api.telegram.org/bot{{ $env.TELEGRAM_BOT_TOKEN }}/sendMessage",
+                "sendBody": true,
+                "bodyParameters": {
+                    "parameters": [
+                        {
+                            "name": "chat_id",
+                            "value": "={{ $env.TELEGRAM_CHAT_ID }}"
+                        },
+                        {
+                            "name": "text",
+                            "value": "=🌙 *晚间复习提醒*\n\n{{ $json.choices[0].message.content }}\n\n---\n✨ 今天辛苦了，早点休息！"
+                        },
+                        {
+                            "name": "parse_mode",
+                            "value": "Markdown"
+                        }
+                    ]
+                }
+            },
+            "id": "telegram-review",
+            "name": "Telegram复习推送",
+            "type": "n8n-nodes-base.httpRequest",
+            "typeVersion": 4,
+            "position": [
+                650,
+                300
+            ]
+        }
+    ],
+    "connections": {
+        "每天20点触发": {
+            "main": [
+                [
+                    {
+                        "node": "生成复习内容",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "生成复习内容": {
+            "main": [
+                [
+                    {
+                        "node": "Telegram复习推送",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    },
+    "settings": {
+        "executionOrder": "v1"
+    }
+}

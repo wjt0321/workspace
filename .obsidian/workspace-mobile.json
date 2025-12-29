@@ -202,11 +202,18 @@
       "fuzzy-chinese-pinyin:FuzzySearch": false,
       "excalidraw-cn:Create New Excalidraw File": false,
       "obsidian-excalidraw-plugin:新建绘图文件": false,
-      "copilot:Open Copilot Chat": false
+      "copilot:Open Copilot Chat": false,
+      "periodic-notes:Open today": false
     }
   },
   "active": "3098e8383e0efd78",
   "lastOpenFiles": [
+    "智能体英语日语学习/n8n工作流",
+    "n8n-nodes/完善版工作流",
+    "智能体英语日语学习",
+    "n8n-nodes/去掉小学生美文更新说明.md",
+    "n8n-nodes/实施记录-20251228-001.md",
+    "n8n-nodes/文档更新总结-20251228.md",
     "n8n美文收集自动化工作流方案.md",
     "n8n-nodes/6.全部文件更新完成.md",
     "n8n-nodes/2.QUICKSTART.md",
@@ -231,17 +238,11 @@
     "GEMINI.md",
     "初中生美文/22.昆明的雨-汪曾祺.md",
     "大学生美文/24.浙江的感兴-王佐良.md",
-    "外语学习/外语学习计划自动化方案（无n8n版）.md",
-    "高中生美文/22.孔乙己-鲁迅.md",
-    "大学生美文/23.老王-杨绛.md",
-    "高中生美文/21.拿来主义-鲁迅.md",
     "AI前沿消息（一周）",
     "n8n实战之美文收集",
     "成人美文",
     "高中生美文",
     "大学生美文",
-    "初中生美文",
-    "剪藏的文档",
-    "nul"
+    "初中生美文"
   ]
 }

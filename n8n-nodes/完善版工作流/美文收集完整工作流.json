@@ -1,0 +1,727 @@
+{
+    "name": "美文收集自动化工作流（完善版）",
+    "nodes": [
+        {
+            "parameters": {
+                "rule": {
+                    "interval": [
+                        {
+                            "field": "hours",
+                            "triggerAtHour": 9
+                        }
+                    ]
+                }
+            },
+            "id": "node-00",
+            "name": "定时触发器",
+            "type": "n8n-nodes-base.scheduleTrigger",
+            "position": [
+                250,
+                300
+            ]
+        },
+        {
+            "parameters": {
+                "operation": "getObject",
+                "bucket": "cherrystudio",
+                "key": "美文总索引.md"
+            },
+            "id": "node-01",
+            "name": "读取总索引",
+            "type": "n8n-nodes-base.awsS3",
+            "position": [
+                450,
+                300
+            ],
+            "credentials": {
+                "aws": {
+                    "id": "1",
+                    "name": "Cloudflare R2"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "jsCode": "const levels = [\n  {key: '初中生美文', name: '初中生美文', snippetFile: '初中生美文/初中生美文精选100篇.md', indexFile: '初中生美文/美文收集索引.md', templateFile: '初中生美文/美文赏析与教学通用模版.md'},\n  {key: '高中生美文', name: '高中生美文', snippetFile: '高中生美文/高中生美文精选100篇.md', indexFile: '高中生美文/美文收集索引.md', templateFile: '高中生美文/美文赏析与教学通用模版.md'},\n  {key: '大学生美文', name: '大学生美文', snippetFile: '大学生美文/经典散文片段.md', indexFile: '大学生美文/美文收集索引.md', templateFile: '大学生美文/美文赏析与研究通用模版.md'},\n  {key: '成人美文', name: '成人美文', snippetFile: '成人美文/经典散文片段.md', indexFile: '成人美文/美文收集索引.md', templateFile: '成人美文/美文赏析与人生通用模版.md'}\n];\nconst selected = levels[new Date().getDay() % 4];\nreturn [{json: selected}];"
+            },
+            "id": "node-03",
+            "name": "选择收录级别",
+            "type": "n8n-nodes-base.code",
+            "position": [
+                650,
+                300
+            ]
+        },
+        {
+            "parameters": {
+                "model": "deepseek-chat",
+                "messages": {
+                    "values": [
+                        {
+                            "role": "system",
+                            "content": "你是一位中文散文专家，擅长收集和鉴赏经典美文。"
+                        },
+                        {
+                            "role": "user",
+                            "content": "任务：收集1篇{{$json.name}}的散文片段\n\n要求：\n1. 作家范围：近现代中文散文大家\n2. 片段长度：150-300字\n3. 添加主题相关Emoji\n\n返回JSON格式：\n{\"title\":\"作品名\",\"author\":\"作者\",\"emojis\":\"🌸📖\",\"content\":\"片段正文\",\"source\":\"来源\",\"theme\":\"主题\",\"feature\":\"特色\"}"
+                        }
+                    ]
+                }
+            },
+            "id": "node-04",
+            "name": "LLM生成片段",
+            "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+            "position": [
+                850,
+                300
+            ],
+            "credentials": {
+                "openAiApi": {
+                    "id": "deepseek",
+                    "name": "DeepSeek"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "jsCode": "const input = $input.first().json;\nlet text = input.text || input.content || JSON.stringify(input);\nlet jsonMatch = text.match(/```json\\s*([\\s\\S]*?)\\s*```/);\nlet snippet;\nif (jsonMatch) {\n  snippet = JSON.parse(jsonMatch[1]);\n} else {\n  try { snippet = JSON.parse(text); } catch(e) {\n    const objMatch = text.match(/\\{[\\s\\S]*\\}/);\n    snippet = objMatch ? JSON.parse(objMatch[0]) : {title:'未知',author:'未知',content:text};\n  }\n}\nreturn [{json: {snippet, level: $('选择收录级别').first().json}}];"
+            },
+            "id": "node-04a",
+            "name": "提取片段数据",
+            "type": "n8n-nodes-base.code",
+            "position": [
+                1050,
+                300
+            ]
+        },
+        {
+            "parameters": {
+                "operation": "getObject",
+                "bucket": "cherrystudio",
+                "key": "={{$json.level.snippetFile}}"
+            },
+            "id": "node-05",
+            "name": "读取片段文件",
+            "type": "n8n-nodes-base.awsS3",
+            "position": [
+                1250,
+                300
+            ],
+            "credentials": {
+                "aws": {
+                    "id": "1",
+                    "name": "Cloudflare R2"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "jsCode": "const prev = $('提取片段数据').first().json;\nconst snippet = prev.snippet;\nconst level = prev.level;\nconst binaryData = $input.first().binary?.data;\nlet existingContent = '';\nif (binaryData) {\n  existingContent = Buffer.from(binaryData.data, 'base64').toString('utf-8');\n}\nconst matches = existingContent.match(/## (\\d+)\\./g) || [];\nconst lastNum = matches.length > 0 ? parseInt(matches[matches.length-1].match(/\\d+/)[0]) : 0;\nconst nextNum = lastNum + 1;\nconst newText = `\\n## ${nextNum}. ${snippet.title} - ${snippet.author}\\n\\n${snippet.emojis || '📖'}\\n\\n${snippet.content}\\n\\n**来源**：${snippet.source || '经典文集'}\\n**主题**：${snippet.theme || '生活'}\\n**特色**：${snippet.feature || '优美'}\\n`;\nconst updated = existingContent + newText;\nreturn [{json: {sequence: nextNum, filename: `${nextNum}.${snippet.title}-${snippet.author}.md`, s3Key: `${level.key}/${nextNum}.${snippet.title}-${snippet.author}.md`, snippetFile: level.snippetFile, updatedContent: updated, snippet, level}}];"
+            },
+            "id": "node-06",
+            "name": "更新片段内容",
+            "type": "n8n-nodes-base.code",
+            "position": [
+                1450,
+                300
+            ]
+        },
+        {
+            "parameters": {
+                "operation": "putObject",
+                "bucket": "cherrystudio",
+                "key": "={{$json.snippetFile}}",
+                "body": "={{$json.updatedContent}}",
+                "additionalFields": {
+                    "contentType": "text/markdown; charset=utf-8"
+                }
+            },
+            "id": "node-07",
+            "name": "上传片段文件",
+            "type": "n8n-nodes-base.awsS3",
+            "position": [
+                1650,
+                300
+            ],
+            "credentials": {
+                "aws": {
+                    "id": "1",
+                    "name": "Cloudflare R2"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "operation": "getObject",
+                "bucket": "cherrystudio",
+                "key": "={{$('更新片段内容').first().json.level.indexFile}}"
+            },
+            "id": "node-08",
+            "name": "读取级别索引",
+            "type": "n8n-nodes-base.awsS3",
+            "position": [
+                1850,
+                300
+            ],
+            "credentials": {
+                "aws": {
+                    "id": "1",
+                    "name": "Cloudflare R2"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "jsCode": "const prev = $('更新片段内容').first().json;\nconst binaryData = $input.first().binary?.data;\nlet indexContent = binaryData ? Buffer.from(binaryData.data, 'base64').toString('utf-8') : '';\nconst today = new Date().toISOString().split('T')[0];\nconst newEntry = `| ${prev.sequence} | ${prev.snippet.title} | ${prev.snippet.author} | ${prev.snippet.theme} | ${today} |\\n`;\nif (indexContent.includes('| 序号 |')) {\n  indexContent = indexContent.replace(/(\\| 序号 \\|[^\\n]*\\n\\|[-:\\s|]+\\n)/, '$1' + newEntry);\n} else {\n  indexContent += `\\n\\n## 收录列表\\n| 序号 | 作品 | 作者 | 主题 | 日期 |\\n|------|------|------|------|------|\\n${newEntry}`;\n}\nindexContent = indexContent.replace(/最后更新[：:][^\\n]*/g, `最后更新：${today}`);\nreturn [{json: {...prev, updatedIndex: indexContent}}];"
+            },
+            "id": "node-09",
+            "name": "更新级别索引",
+            "type": "n8n-nodes-base.code",
+            "position": [
+                2050,
+                300
+            ]
+        },
+        {
+            "parameters": {
+                "operation": "putObject",
+                "bucket": "cherrystudio",
+                "key": "={{$json.level.indexFile}}",
+                "body": "={{$json.updatedIndex}}",
+                "additionalFields": {
+                    "contentType": "text/markdown; charset=utf-8"
+                }
+            },
+            "id": "node-10",
+            "name": "上传级别索引",
+            "type": "n8n-nodes-base.awsS3",
+            "position": [
+                2250,
+                300
+            ],
+            "credentials": {
+                "aws": {
+                    "id": "1",
+                    "name": "Cloudflare R2"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "model": "deepseek-chat",
+                "messages": {
+                    "values": [
+                        {
+                            "role": "system",
+                            "content": "你是一位文学研究专家，擅长搜索和验证散文原文。"
+                        },
+                        {
+                            "role": "user",
+                            "content": "任务：搜索《{{$json.snippet.title}}》（{{$json.snippet.author}}）的完整版原文\n\n执行三步验证：\n1. 搜索完整版\n2. 检查是否存在删改版本\n3. 验证字数和结构\n\n返回JSON：{\"isComplete\":true,\"wordCount\":1000,\"fullTextContent\":\"完整原文内容...\",\"sourceUrl\":\"来源\",\"risks\":[]}"
+                        }
+                    ]
+                }
+            },
+            "id": "node-11",
+            "name": "LLM搜索原文",
+            "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+            "position": [
+                2450,
+                300
+            ],
+            "credentials": {
+                "openAiApi": {
+                    "id": "deepseek",
+                    "name": "DeepSeek"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "jsCode": "const prev = $('更新级别索引').first().json;\nconst llmOut = $input.first().json;\nlet text = llmOut.text || llmOut.content || JSON.stringify(llmOut);\nlet result;\ntry {\n  let jsonMatch = text.match(/```json\\s*([\\s\\S]*?)\\s*```/);\n  if (jsonMatch) result = JSON.parse(jsonMatch[1]);\n  else {\n    const objMatch = text.match(/\\{[\\s\\S]*\\}/);\n    result = objMatch ? JSON.parse(objMatch[0]) : {isComplete: true, fullTextContent: text};\n  }\n} catch(e) { result = {isComplete: true, fullTextContent: text}; }\nreturn [{json: {...prev, searchResult: result}}];"
+            },
+            "id": "node-12",
+            "name": "解析搜索结果",
+            "type": "n8n-nodes-base.code",
+            "position": [
+                2650,
+                300
+            ]
+        },
+        {
+            "parameters": {
+                "conditions": {
+                    "boolean": [
+                        {
+                            "value1": "={{$json.searchResult.isComplete}}",
+                            "value2": true
+                        }
+                    ]
+                }
+            },
+            "id": "node-13",
+            "name": "版本检查",
+            "type": "n8n-nodes-base.if",
+            "position": [
+                2850,
+                300
+            ]
+        },
+        {
+            "parameters": {
+                "operation": "getObject",
+                "bucket": "cherrystudio",
+                "key": "={{$json.level.templateFile}}"
+            },
+            "id": "node-14",
+            "name": "读取模版",
+            "type": "n8n-nodes-base.awsS3",
+            "position": [
+                3050,
+                200
+            ],
+            "credentials": {
+                "aws": {
+                    "id": "1",
+                    "name": "Cloudflare R2"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "model": "deepseek-chat",
+                "messages": {
+                    "values": [
+                        {
+                            "role": "system",
+                            "content": "你是一位专业的文学编辑，擅长按照模版格式化文章。"
+                        },
+                        {
+                            "role": "user",
+                            "content": "按照以下模版格式化文章：\n\n作品：{{$('解析搜索结果').first().json.snippet.title}}\n作者：{{$('解析搜索结果').first().json.snippet.author}}\n原文：{{$('解析搜索结果').first().json.searchResult.fullTextContent}}\n\n要求：\n1. YAML元数据\n2. H1标题含Emoji\n3. 分段加Emoji\n4. 美文赏析\n5. 朗读指导\n6. 小练笔\n7. 知识卡片\n\n直接返回格式化后的Markdown内容。"
+                        }
+                    ]
+                }
+            },
+            "id": "node-15",
+            "name": "LLM格式化文章",
+            "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+            "position": [
+                3250,
+                200
+            ],
+            "credentials": {
+                "openAiApi": {
+                    "id": "deepseek",
+                    "name": "DeepSeek"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "jsCode": "const prev = $('解析搜索结果').first().json;\nconst formatted = $input.first().json;\nconst content = formatted.text || formatted.content || '';\nreturn [{json: {...prev, formattedArticle: content}}];"
+            },
+            "id": "node-16",
+            "name": "整合格式化内容",
+            "type": "n8n-nodes-base.code",
+            "position": [
+                3450,
+                200
+            ]
+        },
+        {
+            "parameters": {
+                "operation": "putObject",
+                "bucket": "cherrystudio",
+                "key": "={{$json.s3Key}}",
+                "body": "={{$json.formattedArticle}}",
+                "additionalFields": {
+                    "contentType": "text/markdown; charset=utf-8"
+                }
+            },
+            "id": "node-17",
+            "name": "上传文章",
+            "type": "n8n-nodes-base.awsS3",
+            "position": [
+                3650,
+                200
+            ],
+            "credentials": {
+                "aws": {
+                    "id": "1",
+                    "name": "Cloudflare R2"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "operation": "getObject",
+                "bucket": "cherrystudio",
+                "key": "美文总索引.md"
+            },
+            "id": "node-31",
+            "name": "读取总索引最终",
+            "type": "n8n-nodes-base.awsS3",
+            "position": [
+                3850,
+                200
+            ],
+            "credentials": {
+                "aws": {
+                    "id": "1",
+                    "name": "Cloudflare R2"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "jsCode": "const prev = $('整合格式化内容').first().json;\nconst binaryData = $input.first().binary?.data;\nlet masterIndex = binaryData ? Buffer.from(binaryData.data, 'base64').toString('utf-8') : '';\nconst today = new Date().toISOString().split('T')[0];\nconst newEntry = `- [[${prev.filename}]] - ${prev.snippet.author}《${prev.snippet.title}》(${today})\\n`;\nconst levelSection = `### ${prev.level.name}`;\nif (masterIndex.includes(levelSection)) {\n  masterIndex = masterIndex.replace(new RegExp(`(${levelSection}[^\\n]*\\n)`), `$1${newEntry}`);\n} else {\n  masterIndex += `\\n\\n${levelSection}\\n${newEntry}`;\n}\nmasterIndex = masterIndex.replace(/最后更新[：:][^\\n]*/g, `最后更新：${today}`);\nreturn [{json: {...prev, updatedMasterIndex: masterIndex}}];"
+            },
+            "id": "node-32",
+            "name": "更新总索引",
+            "type": "n8n-nodes-base.code",
+            "position": [
+                4050,
+                200
+            ]
+        },
+        {
+            "parameters": {
+                "operation": "putObject",
+                "bucket": "cherrystudio",
+                "key": "美文总索引.md",
+                "body": "={{$json.updatedMasterIndex}}",
+                "additionalFields": {
+                    "contentType": "text/markdown; charset=utf-8"
+                }
+            },
+            "id": "node-33",
+            "name": "上传总索引",
+            "type": "n8n-nodes-base.awsS3",
+            "position": [
+                4250,
+                200
+            ],
+            "credentials": {
+                "aws": {
+                    "id": "1",
+                    "name": "Cloudflare R2"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "jsCode": "const prev = $json;\nconst today = new Date().toISOString().split('T')[0];\nconst now = new Date().toISOString();\nconst log = `# 美文收集执行日志\\n\\n**日期**：${today}\\n**时间**：${now}\\n\\n## 收录信息\\n- **级别**：${prev.level.name}\\n- **序号**：${prev.sequence}\\n- **作品**：${prev.snippet.title}\\n- **作者**：${prev.snippet.author}\\n- **主题**：${prev.snippet.theme}\\n\\n## 执行状态\\n- ✅ Step 0-1: 片段收集完成\\n- ✅ Step 2: 索引更新完成\\n- ✅ Step 3: 原文搜索完成\\n- ✅ Step 4: 文章格式化完成\\n- ✅ Step 8: 总索引更新完成（铁律）\\n\\n---\\n*自动生成于 ${now}*`;\nreturn [{json: {...prev, logContent: log, logKey: `logs/${today}.md`}}];"
+            },
+            "id": "node-34",
+            "name": "生成日志",
+            "type": "n8n-nodes-base.code",
+            "position": [
+                4450,
+                200
+            ]
+        },
+        {
+            "parameters": {
+                "operation": "putObject",
+                "bucket": "cherrystudio",
+                "key": "={{$json.logKey}}",
+                "body": "={{$json.logContent}}",
+                "additionalFields": {
+                    "contentType": "text/markdown; charset=utf-8"
+                }
+            },
+            "id": "node-35",
+            "name": "上传日志",
+            "type": "n8n-nodes-base.awsS3",
+            "position": [
+                4650,
+                200
+            ],
+            "credentials": {
+                "aws": {
+                    "id": "1",
+                    "name": "Cloudflare R2"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "operation": "putObject",
+                "bucket": "cherrystudio",
+                "key": "={{`logs/${new Date().toISOString().split('T')[0]}-failed.md`}}",
+                "body": "# 原文验证失败\\n\\n**日期**：{{$now}}\\n**作品**：{{$json.snippet.title}}\\n**原因**：未找到完整版原文\\n\\n工作流终止。",
+                "additionalFields": {
+                    "contentType": "text/markdown; charset=utf-8"
+                }
+            },
+            "id": "node-13-fail",
+            "name": "记录验证失败",
+            "type": "n8n-nodes-base.awsS3",
+            "position": [
+                3050,
+                450
+            ],
+            "credentials": {
+                "aws": {
+                    "id": "1",
+                    "name": "Cloudflare R2"
+                }
+            }
+        }
+    ],
+    "connections": {
+        "定时触发器": {
+            "main": [
+                [
+                    {
+                        "node": "读取总索引",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "读取总索引": {
+            "main": [
+                [
+                    {
+                        "node": "选择收录级别",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "选择收录级别": {
+            "main": [
+                [
+                    {
+                        "node": "LLM生成片段",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "LLM生成片段": {
+            "main": [
+                [
+                    {
+                        "node": "提取片段数据",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "提取片段数据": {
+            "main": [
+                [
+                    {
+                        "node": "读取片段文件",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "读取片段文件": {
+            "main": [
+                [
+                    {
+                        "node": "更新片段内容",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "更新片段内容": {
+            "main": [
+                [
+                    {
+                        "node": "上传片段文件",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "上传片段文件": {
+            "main": [
+                [
+                    {
+                        "node": "读取级别索引",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "读取级别索引": {
+            "main": [
+                [
+                    {
+                        "node": "更新级别索引",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "更新级别索引": {
+            "main": [
+                [
+                    {
+                        "node": "上传级别索引",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "上传级别索引": {
+            "main": [
+                [
+                    {
+                        "node": "LLM搜索原文",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "LLM搜索原文": {
+            "main": [
+                [
+                    {
+                        "node": "解析搜索结果",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "解析搜索结果": {
+            "main": [
+                [
+                    {
+                        "node": "版本检查",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "版本检查": {
+            "main": [
+                [
+                    {
+                        "node": "读取模版",
+                        "type": "main",
+                        "index": 0
+                    }
+                ],
+                [
+                    {
+                        "node": "记录验证失败",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "读取模版": {
+            "main": [
+                [
+                    {
+                        "node": "LLM格式化文章",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "LLM格式化文章": {
+            "main": [
+                [
+                    {
+                        "node": "整合格式化内容",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "整合格式化内容": {
+            "main": [
+                [
+                    {
+                        "node": "上传文章",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "上传文章": {
+            "main": [
+                [
+                    {
+                        "node": "读取总索引最终",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "读取总索引最终": {
+            "main": [
+                [
+                    {
+                        "node": "更新总索引",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "更新总索引": {
+            "main": [
+                [
+                    {
+                        "node": "上传总索引",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "上传总索引": {
+            "main": [
+                [
+                    {
+                        "node": "生成日志",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "生成日志": {
+            "main": [
+                [
+                    {
+                        "node": "上传日志",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    },
+    "settings": {
+        "executionOrder": "v1"
+    }
+}
