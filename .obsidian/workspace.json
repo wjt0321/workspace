@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "成人美文/经典散文片段.md",
+                "file": "docs/jiatong_skills/core_identity/prose_collection_sop.md",
                 "mode": "preview",
                 "source": false,
                 "backlinks": true,
@@ -28,7 +28,7 @@
                 }
               },
               "icon": "lucide-file",
-              "title": "经典散文片段"
+              "title": "prose_collection_sop"
             }
           }
         ]
@@ -248,8 +248,14 @@
   },
   "active": "b017c057ab189d65",
   "lastOpenFiles": [
-    "成人美文/25.敬畏生命-张晓风.md",
+    "docs/jiatong_skills/core_identity/coding_preferences.md",
+    "docs/jiatong_skills/guides/AI_INTERACTION_RULES.md",
+    "docs/jiatong_skills/memory_system/shadow_docs_template.md",
+    "docs/jiatong_skills/memory_system/decision_log_template.md",
+    "docs/jiatong_skills/memory_system/code_map_template.md",
+    "docs/jiatong_skills/README.md",
     "成人美文/经典散文片段.md",
+    "成人美文/25.敬畏生命-张晓风.md",
     "成人美文/24.江南的冬景-郁达夫.md",
     "成人美文/23.葡萄月令-汪曾祺.md",
     "n8n-nodes/完善版工作流/部署说明.md",
@@ -275,12 +281,6 @@
     "智能学习系统/词汇库/日语N4/単語カードテンプレート.md",
     "n8n-nodes/1.n8n美文收集自动化工作流方案.md",
     "初中生美文/01.散步-莫怀戚.md",
-    "初中生美文/初中生美文精选100篇.md",
-    "n8n-nodes/README.md",
-    "n8n-nodes/去掉小学生美文更新说明.md",
-    "n8n-nodes/2.QUICKSTART.md",
-    "n8n-nodes/6.全部文件更新完成.md",
-    "n8n-nodes/4.更新说明-实际R2结构版.md",
     "最终结构更新说明-无articles子目录.md.tmp.23476.1766795422495",
     "n8n美文收集自动化工作流方案.md.tmp.23476.1766795401670",
     "n8n美文收集自动化工作流方案.md.tmp.23476.1766795390958"

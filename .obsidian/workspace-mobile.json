@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "n8n-nodes/1.n8n美文收集自动化工作流方案.md",
+                "file": "初中生美文/23.北京的春节-老舍.md",
                 "mode": "preview",
                 "source": false,
                 "backlinks": true,
@@ -28,7 +28,7 @@
                 }
               },
               "icon": "lucide-file",
-              "title": "1.n8n美文收集自动化工作流方案"
+              "title": "23.北京的春节-老舍"
             }
           }
         ]
@@ -202,47 +202,46 @@
       "fuzzy-chinese-pinyin:FuzzySearch": false,
       "excalidraw-cn:Create New Excalidraw File": false,
       "obsidian-excalidraw-plugin:新建绘图文件": false,
-      "copilot:Open Copilot Chat": false,
-      "periodic-notes:Open today": false
+      "copilot:Open Copilot Chat": false
     }
   },
   "active": "3098e8383e0efd78",
   "lastOpenFiles": [
+    "初中生美文/初中生美文精选100篇.md",
+    "初中生美文/23.北京的春节-老舍.md",
+    "初中生美文/22.昆明的雨-汪曾祺.md",
+    "初中生美文/18.繁星-巴金.md",
+    "n8n-nodes/1.n8n美文收集自动化工作流方案.md",
+    "n8n-nodes/文档更新总结-20251228.md",
+    "n8n-nodes/完善版工作流/部署说明.md",
+    "智能体英语日语学习/README.md",
+    "智能体英语日语学习/部署指南.md",
+    "成人美文/25.敬畏生命-张晓风.md",
+    "成人美文/24.江南的冬景-郁达夫.md",
+    "n8n-nodes/完善版工作流/README.md",
+    "智能体英语日语学习/n8n工作流/复习提醒推送.json",
+    "智能体英语日语学习/n8n工作流/每日学习计划推送.json",
+    "n8n-nodes/完善版工作流/美文收集完整工作流.json",
     "智能体英语日语学习/n8n工作流",
     "n8n-nodes/完善版工作流",
     "智能体英语日语学习",
     "n8n-nodes/去掉小学生美文更新说明.md",
     "n8n-nodes/实施记录-20251228-001.md",
-    "n8n-nodes/文档更新总结-20251228.md",
     "n8n美文收集自动化工作流方案.md",
     "n8n-nodes/6.全部文件更新完成.md",
     "n8n-nodes/2.QUICKSTART.md",
     "n8n-nodes/4.更新说明-实际R2结构版.md",
     "n8n-nodes/3.workflow-guide.md",
-    "n8n-nodes/1.n8n美文收集自动化工作流方案.md",
     "n8n-nodes/5.最终结构更新说明-无articles子目录.md",
     "n8n-nodes/README.md",
     "n8n-nodes/workflow-guide.md",
     "n8n-nodes/QUICKSTART.md",
     "高中生美文/13.故都的秋-郁达夫.md",
     "更新说明-实际R2结构版.md",
-    "初中生美文/23.北京的春节-老舍.md",
     "n8n实战之美文收集/6.n8n美文收集初创.md",
     "n8n-nodes/example-partial-workflow.json",
     "n8n-nodes",
-    "高中生美文/04.记念刘和珍君-鲁迅.md",
-    "小学生美文/25.背影-朱自清.md",
-    "小学生美文/27.匆匆-朱自清.md",
-    "小学生美文/26.繁星-巴金.md",
-    "美文收集标准操作程序(SOP).md",
-    "GEMINI.md",
-    "初中生美文/22.昆明的雨-汪曾祺.md",
-    "大学生美文/24.浙江的感兴-王佐良.md",
     "AI前沿消息（一周）",
-    "n8n实战之美文收集",
-    "成人美文",
-    "高中生美文",
-    "大学生美文",
-    "初中生美文"
+    "n8n实战之美文收集"
   ]
 }
