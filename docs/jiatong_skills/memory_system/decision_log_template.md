@@ -1,6 +1,6 @@
 # 决策日志模板 (Decision Log Template)
 
-此文档用于记录项目开发过程中的关键技术决策（Architectural Decision Records - ADR），以防止“决策断层”。
+此文档用于记录项目开发过程中的关键技术决策（Architectural Decision Records - ADR），以防止"决策断层"。
 
 ## ADR-[序号]: [决策标题]
 *   **日期**: YYYY-MM-DD
