@@ -6,7 +6,8 @@
       "Bash(echo:*)",
       "Bash(find:*)",
       "Bash(ls:*)",
-      "Bash(help:*)"
+      "Bash(help:*)",
+      "Bash(rm:*)"
     ]
   }
 }

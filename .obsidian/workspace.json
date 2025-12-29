@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "3a82a9af88e7a6e9",
+        "id": "fcf2c75572c5e158",
         "type": "tabs",
         "children": [
           {
-            "id": "b017c057ab189d65",
+            "id": "6b6488092260aa19",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "docs/jiatong_skills/core_identity/prose_collection_sop.md",
+                "file": "高中生美文/24.雷雨-曹禺.md",
                 "mode": "preview",
                 "source": false,
                 "backlinks": true,
@@ -28,7 +28,7 @@
                 }
               },
               "icon": "lucide-file",
-              "title": "prose_collection_sop"
+              "title": "24.雷雨-曹禺"
             }
           }
         ]
@@ -246,8 +246,10 @@
       "periodic-notes:Open today": false
     }
   },
-  "active": "b017c057ab189d65",
+  "active": "0a41434b7f309f01",
   "lastOpenFiles": [
+    "高中生美文/24.雷雨-曹禺.md",
+    "高中生美文收集索引.md",
     "docs/jiatong_skills/core_identity/coding_preferences.md",
     "docs/jiatong_skills/guides/AI_INTERACTION_RULES.md",
     "docs/jiatong_skills/memory_system/shadow_docs_template.md",
@@ -279,8 +281,6 @@
     "智能学习系统/配置/API配置说明.md",
     "智能学习系统/词汇库/CET4/单词卡片模板.md",
     "智能学习系统/词汇库/日语N4/単語カードテンプレート.md",
-    "n8n-nodes/1.n8n美文收集自动化工作流方案.md",
-    "初中生美文/01.散步-莫怀戚.md",
     "最终结构更新说明-无articles子目录.md.tmp.23476.1766795422495",
     "n8n美文收集自动化工作流方案.md.tmp.23476.1766795401670",
     "n8n美文收集自动化工作流方案.md.tmp.23476.1766795390958"
