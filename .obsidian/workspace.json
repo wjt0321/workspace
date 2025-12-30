@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "fcf2c75572c5e158",
+        "id": "374c8d84ff6657d8",
         "type": "tabs",
         "children": [
           {
-            "id": "6b6488092260aa19",
+            "id": "8eebac960997594d",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "open-notebook-deployment/DEPLOYMENT_CHECKLIST.md",
+                "file": "外语学习/n8n学习计划工作流设计文档.md",
                 "mode": "preview",
                 "source": false,
                 "backlinks": true,
@@ -28,7 +28,7 @@
                 }
               },
               "icon": "lucide-file",
-              "title": "DEPLOYMENT_CHECKLIST"
+              "title": "n8n学习计划工作流设计文档"
             }
           }
         ]
@@ -104,13 +104,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "n8n-nodes/1.n8n美文收集自动化工作流方案.md",
+                "file": "外语学习/n8n学习计划工作流设计文档.md",
                 "followCursor": false,
                 "showSearch": true,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "1.n8n美文收集自动化工作流方案 的大纲"
+              "title": "n8n学习计划工作流设计文档 的大纲"
             }
           },
           {
@@ -223,8 +223,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 437.5,
-    "collapsed": true
+    "width": 437.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -246,8 +245,13 @@
       "periodic-notes:Open today": false
     }
   },
-  "active": "6b6488092260aa19",
+  "active": "8eebac960997594d",
   "lastOpenFiles": [
+    "外语学习/外语学习计划自动化方案（无n8n版）.md",
+    "外语学习/英语日语双修年度计划：从四级到B2，零基础到N3的详细路径.md",
+    "open-notebook-deployment/deployment_guide.md",
+    "open-notebook-deployment/vm-scripts/README.md",
+    "open-notebook-deployment/DEPLOYMENT_CHECKLIST.md",
     "智能体英语日语学习/NotebookLM提示词.md",
     "HEAD",
     "config",
@@ -256,8 +260,6 @@
     "n8n实战之美文收集/N8N-MCP实例.md",
     "open-notebook-deployment/README.md",
     "open-notebook-deployment/migration_guide.md",
-    "open-notebook-deployment/deployment_guide.md",
-    "open-notebook-deployment/DEPLOYMENT_CHECKLIST.md",
     "open-notebook-deployment",
     "智能体英语日语学习/部署指南.md",
     "智能体英语日语学习/README.md",
@@ -280,8 +282,6 @@
     "智能学习系统/配置/Coze配置/英语学习助手.json",
     "智能学习系统/配置/n8n工作流",
     "智能学习系统/配置/Coze配置",
-    "智能学习系统/配置",
-    "智能学习系统/系统总结.md",
-    "智能学习系统/实施指南.md"
+    "智能学习系统/配置"
   ]
 }

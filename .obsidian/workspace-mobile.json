@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "初中生美文/23.北京的春节-老舍.md",
+                "file": "open-notebook-deployment/DEPLOYMENT_CHECKLIST.md",
                 "mode": "preview",
                 "source": false,
                 "backlinks": true,
@@ -28,7 +28,7 @@
                 }
               },
               "icon": "lucide-file",
-              "title": "23.北京的春节-老舍"
+              "title": "DEPLOYMENT_CHECKLIST"
             }
           }
         ]
@@ -202,11 +202,29 @@
       "fuzzy-chinese-pinyin:FuzzySearch": false,
       "excalidraw-cn:Create New Excalidraw File": false,
       "obsidian-excalidraw-plugin:新建绘图文件": false,
-      "copilot:Open Copilot Chat": false
+      "copilot:Open Copilot Chat": false,
+      "periodic-notes:Open today": false
     }
   },
-  "active": "9f2ecaeb1938c43c",
+  "active": "3098e8383e0efd78",
   "lastOpenFiles": [
+    "open-notebook-deployment/docker-desktop-setup.md",
+    "open-notebook-deployment/vm-scripts/deploy-notebook.sh",
+    "open-notebook-deployment/check-virtualization.ps1",
+    "open-notebook-deployment/vm-scripts/install-docker.sh",
+    "open-notebook-deployment/enable-virtualization-guide.md",
+    "open-notebook-deployment/vm-scripts",
+    "HEAD",
+    "初中生美文/23.北京的春节-老舍.md",
+    "description",
+    "config",
+    "n8n实战之美文收集/N8N-MCP实例.md",
+    "open-notebook-deployment/README.md",
+    "open-notebook-deployment/deployment_guide.md",
+    "open-notebook-deployment/migration_guide.md",
+    "open-notebook-deployment/DEPLOYMENT_CHECKLIST.md",
+    "open-notebook-deployment",
+    "CLAUDE.md",
     "高中生美文/24.雷雨-曹禺.md",
     "初中生美文/24.故乡-鲁迅.md",
     "大学生美文/25.雅舍-梁实秋.md",
@@ -224,24 +242,7 @@
     "docs/jiatong_skills/core_identity/prose_collection_complete_skill.md",
     "docs/jiatong_skills/guides",
     "docs/jiatong_skills/memory_system",
-    "docs/jiatong_skills/core_identity",
-    "docs/jiatong_skills",
-    "docs",
     "初中生美文/初中生美文精选100篇.md",
-    "初中生美文/23.北京的春节-老舍.md",
-    "初中生美文/22.昆明的雨-汪曾祺.md",
-    "初中生美文/18.繁星-巴金.md",
-    "n8n-nodes/1.n8n美文收集自动化工作流方案.md",
-    "n8n-nodes/文档更新总结-20251228.md",
-    "n8n-nodes/完善版工作流/部署说明.md",
-    "智能体英语日语学习/README.md",
-    "智能体英语日语学习/部署指南.md",
-    "成人美文/25.敬畏生命-张晓风.md",
-    "成人美文/24.江南的冬景-郁达夫.md",
-    "智能体英语日语学习/n8n工作流/复习提醒推送.json",
-    "智能体英语日语学习/n8n工作流/每日学习计划推送.json",
-    "n8n-nodes/完善版工作流/美文收集完整工作流.json",
-    "智能体英语日语学习/n8n工作流",
-    "n8n-nodes/完善版工作流"
+    "初中生美文/22.昆明的雨-汪曾祺.md"
   ]
 }
