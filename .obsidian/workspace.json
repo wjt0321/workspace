@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "高中生美文/24.雷雨-曹禺.md",
+                "file": "open-notebook-deployment/DEPLOYMENT_CHECKLIST.md",
                 "mode": "preview",
                 "source": false,
                 "backlinks": true,
@@ -28,7 +28,7 @@
                 }
               },
               "icon": "lucide-file",
-              "title": "24.雷雨-曹禺"
+              "title": "DEPLOYMENT_CHECKLIST"
             }
           }
         ]
@@ -246,8 +246,21 @@
       "periodic-notes:Open today": false
     }
   },
-  "active": "0a41434b7f309f01",
+  "active": "6b6488092260aa19",
   "lastOpenFiles": [
+    "智能体英语日语学习/NotebookLM提示词.md",
+    "HEAD",
+    "config",
+    "description",
+    "CLAUDE.md",
+    "n8n实战之美文收集/N8N-MCP实例.md",
+    "open-notebook-deployment/README.md",
+    "open-notebook-deployment/migration_guide.md",
+    "open-notebook-deployment/deployment_guide.md",
+    "open-notebook-deployment/DEPLOYMENT_CHECKLIST.md",
+    "open-notebook-deployment",
+    "智能体英语日语学习/部署指南.md",
+    "智能体英语日语学习/README.md",
     "高中生美文/24.雷雨-曹禺.md",
     "高中生美文收集索引.md",
     "docs/jiatong_skills/core_identity/coding_preferences.md",
@@ -268,21 +281,7 @@
     "智能学习系统/配置/n8n工作流",
     "智能学习系统/配置/Coze配置",
     "智能学习系统/配置",
-    "智能学习系统",
     "智能学习系统/系统总结.md",
-    "智能学习系统/实施指南.md",
-    "智能学习系统/快速开始.md",
-    "智能学习系统/学习记录/学习记录模板.md",
-    "智能学习系统/题库/CET4/阅读理解模板.md",
-    "智能学习系统/题库/日语N4/読解問題テンプレート.md",
-    "智能学习系统/配置/Obsidian插件配置指南.md",
-    "智能学习系统/配置/GoogleSheets配置指南.md",
-    "智能学习系统/配置/国内替代方案配置指南.md",
-    "智能学习系统/配置/API配置说明.md",
-    "智能学习系统/词汇库/CET4/单词卡片模板.md",
-    "智能学习系统/词汇库/日语N4/単語カードテンプレート.md",
-    "最终结构更新说明-无articles子目录.md.tmp.23476.1766795422495",
-    "n8n美文收集自动化工作流方案.md.tmp.23476.1766795401670",
-    "n8n美文收集自动化工作流方案.md.tmp.23476.1766795390958"
+    "智能学习系统/实施指南.md"
   ]
 }
