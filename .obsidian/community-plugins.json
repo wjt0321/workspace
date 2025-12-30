@@ -1,6 +1,5 @@
 [
   "obsidian-excalidraw-plugin",
-  "remotely-save",
   "obsidian-tasks-plugin",
   "obsidian-kanban",
   "obsidian-icon-folder",
@@ -13,5 +12,6 @@
   "dataview",
   "editing-toolbar",
   "file-explorer-note-count",
-  "copilot"
+  "copilot",
+  "remotely-save"
 ]
