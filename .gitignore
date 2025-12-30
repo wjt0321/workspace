@@ -8,6 +8,7 @@
 .obsidian/workspace*
 .obsidian/graph.json
 .obsidian/plugins/.core/
+.obsidian/plugins/remotely-save/main.js
 
 # ===== Claude Code 相关 =====
 .claude/cache/
