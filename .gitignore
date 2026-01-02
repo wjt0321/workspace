@@ -1,12 +1,5 @@
-# Ignore Obsidian plugins folder
-.obsidian/plugins/
-
-# Optionally, you can also ignore other Obsidian folders if needed:
-# .obsidian/icons/
-# .obsidian/themes/
-
-# Keep other .obsidian configuration files
-!.obsidian/*.json
+# Completely ignore Obsidian folder - NEVER commit to GitHub
+.obsidian/
 
 # Ignore trash folder
 .trash/
@@ -22,7 +15,6 @@
 .git/
 .github/
 .idea/
-.obsidian/
 .trae/
 .trash/
 AI前沿消息（一周）/
