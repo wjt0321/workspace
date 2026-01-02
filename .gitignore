@@ -16,3 +16,45 @@
 
 # Ignore Python virtual environment
 .venv/
+
+# Ignore other folders and files (keep only specified ones)
+.claude/
+.git/
+.github/
+.idea/
+.obsidian/
+.trae/
+.trash/
+AI前沿消息（一周）/
+cherrystudio生成文件/
+CLAUDE.md
+config
+copilot/
+description
+GEMINI.md
+HEAD
+Hugging Face Spaces 上部署 n8n 并连接 Supabase 数据库的完整指南.md
+n8n-nodes/
+n8n实战之美文收集/
+Python资源库/
+剪藏的文档/
+外语学习/
+日记/
+智能体学习/
+智能体英语日语学习/
+机场攻略/
+自动化写作/
+自动化工作流参考资料库/
+
+# Keep only these specified files and folders:
+# .kiro/
+# .skills/
+# 成人美文/
+# 初中生美文/
+# 大学生美文/
+# 高中生美文/
+# 小学生美文/
+# docs/
+# 美文总索引.md
+# 美文收集标准操作程序(SOP).md
+# 美文收集标准流程.md
