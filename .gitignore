@@ -1,6 +1,9 @@
 # 优化 Claude Code Token 使用的 .gitignore 文件
 # 目标：减少不必要的文件缓存，降低 token 消耗
 
+# ===== 重要：忽略所有以点开头的文件和文件夹 =====
+.*/
+
 # ===== Obsidian 相关（主要缓存消耗源）=====
 .obsidian/cache/
 .obsidian/workers/

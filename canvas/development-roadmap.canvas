@@ -1,0 +1,13 @@
+{
+	"nodes":[
+		{"id":"a1b2c3d4e5f6789","type":"text","x":0,"y":0,"width":300,"height":150,"text":"# 第一阶段: 基础功能\n\n- 用户认证系统\n- 密码CRUD操作\n- 基本UI界面\n- Docker基础部署\n\n预计时间: 8周","color":"4"},
+		{"id":"b2c3d4e5f678901","type":"text","x":350,"y":0,"width":300,"height":150,"text":"# 第二阶段: 核心功能\n\n- 自动填充功能\n- 密码生成器\n- 高级搜索功能\n- 浏览器扩展\n\n预计时间: 8周","color":"3"},
+		{"id":"c3d4e5f67890123","type":"text","x":700,"y":0,"width":300,"height":150,"text":"# 第三阶段: 高级功能\n\n- 团队协作\n- 安全审计\n- 性能优化\n- 监控告警\n\n预计时间: 6周","color":"5"},
+		{"id":"d4e5f6789012345","type":"text","x":1050,"y":0,"width":300,"height":150,"text":"# 第四阶段: 生产化\n\n- 高可用部署\n- 自动化测试\n- CI/CD管道\n- 文档完善\n\n预计时间: 4周","color":"6"}
+	],
+	"edges":[
+		{"id":"e5f678901234567","fromNode":"a1b2c3d4e5f6789","fromSide":"right","toNode":"b2c3d4e5f678901","toSide":"left"},
+		{"id":"f67890123456789","fromNode":"b2c3d4e5f678901","fromSide":"right","toNode":"c3d4e5f67890123","toSide":"left"},
+		{"id":"789012345678901","fromNode":"c3d4e5f67890123","fromSide":"right","toNode":"d4e5f6789012345","toSide":"left"}
+	]
+}
