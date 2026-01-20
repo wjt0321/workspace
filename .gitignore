@@ -1,0 +1,90 @@
+# 优化 Claude Code Token 使用的 .gitignore 文件
+# 目标：减少不必要的文件缓存，降低 token 消耗
+
+# ===== 重要：忽略所有以点开头的文件和文件夹 =====
+.*/
+
+# ===== Obsidian 相关（主要缓存消耗源）=====
+.obsidian/cache/
+.obsidian/workers/
+.obsidian/workspace.json
+.obsidian/workspace*
+.obsidian/graph.json
+.obsidian/plugins/.core/
+.obsidian/plugins/remotely-save/main.js
+
+# ===== Claude Code 相关 =====
+.claude/cache/
+.claude/session-*.json
+.claude/tmp/
+
+# ===== 临时文件和缓存 =====
+*.tmp
+*.temp
+*.cache
+*.log
+*.swp
+*.swo
+*~
+
+# ===== 系统生成文件 =====
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# ===== 编辑器和IDE =====
+.vscode/cache/
+.idea/caches/
+*.pid
+*.seed
+*.pid.lock
+
+# ===== Node.js（如果有）=====
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ===== Python（如果有）=====
+__pycache__/
+*.py[cod]
+*$py.class
+.env
+.venv
+venv/
+
+# ===== 大型媒体文件 =====
+*.mp4
+*.avi
+*.mov
+*.wmv
+*.flv
+*.zip
+*.tar.gz
+*.rar
+
+# ===== 数据库文件 =====
+*.db
+*.sqlite
+*.sqlite3
+
+# ===== 备份文件 =====
+*.bak
+*.backup
+*.old
+
+# ===== 特别说明：保留的文件类型 =====
+# !*.md        # Markdown 文件保留（需要缓存）
+# !*.json      # 小的配置文件保留
+# !*.txt       # 文本文件保留
+
+# ===== 大文件阈值 =====
+# 忽略大于 10MB 的文件（除了特别重要的）
+*.large
+*.big
+
+find . -type f -size +10M -not -path "./.git/*" -not -name "*.important"
