@@ -1,0 +1,28 @@
+{
+    "mcpServers": {
+        "Puppeteer": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@modelcontextprotocol/server-puppeteer"
+            ],
+            "env": {},
+            "fromGalleryId": "modelcontextprotocol.servers_puppeteer"
+        },
+        "n8n-mcp": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "supergateway",
+                "--streamableHttp",
+                "https://your-n8n-instance.com/mcp-server/http",
+                "--header",
+                "Authorization:Bearer <YOUR_API_KEY_HERE>",
+                "--stdio"
+            ],
+            "env": {},
+            "disabled": false,
+            "alwaysAllow": []
+        }
+    }
+}

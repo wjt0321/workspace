@@ -5,6 +5,10 @@
 .*/
 nul
 
+# ===== MCP 敏感配置 =====
+MCP配置文件/**/*.json
+!MCP配置文件/**/*.example.json
+
 # ===== Obsidian 相关（主要缓存消耗源）=====
 .obsidian/cache/
 .obsidian/workers/
