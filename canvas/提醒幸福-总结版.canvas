@@ -1,0 +1,25 @@
+{
+	"nodes":[
+		{"id":"title","type":"text","text":"## 💖 提醒幸福\n### 毕淑敏\n\n**心灵治愈散文**\n\n*来源：美文库/成人/02.提醒幸福-毕淑敏.md*","x":400,"y":60,"width":320,"height":200,"color":"#ff6b6b"},
+		{"id":"core","type":"text","text":"## 🎯 核心主题\n\n人们习惯了被提醒**危险和注意事项**，却常常**忘记提醒自己感受幸福**。\n\n---\n\n**核心观点**：\n> 幸福从未离开，它一直在我们身边。我们只是忘记了发现、感受和珍惜。","x":80,"y":320,"width":340,"height":280,"color":"#f1948a"},
+		{"id":"phenomenon","type":"text","text":"## 📖 现象观察\n\n**我们从小在提醒中长大**\n\n天气变化 → 多穿衣服 🧥\n结识朋友 → 小心骗子 🎭\n取得成功 → 别骄傲 🚫\n沉浸欢乐 → 小心乐极生悲 ⚠️\n\n**暗示**: 世界充满危险\n**结果**: 习惯性忽视快乐","x":80,"y":680,"width":340,"height":340,"color":"#85c1e9"},
+		{"id":"problem","type":"text","text":"## ⚠️ 问题所在\n\n**因为我们太容易忘记幸福**\n\n拥有健康时 → 不觉得是幸福 💪\n家人陪伴时 → 理所当然 👨‍👩‍👧‍👦\n自由呼吸时 → 不曾意识到 🌬️\n\n**结果**: 只有失去后才懂珍惜\n**为时已晚** 💔","x":80,"y":1080,"width":340,"height":300,"color":"#e74c3c"},
+		{"id":"truth","type":"text","text":"## 💡 幸福的真谛\n\n**幸福不在远方，藏在日常**\n\n🌅 早晨鸟鸣 → 幸福\n💡 回家灯火 → 幸福\n☕ 生病照顾 → 幸福\n🗣️ 失意鼓励 → 幸福\n\n幸福是一种**可以培养的能力** 💪","x":80,"y":1440,"width":340,"height":280,"color":"#4ecdc4"},
+		{"id":"action","type":"text","text":"## 🌟 行动呼吁\n\n**主动感知**\n用心发现生活中的美好\n\n**活在当下**\n不总回忆过去或忧虑未来\n\n**培养习惯**\n幸福是一种可以培养的能力","x":80,"y":1780,"width":340,"height":260,"color":"#96ceb4"},
+		{"id":"practice","type":"text","text":"## 🎯 实用建议\n\n**每日习惯**\n✅ 每天记录三件感恩的事\n✅ 写感恩日记\n\n**对他人**\n✅ 主动表达感谢\n✅ 用温暖的方式关爱\n\n**困难时刻**\n✅ 练习寻找积极一面\n✅ 用积极语言自我暗示","x":700,"y":320,"width":340,"height":340,"color":"#f7dc6f"},
+		{"id":"attitude","type":"text","text":"## 🌈 幸福的正确态度\n\n**不是没有痛苦**\n而是在痛苦中依然能感受到爱 ❤️\n\n---\n\n在阴雨中寻找阳光 ☀️\n在泪水中发现力量 💪\n在困难中保持希望 🌟\n\n**≠ 阿Q精神**\n是用感恩的心面对生活 🙏","x":700,"y":720,"width":340,"height":340,"color":"#a9dfbf"},
+		{"id":"quote","type":"text","text":"## 🦋 活在当下\n\n**提醒幸福，也是提醒自己活在当下**\n\n不要总是在回忆过去 📼\n不要总是在忧虑未来 🔮\n要学会感受现在的美好 🌸\n珍惜眼前的人 👥\n享受当下的幸福 😊\n\n生命中的每一刻，都是独一无二的 🌟","x":700,"y":1120,"width":340,"height":320,"color":"#bb8fce"},
+		{"id":"author","type":"text","text":"## 👩‍🏫 关于作者\n\n**毕淑敏**\n\n- 1952年出生于新疆伊宁\n- 西藏阿里军分区服役11年\n- 医学心理学博士\n- 中国首位集医生、作家、心理学家于一身的作家\n\n**写作风格**: 质朴真诚，充满人文关怀\n\n**推荐作品**:\n- 《红处方》\n- 《拯救乳房》\n- 《毕淑敏散文集》","x":700,"y":1500,"width":340,"height":320,"color":"#d5a6bd"}
+	],
+	"edges":[
+		{"id":"e1","fromNode":"title","fromSide":"left","toNode":"core","toSide":"top"},
+		{"id":"e2","fromNode":"core","fromSide":"bottom","toNode":"phenomenon","toSide":"top"},
+		{"id":"e3","fromNode":"phenomenon","fromSide":"bottom","toNode":"problem","toSide":"top"},
+		{"id":"e4","fromNode":"problem","fromSide":"bottom","toNode":"truth","toSide":"top"},
+		{"id":"e5","fromNode":"truth","fromSide":"bottom","toNode":"action","toSide":"top"},
+		{"id":"e6","fromNode":"title","fromSide":"right","toNode":"practice","toSide":"top"},
+		{"id":"e7","fromNode":"practice","fromSide":"bottom","toNode":"attitude","toSide":"top"},
+		{"id":"e8","fromNode":"attitude","fromSide":"bottom","toNode":"quote","toSide":"top"},
+		{"id":"e9","fromNode":"quote","fromSide":"bottom","toNode":"author","toSide":"top"}
+	]
+}
