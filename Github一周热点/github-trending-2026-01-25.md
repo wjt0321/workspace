@@ -1,13 +1,23 @@
 ---
-收集时间: 2026-01-25
-标签: AI工具, GitHub热点, 每周归档
-类型: 资源汇总
+title: GitHub一周热点 AI工具汇总
+date: 2026-01-25
+tags:
+  - GitHub
+  - AI
+  - 热点
+  - Agent
+  - RAG
+category: 每周热点
+status: published
+aliases:
+  - 2026-01-25 GitHub热点汇总
 ---
 
 # GitHub一周热点 AI工具汇总
 
-> 收集时间: 2026年1月25日
-> 数据来源: GitHub Trending, Toolify, AIToolRanked等
+> [!info] 文档信息
+> - **收集时间**: 2026年1月25日
+> - **数据来源**: GitHub Trending, Toolify, AIToolRanked等
 
 ## 概述
 

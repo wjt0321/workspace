@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐴 马年祝福签 - 新年好运势</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* 马年主题色彩 */
+        :root {
+            --primary: #C23531;
+            --primary-dark: #9B1B1B;
+            --gold: #FFD700;
+            --gold-light: #FFF9C4;
+            --bg-warm: #F8F6F3;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+            background-color: var(--bg-warm);
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(194, 53, 49, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 215, 0, 0.08) 0%, transparent 50%);
+        }
+
+        .font-serif {
+            font-family: 'Noto Serif SC', 'SimSun', serif;
+        }
+
+        /* 动画定义 */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes pulse-gold {
+            0%, 100% { opacity: 1; box-shadow: 0 0 20px rgba(255, 215, 0, 0.3); }
+            50% { opacity: 0.8; box-shadow: 0 0 40px rgba(255, 215, 0, 0.6); }
+        }
+
+        @keyframes gallop {
+            0%, 100% { transform: translateX(-3px); }
+            25% { transform: translateX(3px); }
+            50% { transform: translateX(-3px); }
+            75% { transform: translateX(3px); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes coin-fall {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0.3; }
+        }
+
+        @keyframes spark {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.5); opacity: 0.5; }
+        }
+
+        .animate-float { animation: float 3s ease-in-out infinite; }
+        .animate-pulse-gold { animation: pulse-gold 2s ease-in-out infinite; }
+        .animate-gallop { animation: gallop 0.5s ease-in-out infinite; }
+        .animate-fadeInUp { animation: fadeInUp 0.6s ease-out forwards; }
+        .animate-spark { animation: spark 1.5s ease-in-out infinite; }
+
+        /* 卡片悬停效果 */
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(194, 53, 49, 0.15);
+        }
+
+        /* 祝福卡片样式 */
+        .blessing-card {
+            background: linear-gradient(135deg, #FFF 0%, #FEF2F2 100%);
+            border: 1px solid rgba(194, 53, 49, 0.1);
+        }
+
+        .blessing-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 8px 30px rgba(194, 53, 49, 0.2);
+        }
+
+        /* 签纸效果 */
+        .fortune-paper {
+            background: linear-gradient(180deg, #FFF9E6 0%, #FFF 50%, #FFF9E6 100%);
+            border: 2px solid #DAA520;
+            box-shadow: 
+                0 4px 20px rgba(218, 165, 32, 0.2),
+                inset 0 0 60px rgba(255, 215, 0, 0.1);
+        }
+
+        /* 分类卡片 */
+        .category-card {
+            background: white;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .category-card:hover {
+            border-color: var(--primary);
+            transform: scale(1.02);
+        }
+
+        /* 按钮样式 */
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(194, 53, 49, 0.4);
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, var(--gold) 0%, #FFB300 100%);
+            color: #1A252F;
+            transition: all 0.3s ease;
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.5);
+        }
+
+        /* 运势星级 */
+        .star-rating {
+            color: var(--gold);
+        }
+
+        /* 金币飘落 */
+        .coin {
+            position: fixed;
+            font-size: 24px;
+            pointer-events: none;
+            z-index: 1000;
+            animation: coin-fall 8s linear infinite;
+        }
+
+        /* 搜索框 */
+        .search-input {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(194, 53, 49, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(194, 53, 49, 0.2);
+            outline: none;
+        }
+
+        /* 徽章样式 */
+        .badge-lucky {
+            background: linear-gradient(135deg, #FF6B6B 0%, #C23531 100%);
+            color: white;
+        }
+
+        .badge-super {
+            background: linear-gradient(135deg, var(--gold) 0%, #FF8C00 100%);
+            color: #1A252F;
+        }
+
+        /* 装饰云纹 */
+        .cloud-pattern {
+            opacity: 0.1;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23C23531' d='M25,50 Q35,30 50,50 T75,50 T90,50'/%3E%3C/svg%3E");
+            background-size: 100px;
+        }
+
+        /* 导航链接 */
+        .nav-link {
+            color: #2C3E50;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- 金币飘落效果 -->
+    <div class="coin" style="left: 10%; animation-delay: 0s;">🪙</div>
+    <div class="coin" style="left: 30%; animation-delay: 2s;">💰</div>
+    <div class="coin" style="left: 50%; animation-delay: 4s;">🪙</div>
+    <div class="coin" style="left: 70%; animation-delay: 1s;">💰</div>
+    <div class="coin" style="left: 90%; animation-delay: 3s;">🪙</div>
+
+    <!-- 导航栏 -->
+    <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-red-100">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex items-center gap-3 group cursor-pointer">
+                    <div class="relative">
+                        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-red-500 to-red-700 flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <span class="text-2xl">🐴</span>
+                        </div>
+                        <div class="absolute -top-1 -right-1 w-3 h-3 bg-yellow-400 rounded-full animate-pulse"></div>
+                    </div>
+                    <span class="font-bold text-xl hidden sm:block">
+                        <span class="text-red-600">马</span>
+                        <span class="text-gray-700">年</span>
+                        <span class="text-red-600">祝福签</span>
+                    </span>
+                </div>
+
+                <!-- 导航菜单 -->
+                <nav class="hidden md:flex items-center gap-8">
+                    <a href="#" class="nav-link font-medium">首页</a>
+                    <a href="#" class="nav-link font-medium">财运</a>
+                    <a href="#" class="nav-link font-medium">事业</a>
+                    <a href="#" class="nav-link font-medium">爱情</a>
+                    <a href="#" class="nav-link font-medium">健康</a>
+                    <a href="#" class="nav-link font-medium">更多分类</a>
+                </nav>
+
+                <!-- 右侧功能区 -->
+                <div class="flex items-center gap-3">
+                    <button class="p-2 rounded-lg hover:bg-red-50 transition-colors relative">
+                        <span class="text-xl">🔔</span>
+                        <span class="absolute -top-1 -right-1 w-2 h-2 bg-yellow-400 rounded-full"></span>
+                    </button>
+                    <button class="px-4 py-2 rounded-lg bg-gradient-to-r from-red-500 to-red-600 text-white font-medium hover:shadow-lg hover:shadow-red-500/30 transition-all">
+                        登录
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero区域 -->
+    <section class="relative overflow-hidden py-16 md:py-24">
+        <!-- 背景装饰 -->
+        <div class="absolute inset-0 cloud-pattern"></div>
+        <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-yellow-100/50 to-transparent rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-red-100/30 to-transparent rounded-full blur-3xl"></div>
+
+        <div class="relative max-w-4xl mx-auto px-4 text-center">
+            <!-- 标签 -->
+            <div class="inline-flex items-center gap-2 bg-red-50 text-red-600 px-4 py-2 rounded-full mb-6 animate-fadeInUp">
+                <span class="animate-spark">✨</span>
+                <span class="font-medium">马年特别版 · 祝福签</span>
+            </div>
+
+            <!-- 主标题 -->
+            <h1 class="font-serif text-4xl md:text-6xl font-bold mb-6 animate-fadeInUp" style="animation-delay: 0.1s;">
+                <span class="text-gray-800">抽取</span>
+                <span class="text-red-600 mx-2">马年祝福</span>
+                <span class="text-gray-800">迎接好运</span>
+            </h1>
+
+            <!-- 副标题 -->
+            <p class="text-lg md:text-xl text-gray-600 mb-8 max-w-2xl mx-auto animate-fadeInUp" style="animation-delay: 0.2s;">
+                新年新气象！抽取专属祝福签，让好运伴随您一整年。
+                马到成功，财源滚滚，万事如意！
+            </p>
+
+            <!-- 搜索框 -->
+            <div class="max-w-xl mx-auto mb-10 animate-fadeInUp" style="animation-delay: 0.3s;">
+                <div class="relative group">
+                    <input 
+                        type="text" 
+                        placeholder="搜索祝福语，如：财源滚滚、马到成功..."
+                        class="w-full px-6 py-4 pr-14 rounded-2xl search-input text-lg"
+                    >
+                    <button class="absolute right-3 top-1/2 -translate-y-1/2 p-2 bg-red-500 text-white rounded-xl hover:bg-red-600 transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- 统计数据 -->
+            <div class="flex flex-wrap justify-center gap-8 md:gap-16 animate-fadeInUp" style="animation-delay: 0.4s;">
+                <div class="text-center">
+                    <div class="text-3xl md:text-4xl font-bold text-red-600">99,999+</div>
+                    <div class="text-gray-500 mt-1">已送出祝福</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl md:text-4xl font-bold text-red-600">8</div>
+                    <div class="text-gray-500 mt-1">祝福分类</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl md:text-4xl font-bold text-red-600">1,234</div>
+                    <div class="text-gray-500 mt-1">今日抽取</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl md:text-4xl font-bold text-red-600">98%</div>
+                    <div class="text-gray-500 mt-1">满意度</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 摇一摇抽取区域 -->
+    <section class="py-12 bg-gradient-to-b from-red-50 to-white">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="text-center mb-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2">🎲 摇一摇 · 抽取今日祝福</h2>
+                <p class="text-gray-600">点击按钮，获取您的专属马年祝福</p>
+            </div>
+
+            <div class="fortune-paper rounded-3xl p-8 md:p-12 text-center max-w-2xl mx-auto">
+                <div id="fortune-result" class="hidden">
+                    <!-- 抽签结果将显示在这里 -->
+                    <div class="mb-4">
+                        <span class="inline-block bg-yellow-100 text-yellow-800 px-4 py-1 rounded-full text-sm font-medium" id="luck-badge">
+                            上上签
+                        </span>
+                    </div>
+                    <h3 class="font-serif text-2xl md:text-3xl font-bold text-gray-800 mb-4" id="blessing-title">
+                        财源滚滚
+                    </h3>
+                    <p class="text-lg text-gray-600 italic mb-6" id="blessing-content">
+                        "财源广进如江水，富贵逼人似春风"
+                    </p>
+                    <p class="text-sm text-gray-500 mb-6" id="blessing-source">
+                        —— 唐代·孟郊《登科后》
+                    </p>
+                    <div class="flex justify-center gap-4">
+                        <button class="px-6 py-3 bg-red-500 text-white rounded-xl font-medium hover:bg-red-600 transition-all">
+                            📤 分享祝福
+                        </button>
+                        <button class="px-6 py-3 border-2 border-red-500 text-red-600 rounded-xl font-medium hover:bg-red-50 transition-all" onclick="resetFortune()">
+                            🔄 再抽一次
+                        </button>
+                    </div>
+                </div>
+
+                <div id="fortune-ready">
+                    <div class="text-6xl mb-6 animate-float">🐴</div>
+                    <button onclick="drawFortune()" class="btn-gold px-8 py-4 rounded-2xl text-xl font-bold flex items-center gap-3 mx-auto">
+                        <span>🎲</span>
+                        <span>抽取今日祝福</span>
+                    </button>
+                    <p class="text-gray-500 mt-4 text-sm">每日限抽3次，好运不间断</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 分类导航 -->
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex items-center justify-between mb-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800">🎯 祝福分类</h2>
+                <a href="#" class="text-red-600 hover:text-red-700 font-medium flex items-center gap-1">
+                    查看全部
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <!-- 财运 -->
+                <a href="#" class="category-card rounded-2xl p-6 text-center card-hover">
+                    <div class="text-4xl mb-3">💰</div>
+                    <h3 class="font-bold text-lg text-gray-800">财运亨通</h3>
+                    <p class="text-sm text-gray-500 mt-1">66份祝福</p>
+                </a>
+
+                <!-- 事业 -->
+                <a href="#" class="category-card rounded-2xl p-6 text-center card-hover">
+                    <div class="text-4xl mb-3">💼</div>
+                    <h3 class="font-bold text-lg text-gray-800">事业腾飞</h3>
+                    <p class="text-sm text-gray-500 mt-1">88份祝福</p>
+                </a>
+
+                <!-- 爱情 -->
+                <a href="#" class="category-card rounded-2xl p-6 text-center card-hover">
+                    <div class="text-4xl mb-3">❤️</div>
+                    <h3 class="font-bold text-lg text-gray-800">甜蜜爱情</h3>
+                    <p class="text-sm text-gray-500 mt-1">52份祝福</p>
+                </a>
+
+                <!-- 健康 -->
+                <a href="#" class="category-card rounded-2xl p-6 text-center card-hover">
+                    <div class="text-4xl mb-3">🏃</div>
+                    <h3 class="font-bold text-lg text-gray-800">健康平安</h3>
+                    <p class="text-sm text-gray-500 mt-1">44份祝福</p>
+                </a>
+
+                <!-- 学业 -->
+                <a href="#" class="category-card rounded-2xl p-6 text-center card-hover">
+                    <div class="text-4xl mb-3">📚</div>
+                    <h3 class="font-bold text-lg text-gray-800">金榜题名</h3>
+                    <p class="text-sm text-gray-500 mt-1">36份祝福</p>
+                </a>
+
+                <!-- 家庭 -->
+                <a href="#" class="category-card rounded-2xl p-6 text-center card-hover">
+                    <div class="text-4xl mb-3">👨‍👩‍👧</div>
+                    <h3 class="font-bold text-lg text-gray-800">阖家欢乐</h3>
+                    <p class="text-sm text-gray-500 mt-1">28份祝福</p>
+                </a>
+
+                <!-- 友情 -->
+                <a href="#" class="category-card rounded-2xl p-6 text-center card-hover">
+                    <div class="text-4xl mb-3">🤝</div>
+                    <h3 class="font-bold text-lg text-gray-800">友谊长存</h3>
+                    <p class="text-sm text-gray-500 mt-1">22份祝福</p>
+                </a>
+
+                <!-- 出行 -->
+                <a href="#" class="category-card rounded-2xl p-6 text-center card-hover">
+                    <div class="text-4xl mb-3">✈️</div>
+                    <h3 class="font-bold text-lg text-gray-800">一路顺风</h3>
+                    <p class="text-sm text-gray-500 mt-1">18份祝福</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 今日推荐 -->
+    <section class="py-16 bg-gradient-to-b from-white to-red-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex items-center justify-between mb-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800">🌟 今日推荐</h2>
+                <a href="#" class="text-red-600 hover:text-red-700 font-medium flex items-center gap-1">
+                    查看更多
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- 推荐卡片1 -->
+                <div class="blessing-card rounded-2xl p-6 card-hover cursor-pointer">
+                    <div class="flex items-start gap-4">
+                        <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-red-100 to-red-50 flex items-center justify-center text-3xl flex-shrink-0">
+                            🐴
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="badge-super px-2 py-1 rounded-full text-xs font-bold">上上签</span>
+                                <span class="text-yellow-500 text-sm">★★★★★</span>
+                            </div>
+                            <h3 class="font-serif text-xl font-bold text-gray-800 mb-2">马到成功</h3>
+                            <p class="text-gray-600 text-sm line-clamp-2">
+                                "春风得意马蹄疾，一日看尽长安花"
+                            </p>
+                            <p class="text-gray-400 text-xs mt-2">—— 唐代·孟郊《登科后》</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 推荐卡片2 -->
+                <div class="blessing-card rounded-2xl p-6 card-hover cursor-pointer">
+                    <div class="flex items-start gap-4">
+                        <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-yellow-100 to-yellow-50 flex items-center justify-center text-3xl flex-shrink-0">
+                            💰
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="badge-super px-2 py-1 rounded-full text-xs font-bold">上签</span>
+                                <span class="text-yellow-500 text-sm">★★★★☆</span>
+                            </div>
+                            <h3 class="font-serif text-xl font-bold text-gray-800 mb-2">财源广进</h3>
+                            <p class="text-gray-600 text-sm line-clamp-2">
+                                "日进斗金财源广，四季平安福寿长"
+                            </p>
+                            <p class="text-gray-400 text-xs mt-2">—— 传统祝福语</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 推荐卡片3 -->
+                <div class="blessing-card rounded-2xl p-6 card-hover cursor-pointer">
+                    <div class="flex items-start gap-4">
+                        <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-pink-100 to-pink-50 flex items-center justify-center text-3xl flex-shrink-0">
+                            ❤️
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="badge-lucky px-2 py-1 rounded-full text-xs font-bold">中上签</span>
+                                <span class="text-yellow-500 text-sm">★★★★☆</span>
+                            </div>
+                            <h3 class="font-serif text-xl font-bold text-gray-800 mb-2">百年好合</h3>
+                            <p class="text-gray-600 text-sm line-clamp-2">
+                                "在天愿作比翼鸟，在地愿为连理枝"
+                            </p>
+                            <p class="text-gray-400 text-xs mt-2">—— 唐代·白居易《长恨歌》</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 推荐卡片4 -->
+                <div class="blessing-card rounded-2xl p-6 card-hover cursor-pointer">
+                    <div class="flex items-start gap-4">
+                        <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-green-100 to-green-50 flex items-center justify-center text-3xl flex-shrink-0">
+                            🏃
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="badge-lucky px-2 py-1 rounded-full text-xs font-bold">上签</span>
+                                <span class="text-yellow-500 text-sm">★★★★★</span>
+                            </div>
+                            <h3 class="font-serif text-xl font-bold text-gray-800 mb-2">万事如意</h3>
+                            <p class="text-gray-600 text-sm line-clamp-2">
+                                "愿您岁月静好，现世安稳，万事如意"
+                            </p>
+                            <p class="text-gray-400 text-xs mt-2">—— 传统祝福语</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 祝福标语滚动栏 -->
+    <section class="py-6 bg-gradient-to-r from-red-600 to-red-700 overflow-hidden">
+        <div class="flex items-center">
+            <div class="flex animate-[marquee_20s_linear_infinite] whitespace-nowrap">
+                <span class="text-white text-lg mx-8">🐴 马年大吉 · 万事如意</span>
+                <span class="text-white text-lg mx-8">💰 财源滚滚 · 日进斗金</span>
+                <span class="text-white text-lg mx-8">🎉 步步高升 · 事业腾飞</span>
+                <span class="text-white text-lg mx-8">❤️ 百年好合 · 甜蜜幸福</span>
+                <span class="text-white text-lg mx-8">🏃 身体健康 · 平安顺遂</span>
+                <span class="text-white text-lg mx-8">📚 金榜题名 · 学业有成</span>
+                <span class="text-white text-lg mx-8">👨‍👩‍👧 阖家欢乐 · 幸福美满</span>
+                <span class="text-white text-lg mx-8">🤝 友谊长存 · 知己相逢</span>
+                <span class="text-white text-lg mx-8">✈️ 一路顺风 · 平安出行</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-400 py-12">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <span class="text-2xl">🐴</span>
+                        <span class="font-bold text-xl text-white">马年祝福签</span>
+                    </div>
+                    <p class="text-sm">
+                        为您提供最真挚的新年祝福，愿马年好运势伴随您每一天！
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4">祝福分类</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-red-400">财运亨通</a></li>
+                        <li><a href="#" class="hover:text-red-400">事业腾飞</a></li>
+                        <li><a href="#" class="hover:text-red-400">甜蜜爱情</a></li>
+                        <li><a href="#" class="hover:text-red-400">健康平安</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4">关于我们</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-red-400">项目介绍</a></li>
+                        <li><a href="#" class="hover:text-red-400">联系我们</a></li>
+                        <li><a href="#" class="hover:text-red-400">意见反馈</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4">关注我们</h4>
+                    <div class="flex gap-3">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-red-500 transition-colors">
+                            <span class="text-lg">📱</span>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-red-500 transition-colors">
+                            <span class="text-lg">💬</span>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-red-500 transition-colors">
+                            <span class="text-lg">📧</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center text-sm">
+                <p>© 2025 马年祝福签 · 新年快乐！🐴🎉</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 抽签功能
+        const fortunes = [
+            {
+                title: '财源滚滚',
+                content: '财源广进如江水，富贵逼人似春风',
+                source: '唐代·孟郊《登科后》',
+                badge: '上上签',
+                stars: 5,
+                luckType: 'SUPER_LUCKY'
+            },
+            {
+                title: '马到成功',
+                content: '春风得意马蹄疾，一日看尽长安花',
+                source: '唐代·孟郊《登科后》',
+                badge: '上上签',
+                stars: 5,
+                luckType: 'SUPER_LUCKY'
+            },
+            {
+                title: '步步高升',
+                content: '百尺竿头更进一步，万里征程再创辉煌',
+                source: '传统祝福语',
+                badge: '上签',
+                stars: 4,
+                luckType: 'LUCKY'
+            },
+            {
+                title: '百年好合',
+                content: '在天愿作比翼鸟，在地愿为连理枝',
+                source: '唐代·白居易《长恨歌》',
+                badge: '上签',
+                stars: 4,
+                luckType: 'LUCKY'
+            }
+        ];
+
+        function drawFortune() {
+            const ready = document.getElementById('fortune-ready');
+            const result = document.getElementById('fortune-result');
+            
+            ready.classList.add('hidden');
+            
+            // 模拟加载动画
+            const horse = ready.querySelector('.text-6xl');
+            horse.style.animation = 'spin 1s linear infinite';
+            
+            setTimeout(() => {
+                horse.style.animation = 'float 3s ease-in-out infinite';
+                
+                const fortune = fortunes[Math.floor(Math.random() * fortunes.length)];
+                
+                document.getElementById('luck-badge').textContent = fortune.badge;
+                document.getElementById('luck-badge').className = fortune.luckType === 'SUPER_LUCKY' 
+                    ? 'badge-super px-4 py-1 rounded-full text-sm font-bold'
+                    : 'badge-lucky px-4 py-1 rounded-full text-sm font-bold';
+                
+                document.getElementById('blessing-title').textContent = fortune.title;
+                document.getElementById('blessing-content').textContent = '"' + fortune.content + '"';
+                document.getElementById('blessing-source').textContent = '—— ' + fortune.source;
+                
+                result.classList.remove('hidden');
+                result.style.animation = 'fadeInUp 0.5s ease-out';
+            }, 1500);
+        }
+
+        function resetFortune() {
+            const ready = document.getElementById('fortune-ready');
+            const result = document.getElementById('fortune-result');
+            
+            result.classList.add('hidden');
+            ready.classList.remove('hidden');
+        }
+
+        // 添加 marquee 动画
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes marquee {
+                0% { transform: translateX(0); }
+                100% { transform: translateX(-50%); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // 搜索框焦点效果
+        document.querySelector('.search-input').addEventListener('focus', function() {
+            this.parentElement.classList.add('ring-2', 'ring-red-300');
+        });
+
+        document.querySelector('.search-input').addEventListener('blur', function() {
+            this.parentElement.classList.remove('ring-2', 'ring-red-300');
+        });
+    </script>
+</body>
+</html>
