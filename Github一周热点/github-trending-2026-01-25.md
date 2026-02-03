@@ -1,42 +1,40 @@
 ---
-title: GitHub一周热点 AI工具汇总
-date: 2026-01-25
 tags:
-  - GitHub
-  - AI
-  - 热点
-  - Agent
-  - RAG
-category: 每周热点
-status: published
+  - AI/Report
+  - GitHub/Trending
+date: 2026-01-25
+author: AI Automation System
+status: Published
 aliases:
   - 2026-01-25 GitHub热点汇总
 ---
 
-# GitHub一周热点 AI工具汇总
+# GitHub 一周热点 AI 工具汇总 — 2026-01-25
 
-> [!info] 文档信息
-> - **收集时间**: 2026年1月25日
-> - **数据来源**: GitHub Trending, Toolify, AIToolRanked等
+> [!abstract] 本周概览
+> 本周 GitHub AI 领域呈现出 **AI Agent 爆发** 和 **RAG 技术深化** 的双重趋势。browser-use 和 goose 成为新晋顶流，而 OpenClaw (原 MoltBot) 的技术架构也引起了广泛讨论。
+> 关联深度分析：[[MoltBot深度研究分析|MoltBot (OpenClaw) 深度研究]]
 
-## 概述
-
-本文档归档近一周GitHub上热门的AI工具，涵盖AI代理、图像生成、RAG检索、开发平台等多个领域。
+> [!info] 📊 快速统计
+> - **收集时间**: 2026-01-25
+> - **核心领域**: AI Agent, RAG, 图像生成
+> - **重点关注**: [[MoltBot深度研究分析|MoltBot (OpenClaw)]], [[OpenClaw_Docker化部署调查报告|OpenClaw Docker 部署]]
 
 ---
 
-## 🤖 AI Agent/自动化工具
+## 🤖 AI Agent / 自动化工具
 
-> [!NOTE]
-> AI代理工具持续火热，本周涌现多个新项目
+> [!success] 热门项目
+> AI 代理工具持续火热，本周涌现多个具有里程碑意义的项目。
 
 | 项目名称 | 描述 | 语言 | 热度 |
 |---------|------|------|------|
-| [browser-use/browser-use](https://github.com/browser-use/browser-use) | 让网站可被AI代理访问 | Python | 热门 |
-| [block/goose](https://github.com/block/goose) | 开源可扩展的AI代理 | Rust | 热门 |
-| [anthropics/claude-code](https://github.com/anthropics/claude-code) | Claude的代码代理工具 | TypeScript | 14k★ |
-| [plandex-ai/plandex](https://github.com/plandex-ai/plandex) | AI代理工具 | - | 热门 |
-| [claude-flow/claude-flow](https://github.com/claude-flow/claude-flow) | Claude流代理工具 | - | 热门 |
+| [browser-use](https://github.com/browser-use/browser-use) | 让网站可被 AI 代理访问 | Python | 🌟 顶流 |
+| [goose](https://github.com/block/goose) | 开源可扩展的 AI 代理 | Rust | 🚀 热门 |
+| [claude-code](https://github.com/anthropics/claude-code) | Claude 的代码代理工具 | TS | 14k★ |
+
+> [!tip] 关联阅读
+> - 关于 OpenClaw (原 MoltBot) 的更多细节，请参考 [[MoltBot深度研究分析]]。
 
 ### 相关链接
 - [[AI代理工具]] - 专题文档

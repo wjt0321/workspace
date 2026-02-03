@@ -33,20 +33,17 @@ OpenClaw提供以下核心功能：
 
 ### 官方Docker支持情况
 
-**结论：OpenClaw已经具备完善的官方Docker支持。**
-
-项目仓库中包含以下Docker相关文件：
+> [!success] 结论
+> **OpenClaw 已经具备完善的官方 Docker 支持。**
 
 | 文件 | 用途 |
 |------|------|
-| `Dockerfile` | 主Gateway镜像构建 |
-| `Dockerfile.sandbox` | Agent沙盒基础镜像 |
-| `Dockerfile.sandbox-browser` | 浏览器沙盒镜像（支持Xvfb） |
-| `docker-compose.yml` | Docker Compose编排配置 |
-| `docker-setup.sh` | 自动化Docker部署脚本 |
-| `.dockerignore` | Docker构建忽略规则 |
+| `Dockerfile` | 主 Gateway 镜像构建 |
+| `Dockerfile.sandbox` | Agent 沙盒基础镜像 |
+| `docker-compose.yml` | Docker Compose 编排配置 |
 
-官方文档：[OpenClaw Docker安装指南](https://docs.openclaw.ai/install/docker)
+> [!tip] 官方文档
+> 更多细节请参考 [OpenClaw Docker 安装指南](https://docs.openclaw.ai/install/docker)。
 
 ### 部署方式
 
