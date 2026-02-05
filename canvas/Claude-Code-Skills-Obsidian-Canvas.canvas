@@ -1,0 +1,33 @@
+{
+	"nodes":[
+		{"id":"obsidian-skills","type":"text","text":"## 📓 Obsidian Skills\n\n**kepano/obsidian-skills (6k stars)**\n- Obsidian Flavored Markdown\n- Obsidian Bases (.base)\n- JSON Canvas (.canvas)\n\n**gapmiss/obsidian-plugin-skill**\n- 插件开发专用\n- 27条核心规则\n- 详细参考文档","x":200,"y":1000,"width":300,"height":300,"color":"#dda0dd"},
+		{"id":"skill-structure","type":"text","text":"## 📄 SKILL.md 结构\n\n```yaml\n---\nname: skill-name\ndescription: 技能描述\nallowed-tools: Read, Grep\nmodel: claude-sonnet-4\n---\n\n# 技能标题\n## 使用方法\n## 示例\n```","x":1100,"y":180,"width":280,"height":320,"color":"#4ecdc4"},
+		{"id":"core-concept","type":"text","text":"## 🎯 Claude Code Skills 核心概念\n\n- SKILL.md 文件 + YAML 前置元数据\n- 按需加载的渐进式披露\n- 跨平台兼容 (Claude Code, Codex, Copilot)\n- 可组合的专业工作流","x":230,"y":180,"width":320,"height":280,"color":"#ff6b6b"},
+		{"id":"awesome-repos","type":"text","text":"## 🏆 热门技能仓库\n\n**ComposioHQ/awesome-claude-skills**\n- 50+ 生产级技能\n- 多领域覆盖\n\n**VoltAgent/awesome-claude-skills**\n- 官方+社区资源\n- 持续更新\n\n**daymade/claude-code-skills**\n- 20+ 高级技能\n- GitHub操作、PDF生成","x":-100,"y":600,"width":300,"height":280,"color":"#45b7d1"},
+		{"id":"skillsmp","type":"text","text":"## 🏪 SkillsMP 市场\n\n**56,000+ AI Agent 技能**\n\n- 智能语义搜索\n- 按类别/作者筛选\n- 一键安装\n\n**热门分类**:\n- Documentation (1,065)\n- Project Management\n- AI/ML Tools","x":1280,"y":600,"width":280,"height":280,"color":"#96ceb4"},
+		{"id":"vault-manager","type":"text","text":"## 📚 知识管理技能\n\n**Obsidian Vault Manager**\n- YouTube 视频抓取\n- GitHub 仓库分析\n- 结构化标签笔记\n\n**AI4PKM Helper**\n- 入门指导\n- Gobi Desktop 集成\n- 三层架构模型","x":1320,"y":1000,"width":280,"height":280,"color":"#f7dc6f"},
+		{"id":"obsidian-integration","type":"text","text":"## 🔗 Obsidian + Claude Code 集成\n\n**obsidian-claude-code 插件**\n- 内嵌 AI 助手\n- 自动加载 skills\n- 专用工具:\n  - open_file, create_note\n  - get_vault_stats\n  - execute_command","x":760,"y":920,"width":280,"height":300,"color":"#98d8c8"},
+		{"id":"claudesidian","type":"text","text":"## 🏠 Claudesidian 模板\n\n**Obsidian CEO 创建**\n\n**包含内容**:\n- 合理的文件夹结构\n- 预配置 CLAUDE.md\n- 常用 Slash 命令\n- 示例工作流\n\n**15分钟快速启动**","x":0,"y":1520,"width":280,"height":280,"color":"#82e0aa"},
+		{"id":"ai-native-vault","type":"text","text":"## 🏗️ AI-Native Vault 结构\n\n**000 OS/** - Claude 配置\n- commands/, scripts/, skills/\n\n**100 Periodics/** - 定期笔记\n- Daily/, Weekly/, Monthly/\n\n**300 Entities/** - 实体\n- Areas, Companies, Goals, Projects\n\n**400 Resources/** - 资源\n- Blog Posts, Books, Courses","x":640,"y":1380,"width":300,"height":280,"color":"#85c1e9"},
+		{"id":"workflows","type":"text","text":"## 🔄 实用工作流\n\n**iOS Voice Memos → Obsidian**\n1. 监听 Voice Memos\n2. Whisper 转录\n3. Claude 总结\n4. 创建笔记\n\n**每日日志自动化**\n- 自动创建项目笔记\n- 检测链接人物\n- 填充 YAML","x":1560,"y":1380,"width":280,"height":280,"color":"#82e0aa"},
+		{"id":"task-management","type":"text","text":"## ✅ 任务管理技能\n\n**TaskNotes + Claude Code**\n\n**自然语言查询**:\n- \"What's overdue?\"\n- \"What can I work on?\"\n- \"Create a work session\"\n\n**特点**:\n- 读取元数据\n- 理解优先级\n- 完整上下文","x":1140,"y":1440,"width":280,"height":280,"color":"#f1948a"},
+		{"id":"best-practices","type":"text","text":"## 💡 最佳实践\n\n**技能创建原则**:\n1. 渐进式披露\n2. Obsidian 兼容性\n3. 正确的 YAML Frontmatter\n4. 使用 Wiki-links [[]]\n5. 保持 Backlinks\n\n**推荐组合**:\n- obsidian-skills (基础)\n- obsidian-plugin-skill (开发)\n- vault-manager (捕捉)\n- task-management (跟踪)","x":390,"y":1800,"width":320,"height":280,"color":"#a9dfbf"}
+	],
+	"edges":[
+		{"id":"e1","fromNode":"core-concept","fromSide":"right","toNode":"skill-structure","toSide":"left"},
+		{"id":"e2","fromNode":"core-concept","fromSide":"bottom","toNode":"awesome-repos","toSide":"top"},
+		{"id":"e3","fromNode":"core-concept","fromSide":"right","toNode":"skillsmp","toSide":"left"},
+		{"id":"e4","fromNode":"skill-structure","fromSide":"bottom","toNode":"obsidian-skills","toSide":"top"},
+		{"id":"e5","fromNode":"skill-structure","fromSide":"bottom","toNode":"obsidian-integration","toSide":"top"},
+		{"id":"e6","fromNode":"awesome-repos","fromSide":"right","toNode":"skillsmp","toSide":"left"},
+		{"id":"e7","fromNode":"skillsmp","fromSide":"bottom","toNode":"vault-manager","toSide":"top"},
+		{"id":"e8","fromNode":"obsidian-skills","fromSide":"right","toNode":"obsidian-integration","toSide":"left"},
+		{"id":"e9","fromNode":"obsidian-integration","fromSide":"right","toNode":"vault-manager","toSide":"left"},
+		{"id":"e10","fromNode":"claudesidian","fromSide":"right","toNode":"ai-native-vault","toSide":"left"},
+		{"id":"e11","fromNode":"ai-native-vault","fromSide":"right","toNode":"task-management","toSide":"left"},
+		{"id":"e12","fromNode":"task-management","fromSide":"right","toNode":"workflows","toSide":"left"},
+		{"id":"e13","fromNode":"vault-manager","fromSide":"bottom","toNode":"workflows","toSide":"top"},
+		{"id":"e14","fromNode":"obsidian-integration","fromSide":"bottom","toNode":"claudesidian","toSide":"top"},
+		{"id":"e15","fromNode":"best-practices","fromSide":"top","toNode":"core-concept","toSide":"bottom"}
+	]
+}
