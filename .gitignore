@@ -22,6 +22,8 @@ MCP配置文件/**/*.json
 .claude/cache/
 .claude/session-*.json
 .claude/tmp/
+.vscode/
+.trae/
 
 # ===== 临时文件和缓存 =====
 *.tmp
