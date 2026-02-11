@@ -118,6 +118,7 @@ openspec archive <change-id>   # 归档变更
 本仓库为文档与知识管理仓库，无构建、无 Lint、无测试命令。
 
 如需 Python 开发，使用 `.venv` 环境：
+
 ```bash
 .venv\Scripts\activate  # 激活虚拟环境
 ```
