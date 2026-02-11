@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Code Skills 完整流程图</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* 颜色系统 */
+            --bg-primary: #F7F7F7;
+            --bg-card: #FFFFFF;
+            --text-primary: #1A1A1A;
+            --text-secondary: #6B7280;
+            --text-tertiary: #9CA3AF;
+            --accent-blue: #2563EB;
+            --accent-blue-light: #93C5FD;
+            --accent-blue-dark: #1D4ED8;
+            --status-positive: #059669;
+            --status-warning: #F59E0B;
+            --status-negative: #DC2626;
+            --border-default: #E5E7EB;
+            --purple: #8B5CF6;
+            --purple-light: #C4B5FD;
+        }
+
+        body {
+            font-family: 'Playfair Display', serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* 标题区域 */
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .header h1 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            font-family: 'Space Mono', monospace;
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+
+        /* 区域标题 */
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* 流程节点 */
+        .flow-node {
+            background: var(--bg-card);
+            border: 2px solid var(--border-default);
+            border-radius: 12px;
+            padding: 16px 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .flow-node:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .flow-node.start, .flow-node.end {
+            background: var(--status-positive);
+            border-color: #047857;
+            color: white;
+        }
+
+        .flow-node.skill {
+            background: var(--accent-blue);
+            border-color: var(--accent-blue-dark);
+            color: white;
+        }
+
+        .flow-node.decision {
+            background: var(--status-warning);
+            border-color: #D97706;
+            color: white;
+        }
+
+        .flow-node.test {
+            background: var(--status-negative);
+            border-color: #B91C1C;
+            color: white;
+        }
+
+        .flow-node.deploy {
+            background: var(--purple);
+            border-color: #7C3AED;
+            color: white;
+        }
+
+        .flow-node.iterate {
+            background: #9CA3AF;
+            border-color: #6B7280;
+            color: white;
+        }
+
+        .flow-node .icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .flow-node .title {
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .flow-node .desc {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            opacity: 0.9;
+        }
+
+        /* 箭头 */
+        .arrow {
+            text-align: center;
+            font-size: 32px;
+            color: var(--accent-blue);
+            margin: 8px 0;
+            animation: bounce 2s infinite;
+        }
+
+        .arrow.branch {
+            color: var(--status-warning);
+            font-size: 20px;
+        }
+
+        .arrow.loop {
+            color: var(--text-secondary);
+            font-size: 14px;
+            animation: none;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* 流程容器 */
+        .flow-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 50px;
+        }
+
+        .flow-row {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        /* 阶段卡片 */
+        .phase-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 20px;
+            transition: all 0.4s ease;
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .phase-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+        }
+
+        .phase-card.phase1 {
+            border: 2px solid #9CA3AF;
+        }
+
+        .phase-card.phase2 {
+            border: 2px solid var(--accent-blue);
+        }
+
+        .phase-card.phase3 {
+            border: 2px solid var(--status-positive);
+        }
+
+        .phase-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .phase-badge {
+            background: #9CA3AF;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 8px;
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .phase-card.phase2 .phase-badge {
+            background: var(--accent-blue);
+        }
+
+        .phase-card.phase3 .phase-badge {
+            background: var(--status-positive);
+        }
+
+        .phase-title {
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .phase-step {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .step-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Mono', monospace;
+            font-weight: 700;
+            font-size: 14px;
+            background: #F3F4F6;
+            color: var(--text-secondary);
+        }
+
+        .phase-card.phase2 .step-icon {
+            background: #DBEAFE;
+            color: var(--accent-blue);
+        }
+
+        .phase-card.phase3 .step-icon {
+            background: #D1FAE5;
+            color: var(--status-positive);
+        }
+
+        .phase-footer {
+            background: #F7F7F7;
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-top: 12px;
+        }
+
+        .phase-footer-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-secondary);
+        }
+
+        .phase-footer-text {
+            font-size: 12px;
+        }
+
+        /* 匹配方式卡片 */
+        .match-card {
+            background: #F7F7F7;
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 10px;
+        }
+
+        .match-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+        }
+
+        .match-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 4px;
+        }
+
+        .match-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent-blue);
+        }
+
+        .match-dot.gray {
+            background: #9CA3AF;
+        }
+
+        .match-text {
+            font-size: 11px;
+        }
+
+        /* 三列布局 */
+        .three-columns {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        /* 提示卡片 */
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .tip-card {
+            border-radius: 12px;
+            padding: 16px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .tip-card:hover {
+            transform: translateY(-5px) rotate(2deg);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .tip-card.tip1 {
+            background: #DBEAFE;
+            border: 1px solid var(--accent-blue);
+        }
+
+        .tip-card.tip2 {
+            background: #D1FAE5;
+            border: 1px solid var(--status-positive);
+        }
+
+        .tip-card.tip3 {
+            background: #FEF3C7;
+            border: 1px solid var(--status-warning);
+        }
+
+        .tip-card.tip4 {
+            background: #FEE2E2;
+            border: 1px solid var(--status-negative);
+        }
+
+        .tip-card .icon {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .tip-card .title {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .tip-card .text {
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            color: var(--text-primary);
+        }
+
+        /* 命令表格 */
+        .cmd-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 12px;
+        }
+
+        .cmd-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-default);
+            border-radius: 8px;
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .cmd-item:hover {
+            border-color: var(--accent-blue);
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.2);
+            transform: translateX(5px);
+        }
+
+        .cmd-badge {
+            background: #F3F4F6;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .cmd-badge.blue {
+            background: var(--accent-blue);
+            color: white;
+            font-size: 11px;
+        }
+
+        .cmd-text {
+            color: var(--text-secondary);
+            font-size: 12px;
+        }
+
+        /* 底部提示 */
+        .footer {
+            background: var(--text-primary);
+            color: white;
+            border-radius: 12px;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .footer-icon {
+            font-size: 20px;
+        }
+
+        .footer-text {
+            font-size: 14px;
+        }
+
+        /* 动画 */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.6s ease-out forwards;
+            opacity: 0;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+        .delay-6 { animation-delay: 0.6s; }
+
+        /* 脉冲效果 */
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4); }
+            50% { box-shadow: 0 0 0 15px rgba(37, 99, 235, 0); }
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 28px;
+            }
+            .three-columns {
+                grid-template-columns: 1fr;
+            }
+            .flow-row {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 标题区域 -->
+        <header class="header">
+            <h1>🚀 Claude Code Skills 完整流程</h1>
+            <p>从创建到部署的完整工作流程与运行机制</p>
+        </header>
+
+        <!-- 第一部分：Skills 工作流程 -->
+        <section class="animate-in">
+            <h2 class="section-title">📋 Skills 工作流程</h2>
+            <div class="flow-container">
+                <!-- 开始节点 -->
+                <div class="flow-node start pulse" style="width: 180px;">
+                    <div class="icon">🚀</div>
+                    <div class="title">开始</div>
+                </div>
+
+                <div class="arrow">↓</div>
+
+                <!-- 确定需求 -->
+                <div class="flow-node animate-in delay-1" style="width: 220px;">
+                    <div class="title">确定需求</div>
+                    <div class="desc">明确目标任务和输入输出规格</div>
+                </div>
+
+                <div class="arrow">↓</div>
+
+                <!-- 规划 + 创建目录 -->
+                <div class="flow-row animate-in delay-2">
+                    <div class="flow-node" style="width: 200px;">
+                        <div class="title">📝 规划功能</div>
+                        <div class="desc">设计工作流程</div>
+                    </div>
+                    <div class="flow-node" style="width: 200px;">
+                        <div class="title">📂 创建目录</div>
+                        <div class="desc">scripts/references/assets</div>
+                    </div>
+                </div>
+
+                <div class="arrow">↓</div>
+
+                <!-- 编写 SKILL.md -->
+                <div class="flow-node skill animate-in delay-3" style="width: 280px;">
+                    <div class="icon">⚙️</div>
+                    <div class="title">编写 SKILL.md</div>
+                    <div class="desc">YAML + Markdown · 定义技能核心</div>
+                </div>
+
+                <div class="arrow">↓</div>
+
+                <!-- 决策节点 -->
+                <div class="flow-node decision animate-in delay-4" style="width: 200px;">
+                    <div class="icon">❓</div>
+                    <div class="title">需要辅助文件?</div>
+                </div>
+
+                <div class="arrow branch">是 → / ← 否</div>
+
+                <!-- 添加资源 / 测试 -->
+                <div class="flow-row animate-in delay-5">
+                    <div class="flow-node" style="width: 180px;">
+                        <div class="title">📦 添加资源</div>
+                        <div class="desc">scripts/ / references/ / assets/</div>
+                    </div>
+                    <div class="flow-node test" style="width: 180px;">
+                        <div class="title">🧪 测试 Skill</div>
+                        <div class="desc">调用 /skill-name 验证输出</div>
+                    </div>
+                </div>
+
+                <div class="arrow">↓</div>
+
+                <!-- 迭代优化 -->
+                <div class="flow-node iterate animate-in delay-6" style="width: 220px;">
+                    <div class="title">🔄 迭代优化</div>
+                    <div class="desc">根据测试结果调整指令</div>
+                </div>
+
+                <div class="arrow loop">↺ 失败则返回编写阶段</div>
+                <div class="arrow" style="color: var(--status-positive);">↓ 测试通过</div>
+
+                <!-- 部署方式 -->
+                <div class="flow-node deploy" style="width: 200px;">
+                    <div class="title">🚀 部署方式</div>
+                    <div class="desc">个人 or 团队?</div>
+                </div>
+
+                <div class="arrow">↓</div>
+
+                <!-- 部署选项 -->
+                <div class="flow-row">
+                    <div class="flow-node" style="width: 220px; border-color: var(--accent-blue);">
+                        <div class="title">👤 个人使用</div>
+                        <div class="desc" style="color: var(--accent-blue); font-weight: 700;">~/.claude/skills/</div>
+                    </div>
+                    <div class="flow-node" style="width: 220px; border-color: var(--accent-blue);">
+                        <div class="title">👥 团队共享</div>
+                        <div class="desc" style="color: var(--accent-blue); font-weight: 700;">.claude/skills/ + Git 提交</div>
+                    </div>
+                </div>
+
+                <div class="arrow" style="color: var(--status-positive);">↓</div>
+
+                <!-- 完成 -->
+                <div class="flow-node end pulse" style="width: 180px;">
+                    <div class="icon">✅</div>
+                    <div class="title">完成</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 第二部分：Skills 运行机制 -->
+        <section class="animate-in" style="margin-top: 60px;">
+            <h2 class="section-title">⚙️ Skills 运行机制</h2>
+            <div class="three-columns">
+                <!-- 阶段1：启动阶段 -->
+                <div class="phase-card phase1">
+                    <div class="phase-header">
+                        <div class="phase-badge">阶段1</div>
+                        <div class="phase-title">🔧 启动阶段</div>
+                    </div>
+                    <div class="phase-step">
+                        <div class="step-icon">1</div>
+                        <div class="step-text">Claude Code 启动</div>
+                    </div>
+                    <div class="phase-step">
+                        <div class="step-icon">2</div>
+                        <div class="step-text">扫描 Skills 目录</div>
+                    </div>
+                    <div class="phase-step">
+                        <div class="step-icon">3</div>
+                        <div class="step-text">读取 SKILL.md 元数据</div>
+                    </div>
+                    <div class="phase-footer">
+                        <div class="phase-footer-label">输出</div>
+                        <div class="phase-footer-text">所有 Skills 的 name 和 description 被索引</div>
+                    </div>
+                </div>
+
+                <!-- 阶段2：匹配阶段 -->
+                <div class="phase-card phase2">
+                    <div class="phase-header">
+                        <div class="phase-badge">阶段2</div>
+                        <div class="phase-title">🎯 匹配阶段</div>
+                    </div>
+                    <div class="phase-step">
+                        <div class="step-icon">1</div>
+                        <div class="step-text">用户发出请求</div>
+                    </div>
+                    <div class="phase-step">
+                        <div class="step-icon">2</div>
+                        <div class="step-text">匹配 Skill 路径</div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-label">三种匹配方式</div>
+                        <div class="match-item">
+                            <div class="match-dot"></div>
+                            <div class="match-text">Slash 命令 (/skill-name)</div>
+                        </div>
+                        <div class="match-item">
+                            <div class="match-dot"></div>
+                            <div class="match-text">上下文匹配 (自动)</div>
+                        </div>
+                        <div class="match-item">
+                            <div class="match-dot gray"></div>
+                            <div class="match-text" style="color: var(--text-secondary);">无匹配 (通用能力)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 阶段3：执行阶段 -->
+                <div class="phase-card phase3">
+                    <div class="phase-header">
+                        <div class="phase-badge">阶段3</div>
+                        <div class="phase-title">⚡ 执行阶段</div>
+                    </div>
+                    <div class="phase-step">
+                        <div class="step-icon">1</div>
+                        <div class="step-text">加载完整 SKILL.md</div>
+                    </div>
+                    <div class="phase-step">
+                        <div class="step-icon">2</div>
+                        <div class="step-text">按需加载辅助文件</div>
+                    </div>
+                    <div class="phase-step">
+                        <div class="step-icon">3</div>
+                        <div class="step-text">执行 Skill 指令</div>
+                    </div>
+                    <div class="phase-step">
+                        <div class="step-icon">4</div>
+                        <div class="step-text">输出结果</div>
+                    </div>
+                    <div class="phase-footer">
+                        <div class="phase-footer-label">特点</div>
+                        <div class="phase-footer-text">渐进式加载：仅在需要时加载辅助文件</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 第三部分：最佳实践 -->
+        <section class="animate-in" style="margin-top: 60px;">
+            <h2 class="section-title">💡 最佳实践</h2>
+            <div class="tips-grid">
+                <div class="tip-card tip1">
+                    <div class="icon">📏</div>
+                    <div class="title">简洁明了</div>
+                    <div class="text">SKILL.md 控制在 500 行以内</div>
+                </div>
+                <div class="tip-card tip2">
+                    <div class="icon">🎯</div>
+                    <div class="title">具体指令</div>
+                    <div class="text">提供明确的步骤和输出格式</div>
+                </div>
+                <div class="tip-card tip3">
+                    <div class="icon">🔄</div>
+                    <div class="title">充分测试</div>
+                    <div class="text">手动和脚本测试确保正确性</div>
+                </div>
+                <div class="tip-card tip4">
+                    <div class="icon">📂</div>
+                    <div class="title">渐进式加载</div>
+                    <div class="text">详细内容放在 references/ 子目录</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 第四部分：命令速查 -->
+        <section class="animate-in" style="margin-top: 60px;">
+            <h2 class="section-title">⌨️ 常用命令速查</h2>
+            <div class="cmd-grid">
+                <div class="cmd-item">
+                    <div class="cmd-badge">/skill-name</div>
+                    <div class="cmd-text">调用指定 Skill</div>
+                </div>
+                <div class="cmd-item">
+                    <div class="cmd-badge">/reload-skills</div>
+                    <div class="cmd-text">重新加载所有 Skills</div>
+                </div>
+                <div class="cmd-item">
+                    <div class="cmd-badge">/init</div>
+                    <div class="cmd-text">初始化项目配置</div>
+                </div>
+                <div class="cmd-item">
+                    <div class="cmd-badge">@filename</div>
+                    <div class="cmd-text">引用文件到上下文</div>
+                </div>
+                <div class="cmd-item">
+                    <div class="cmd-badge blue">~/.claude/skills/</div>
+                    <div class="cmd-text">个人 Skills 目录</div>
+                </div>
+                <div class="cmd-item">
+                    <div class="cmd-badge blue">.claude/skills/</div>
+                    <div class="cmd-text">项目 Skills 目录</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 底部提示 -->
+        <footer class="footer animate-in">
+            <span class="footer-icon">💡</span>
+            <span class="footer-text">Skills 是 Claude Code 最强大的定制特性之一。通过合理设计 Skills，你可以将日常重复性工作自动化，显著提升开发效率。</span>
+        </footer>
+    </div>
+
+    <script>
+        // 添加滚动动画触发
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // 观察所有需要动画的元素
+        document.querySelectorAll('.animate-in').forEach(el => {
+            el.style.animationPlayState = 'paused';
+            observer.observe(el);
+        });
+
+        // 节点点击效果
+        document.querySelectorAll('.flow-node').forEach(node => {
+            node.addEventListener('click', function() {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+        });
+
+        // 命令项点击复制
+        document.querySelectorAll('.cmd-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const badge = this.querySelector('.cmd-badge');
+                const text = badge.textContent;
+                navigator.clipboard.writeText(text).then(() => {
+                    const originalText = badge.textContent;
+                    badge.textContent = '已复制!';
+                    badge.style.background = '#059669';
+                    badge.style.color = 'white';
+                    setTimeout(() => {
+                        badge.textContent = originalText;
+                        badge.style.background = '';
+                        badge.style.color = '';
+                    }, 1000);
+                });
+            });
+        });
+
+        // 页面加载动画
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease';
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+    </script>
+</body>
+</html>
