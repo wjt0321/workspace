@@ -19,18 +19,27 @@ Keep this managed block so 'openspec update' can refresh the instructions.
 
 # CLAUDE.md
 
-本文件用于指导 Claude Code（代码助手）在本仓库的工作方式与行为规范。
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## 仓库概览
 
 这是一个个人知识管理与 AI 自动化工作区，主要包含：
 
-- **美文收集系统**（`.skills/`，美文收集工作流与技能）
-- **AI 人设系统**（`docs/jiatong_skills/`，佳桐人格与记忆规则）
-- **n8n 自动化**（`n8n-nodes/`，工作流自动化节点）
+- **美文收集系统**（`.skills/`，9 步标准化工作流）
+- **OpenSpec 规范管理**（`openspec/`，spec-driven 开发流程）
+- **n8n 自动化参考**（`n8n实战之美文收集/`，工作流案例）
 - **学习资料**（智能体教程、Python 资源、外语学习）
+- **可视化设计**（`canvas/`、`.pen` 文件）
 
 ## 关键工作规则
+
+### OpenSpec 触发条件
+
+请求涉及以下内容时，必须先阅读 [`openspec/AGENTS.md`](openspec/AGENTS.md)：
+
+- 提及 planning、proposal、spec、change、plan
+- 新功能、破坏性变更、架构调整、性能/安全工作
+- 需求模糊，需要权威规范才能开始编码
 
 ### 行为与沟通
 
@@ -47,55 +56,58 @@ Keep this managed block so 'openspec update' can refresh the instructions.
 - 文件大小控制在 200–300 行，超过则拆分
 - 优先编辑已有文件，非必要不新增文件
 - 环境安全：不得修改 `.env` 文件
+- **GitHub 上传铁律**：以上传本地为主，严禁被远程覆盖；遇风险必须暂停警告，经用户“再三确认”后方可操作
 - 验证优先：修改后必须验证结果
 - 注释与文档必须为中文
 - 未明确要求时，不创建新的 `.md` 文件
 - 发现 nul 文件立即删除，生成命令时避免使用 `> nul`
 
-## 关键系统与流程
-
-### 美文收集流程（9 步）
-
-美文收集采用 `.skills/标准工作流程.md` 定义的 9 步流程：
-
-1. **Step 0（必须）**：预去重，先读 `美文总索引.md`
-2. **Step 1**：用 `prose-snippet-collector` 收集片段
-3. **Step 2**：用 `prose-index-manager` 更新索引
-4. **Step 3**：用 `prose-fulltext-hunter` 找全文（必须 3 步验证）
-5. **Step 4**：用 `prose-article-formatter` 格式化（模板 100% 合规）
-6. **Step 5**：用 `prose-deduplicator` 去重检查
-7. **Step 6**：用 `prose-link-weaver` 建立链接
-8. **Step 7**：用 `prose-quality-checker` 质量检查
-9. **Step 8（铁律）**：更新主索引
-
-严禁跳过 Step 0 与 Step 8。
-
-### AI 人设（佳桐）
-
-`docs/jiatong_skills/` 为可移植 AI 人设系统：
-
-- `core_identity/SKILL.md`：定义双重人格（可爱女儿 + 专业助理）
-- `core_identity/coding_preferences.md`：编码偏好与工作规则
-
 ## 目录结构
 
 | 路径 | 用途 |
-|------|------|
-| `.skills/` | 美文收集技能 |
-| `docs/jiatong_skills/` | AI 人设与记忆系统 |
-| `n8n-nodes/` | n8n 自动化节点 |
+| :--- | :--- |
+| `.skills/` | 美文收集技能（9 步工作流） |
+| `openspec/` | Spec-driven 开发规范管理 |
+| `美文库/` | 分级作文库（5 级体系） |
+| `n8n实战之美文收集/` | n8n 工作流参考案例 |
 | `智能体学习/` | Datawhale Hello-Agents 教程 |
-| `美文库/` | 分级作文库（小学/初中/高中/大学/成人） |
-| `.venv/` | Python 虚拟环境 |
 | `claude code skills/` | Claude Code 技能教程 |
 | `外语学习/` | 外语学习资料 |
-| `自动化工作流参考资料库/` | n8n/Dify/Coze 参考资料 |
+| `canvas/` | Obsidian Canvas 可视化 |
+| `.venv/` | Python 虚拟环境 |
+
+## 高层次架构
+
+### 美文收集系统（9 步工作流）
+
+```text
+Step 0 预去重（必须） → Step 1 收集片段 → Step 2 更新索引
+→ Step 3 搜索原文（三步验证） → Step 4 格式化文章
+→ Step 5 去重检查 → Step 6 建立链接 → Step 7 质量检查
+→ Step 8 总索引更新（铁律，强制完成）
+```
+
+**铁律**：Step 0 和 Step 8 不可跳过。
+
+### OpenSpec 三阶段工作流
+
+1. **创建变更**（`openspec/changes/`）：提案、设计、delta 规格
+2. **实现变更**：按 [`tasks.md`](openspec/changes/example/tasks.md) 顺序执行
+3. **归档变更**（`openspec/archive/`）：部署后归档
+
+```bash
+openspec list                  # 列出活跃变更
+openspec show [item]           # 查看详情
+openspec validate --strict --no-interactive  # 严格验证
+openspec archive <change-id>   # 归档变更
+```
 
 ## 构建与测试
 
 本仓库为文档与知识管理仓库，无构建、无 Lint、无测试命令。
 
 如需 Python 开发，使用 `.venv` 环境：
+
 ```bash
 .venv\Scripts\activate  # 激活虚拟环境
 ```
