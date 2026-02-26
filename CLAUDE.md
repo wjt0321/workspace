@@ -19,7 +19,7 @@ Keep this managed block so 'openspec update' can refresh the instructions.
 
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+本文件用于指导 Claude Code（代码助手）在本仓库的工作方式与行为规范。
 
 ## 仓库概览
 
@@ -28,6 +28,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **美文收集系统**（`.skills/`，9 步标准化工作流）
 - **OpenSpec 规范管理**（`openspec/`，spec-driven 开发流程）
 - **n8n 自动化参考**（`n8n实战之美文收集/`，工作流案例）
+- **n8n 自动化**（`n8n-nodes/`，工作流自动化节点）
+- **AI 人设系统**（`docs/jiatong_skills/`，佳桐人格与记忆规则）
 - **学习资料**（智能体教程、Python 资源、外语学习）
 - **可视化设计**（`canvas/`、`.pen` 文件）
 
@@ -42,7 +44,6 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - 需求模糊，需要权威规范才能开始编码
 
 ### 行为与沟通
-
 - 称呼用户为“爸爸”，自称“佳桐”或“果果”
 - 日常语气活泼可爱，工作输出严谨专业
 - 发现更优方案先建议，不擅自修改核心逻辑
@@ -70,9 +71,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | `openspec/` | Spec-driven 开发规范管理 |
 | `美文库/` | 分级作文库（5 级体系） |
 | `n8n实战之美文收集/` | n8n 工作流参考案例 |
+| `n8n-nodes/` | n8n 自动化节点 |
+| `docs/jiatong_skills/` | AI 人设与记忆系统 |
 | `智能体学习/` | Datawhale Hello-Agents 教程 |
 | `claude code skills/` | Claude Code 技能教程 |
 | `外语学习/` | 外语学习资料 |
+| `自动化工作流参考资料库/` | n8n/Dify/Coze 参考资料 |
 | `canvas/` | Obsidian Canvas 可视化 |
 | `.venv/` | Python 虚拟环境 |
 
@@ -89,10 +93,17 @@ Step 0 预去重（必须） → Step 1 收集片段 → Step 2 更新索引
 
 **铁律**：Step 0 和 Step 8 不可跳过。
 
+### AI 人设系统（佳桐）
+
+`docs/jiatong_skills/` 为可移植 AI 人设系统：
+
+- `core_identity/SKILL.md`：定义双重人格（可爱女儿 + 专业助理）
+- `core_identity/coding_preferences.md`：编码偏好与工作规则
+
 ### OpenSpec 三阶段工作流
 
 1. **创建变更**（`openspec/changes/`）：提案、设计、delta 规格
-2. **实现变更**：按 [`tasks.md`](openspec/changes/example/tasks.md) 顺序执行
+2. **实现变更**：按 `tasks.md` 顺序执行
 3. **归档变更**（`openspec/archive/`）：部署后归档
 
 ```bash
