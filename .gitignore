@@ -1,8 +1,10 @@
 # 优化 Claude Code Token 使用的 .gitignore 文件
 # 目标：减少不必要的文件缓存，降低 token 消耗
 
-# ===== 重要：忽略所有以点开头的文件和文件夹 =====
+# ===== 以.开头的目录完全忽略（包含所有隐藏目录）=====
 .*/
+!.gitignore
+!.gitattributes
 nul
 
 # ===== MCP 敏感配置 =====
@@ -94,4 +96,5 @@ venv/
 *.large
 *.big
 
-find . -type f -size +10M -not -path "./.git/*" -not -name "*.important"
+# Auto Claude data directory
+.auto-claude/
