@@ -25,7 +25,7 @@ Keep this managed block so 'openspec update' can refresh the instructions.
 
 这是一个个人知识管理与 AI 自动化工作区，主要包含：
 
-- **美文收集系统**（`skills/`，9 步标准化工作流）
+- **美文收集系统**（9 步标准化工作流，技能已安装至 Claude 目录）
 - **OpenSpec 规范管理**（`openspec/`，spec-driven 开发流程）
 - **n8n 自动化参考**（`n8n实战之美文收集/`，工作流案例）
 - **AI 人设系统**（`docs/jiatong_skills/`，佳桐人格与记忆规则）
@@ -68,9 +68,10 @@ Keep this managed block so 'openspec update' can refresh the instructions.
 
 | 路径 | 用途 |
 | :--- | :--- |
-| `skills/` | 美文收集技能（9 步工作流，prose-collector） |
+| `skills/` | Claude Code 技能备份（已安装，不调用）
+| `.skills/` | 自定义技能库（demo，未完成）
 | `openspec/` | Spec-driven 开发规范管理 |
-| `美文库/` | 分级作文库（5 级体系） |
+| `美文库/` | 分级作文库（5 级体系：小学/初中/高中/大学/成人） |
 | `n8n实战之美文收集/` | n8n 工作流参考案例 |
 | `docs/jiatong_skills/` | AI 人设与记忆系统 |
 | `智能体学习/` | Datawhale Hello-Agents 教程 |
@@ -80,7 +81,6 @@ Keep this managed block so 'openspec update' can refresh the instructions.
 | `canvas/` | Obsidian Canvas 可视化 |
 | `股票研究报告/` | 股票分析报告存储 |
 | `Github一周热点/` | GitHub AI 工具周报 |
-| `.venv_new/` | Python 虚拟环境 |
 
 ## 高层次架构
 
@@ -117,7 +117,7 @@ openspec archive <change-id>   # 归档变更
 
 ### 核心技能系统
 
-**美文收集系统** (`skills/prose-collector/SKILL.md`)：
+**美文收集系统**（技能已安装至 Claude Code）：
 - 5级美文体系：小学生、初中生、高中生、大学生、成人
 - 9步标准工作流（见上文）
 - 严格铁律：Step 0 预查重、Step 8 总索引更新不可跳过
@@ -125,12 +125,6 @@ openspec archive <change-id>   # 归档变更
 ## 构建与测试
 
 本仓库为文档与知识管理仓库，无构建、无 Lint、无测试命令。
-
-如需 Python 开发，使用 `.venv_new` 环境：
-
-```bash
-.venv_new\Scripts\activate  # 激活虚拟环境
-```
 
 ## 常用工具选择
 
