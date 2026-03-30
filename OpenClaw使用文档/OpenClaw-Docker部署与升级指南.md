@@ -1,96 +1,160 @@
-# OpenClaw Docker 部署与升级指南
+# OpenClaw Docker 跨平台部署与升级实战指南（Windows / macOS / Linux）
 
 > 来源：https://clawd.org.cn/install/docker.md
-> 最后更新：2026-03-29
+> 最后更新：2026-03-30
 
 ---
 
-## Docker 适合我吗？
+## Docker 适合哪些场景
 
-| 场景 | 推荐 |
+| 场景 | 建议 |
 |------|------|
-| 想要隔离的、可丢弃的网关环境 | ✅ 用 Docker |
-| 在没有本地安装的主机上运行 | ✅ 用 Docker |
-| 在自己的机器上运行，想要最快开发循环 | ❌ 用正常安装 |
+| 需要隔离环境，便于重建 | ✅ 使用 Docker |
+| 主机不想装完整运行时（Node 等） | ✅ 使用 Docker |
+| 追求最快本地开发迭代 | ❌ 优先原生安装 |
 
 ---
 
-## 快速部署（使用预构建镜像）
+## 一、三平台统一前置条件
 
-**推荐方式，无需从源码构建，10分钟内部署完成。**
+### 1.1 软件要求
 
-### 1. 安装依赖
+- Docker Desktop（Windows/macOS）或 Docker Engine（Linux）
+- Docker Compose v2
+- 可用端口：`18789`（网关 UI）
 
-- Docker Desktop（或 Docker Engine）+ Docker Compose v2
-- 足够的磁盘空间
+### 1.2 目录与持久化策略
 
-### 2. 设置环境变量并启动
+- 配置目录：`~/.openclaw/`
+- 工作区目录：`~/clawd/`
+- 可选命名卷：`OPENCLAW_HOME_VOLUME=clawdbot_home`
+
+### 1.3 建议先准备 `.env`
 
 ```bash
-# 使用官方预构建镜像（自动适配 amd64/arm64）
-export OPENCLAW_IMAGE="jiulingyun803/openclaw-cn:latest"
+OPENCLAW_IMAGE=jiulingyun803/openclaw-cn:latest
+OPENCLAW_GATEWAY_PORT=18789
+OPENCLAW_GATEWAY_BIND=lan
+OPENCLAW_HOME_VOLUME=clawdbot_home
+```
 
-# 可选：持久化容器 home 目录
+> Claude 相关变量可选，不设置只会告警，不影响飞书/Telegram 等渠道。
+
+---
+
+## 二、Windows 部署（推荐 WSL2）
+
+### 2.1 方案 A：WSL2（强烈推荐）
+
+先在 PowerShell（管理员）执行：
+
+```powershell
+wsl --install
+wsl --install -d Ubuntu-24.04
+wsl --shutdown
+```
+
+进入 Ubuntu 后，按 Linux 流程部署（见第四章），兼容性最好。
+
+### 2.2 方案 B：Windows 原生 Docker Desktop + PowerShell
+
+在项目目录执行：
+
+```powershell
+$env:OPENCLAW_IMAGE="jiulingyun803/openclaw-cn:latest"
+$env:OPENCLAW_HOME_VOLUME="clawdbot_home"
+docker compose pull
+docker compose up -d openclaw-cn-gateway
+docker compose run --rm openclaw-cn-cli onboard
+```
+
+部署完成后访问：`http://127.0.0.1:18789/`。
+
+---
+
+## 三、macOS 部署
+
+```bash
+# 1) 设置镜像与持久化参数（可选）
+export OPENCLAW_IMAGE="jiulingyun803/openclaw-cn:latest"
 export OPENCLAW_HOME_VOLUME="clawdbot_home"
 
-# 运行安装脚本
+# 2) 快速部署
 ./docker-setup.sh
 ```
 
-### 3. 完成配置
+如果你不想走脚本，也可以手动：
 
-安装脚本会自动：
-- 拉取/构建镜像
-- 运行引导向导
-- 通过 Docker Compose 启动网关
-- 生成令牌写入 `.env`
-
-完成后访问：`http://127.0.0.1:18789/`，将令牌粘贴到控制 UI（设置 → 令牌）。
+```bash
+docker compose pull
+docker compose up -d openclaw-cn-gateway
+docker compose run --rm openclaw-cn-cli onboard
+```
 
 ---
 
-## 升级流程
-
-### 方式 1：预构建镜像（推荐）
+## 四、Linux 部署
 
 ```bash
-# 拉取最新镜像
+# 1) 设置镜像与持久化参数（可选）
+export OPENCLAW_IMAGE="jiulingyun803/openclaw-cn:latest"
+export OPENCLAW_HOME_VOLUME="clawdbot_home"
+
+# 2) 快速部署
+./docker-setup.sh
+```
+
+如果你在服务器上倾向显式控制流程，建议手动：
+
+```bash
+docker compose pull
+docker compose up -d openclaw-cn-gateway
+docker compose run --rm openclaw-cn-cli onboard
+```
+
+---
+
+## 五、跨平台升级流程（Windows/macOS/Linux 通用）
+
+### 5.1 标准升级（推荐）
+
+```bash
+# 1) 拉取最新镜像
 docker pull jiulingyun803/openclaw-cn:latest
 
-# 重启网关容器
+# 2) 重建并启动网关服务
 docker compose up -d openclaw-cn-gateway
+
+# 3) 运行诊断
+docker compose run --rm openclaw-cn-cli doctor
 ```
 
-### 方式 2：从源码构建
+### 5.2 有源码变更时
 
 ```bash
-# 重新构建本地镜像
+# 重建本地镜像
 docker compose build openclaw-cn-gateway
 
-# 重启
+# 启动新镜像
 docker compose up -d openclaw-cn-gateway
 ```
 
-### 方式 3：从源码构建（有代码修改时）
+### 5.3 脚本重装（macOS/Linux）
 
 ```bash
-# 重新运行安装脚本
 ./docker-setup.sh
 ```
 
 ---
 
-## 常用 Docker 命令
+## 六、常用运维命令（跨平台统一）
 
 ```bash
-# 查看所有容器状态
+# 查看容器状态
 docker compose ps
 
-# 查看网关实时日志
+# 查看网关日志
 docker compose logs -f openclaw-cn-gateway
-
-# 查看 CLI 日志
-docker compose logs -f openclaw-cn-cli
 
 # 重启网关
 docker compose restart openclaw-cn-gateway
@@ -101,7 +165,7 @@ docker compose stop openclaw-cn-gateway
 # 启动网关
 docker compose up -d openclaw-cn-gateway
 
-# 完全重建（代码变更后）
+# 完全重建并启动
 docker compose up -d --build openclaw-cn-gateway
 
 # 进入容器调试
@@ -110,25 +174,25 @@ docker compose exec openclaw-cn-gateway sh
 
 ---
 
-## 常用 CLI 命令（通过 Docker）
+## 七、常用 CLI 命令（通过 Docker 运行）
 
 ```bash
-# 查看当前配置
+# 查看配置
 docker compose run --rm openclaw-cn-cli config get
 
 # 查看渠道状态
 docker compose run --rm openclaw-cn-cli channels status
 
-# 列出待审批配对请求
+# 查看配对请求
 docker compose run --rm openclaw-cn-cli pairing list
 
-# 批准飞书配对请求
+# 审批飞书配对
 docker compose run --rm openclaw-cn-cli pairing approve feishu <pairing_code>
 
-# 运行诊断
+# 诊断
 docker compose run --rm openclaw-cn-cli doctor
 
-# 交互式配置向导
+# 配置向导
 docker compose run --rm openclaw-cn-cli onboard
 
 # 健康检查
@@ -137,78 +201,78 @@ docker compose exec openclaw-cn-gateway node dist/index.js health --token "$OPEN
 
 ---
 
-## 环境变量配置（.env 文件）
+## 八、三平台差异与配置重点
 
-在项目根目录创建/编辑 `.env` 文件：
+### 8.1 环境变量写法
 
-```bash
-# 镜像配置（必选）
-OPENCLAW_IMAGE=jiulingyun803/openclaw-cn:latest
+- Linux/macOS：`export VAR=value`
+- Windows PowerShell：`$env:VAR="value"`
 
-# 网关配置（可选，有默认值）
-OPENCLAW_GATEWAY_PORT=18789
-OPENCLAW_GATEWAY_BIND=lan
+### 8.2 脚本可用性
 
-# 持久化（可选）
-OPENCLAW_HOME_VOLUME=clawdbot_home
+- `docker-setup.sh` 主要适用于 macOS/Linux。
+- Windows 建议使用 WSL2 执行脚本，或直接用 PowerShell 手动 compose。
 
-# Claude 集成（可选，仅使用 Claude AI 时需要）
-CLAUDE_AI_SESSION_KEY=your_session_key_here
-CLAUDE_WEB_SESSION_KEY=your_web_session_key_here
-CLAUDE_WEB_COOKIE=your_cookie_here
-```
+### 8.3 路径与权限
 
-> 注意：Claude 相关变量是**可选的**，不设置只会在日志中输出警告，**不影响飞书/Telegram 等渠道功能**。
+- Linux 需关注 Docker socket 权限与目录属主（避免 `EACCES`）。
+- Windows 注意磁盘共享与路径映射（建议在项目目录下运行 compose）。
 
 ---
 
-## 数据持久化
+## 九、数据持久化与备份建议
 
-### 配置和工作空间（默认绑定挂载）
+### 9.1 默认持久化
 
-- `~/.openclaw/` — 配置目录
-- `~/clawd` — 工作区目录
+- `~/.openclaw/`（配置、技能、会话、cron）
+- `~/clawd/`（工作区）
 
-这些目录默认通过绑定挂载持久化，容器重建后数据保留。
-
-### 容器 home 目录持久化（可选）
+### 9.2 可选持久化 `/home/node`
 
 ```bash
 export OPENCLAW_HOME_VOLUME="clawdbot_home"
 ./docker-setup.sh
 ```
 
-这会创建 Docker 命名卷，持久化 `/home/node` 目录。
+### 9.3 升级前备份（建议）
 
----
-
-## 常见问题
-
-### Q: 日志出现 Claude 环境变量警告，正常吗？
-
-正常。这些警告（`CLAUDE_AI_SESSION_KEY variable is not set`）不影响任何渠道功能（飞书/Telegram等），可以忽略。
-
-### Q: 容器重建后数据会丢失吗？
-
-不会。`~/.openclaw/` 和 `~/clawd` 通过绑定挂载持久化。但如果使用了 `OPENCLAW_HOME_VOLUME`，需要确保卷存在。
-
-### Q: 如何更新技能库（skills）？
-
-技能库在 `~/.openclaw/skills/`，随绑定挂载持久化。更新方法：
 ```bash
-docker compose exec openclaw-cn-gateway openclaw skills update
-# 或重启容器自动重载
-docker compose restart openclaw-cn-gateway
+tar -czf openclaw-docker-backup-$(date +%Y%m%d).tar.gz ~/.openclaw ~/clawd
 ```
 
 ---
 
-## 服务说明
+## 十、常见问题
+
+### Q1：日志提示 Claude 变量未设置，是否异常？
+
+不是异常，可忽略，不影响飞书/Telegram 等渠道。
+
+### Q2：容器重建后数据会丢吗？
+
+只要绑定挂载或命名卷配置正确，数据不会丢。
+
+### Q3：Web UI 提示 `pairing required` 怎么办？
+
+先执行：
+
+```bash
+docker compose run --rm openclaw-cn-cli config set gateway.controlUi.allowInsecureAuth true
+docker compose restart openclaw-cn-gateway
+```
+
+### Q4：升级后渠道不工作怎么办？
+
+按顺序排查：`docker compose ps` → `logs` → `doctor` → `channels status`。
+
+---
+
+## 十一、服务说明
 
 | 服务 | 类型 | 说明 |
 |------|------|------|
-| `openclaw-cn-gateway` | 常驻 | 后台网关服务，`docker compose up -d` 自动启动 |
-| `openclaw-cn-cli` | 一次性 | 交互式 CLI 工具，每次执行 `docker compose run --rm` |
+| `openclaw-cn-gateway` | 常驻 | 后台网关服务，`docker compose up -d` 启动 |
+| `openclaw-cn-cli` | 一次性 | 交互式命令工具，`docker compose run --rm` 调用 |
 
 ---
 
