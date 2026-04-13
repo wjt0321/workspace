@@ -1,0 +1,1217 @@
+/* ============================================
+   Cyberpunk Terminal Theme for Obsidian
+   赛博朋克终端风格主题代码片段 - 深邃暗色版
+   版本: 3.0.0
+   设计理念: 深邃碳灰背景 + 霓虹点缀 + 高可读性
+   ============================================ */
+
+/* ============================================
+   第一部分：CSS变量定义 - 精致配色体系
+   ============================================ */
+
+:root {
+  /* 核心背景色 - 深碳灰体系 */
+  --carbon-deep: #0D1117;
+  --carbon-deep-rgb: 13, 17, 23;
+  --carbon-base: #141416;
+  --carbon-base-rgb: 20, 20, 22;
+  --carbon-mid: #1A1A1E;
+  --carbon-mid-rgb: 26, 26, 30;
+  --carbon-light: #212126;
+  --carbon-light-rgb: 33, 33, 38;
+  --carbon-border: #2A2A30;
+  --carbon-border-rgb: 42, 42, 48;
+  
+  /* 核心文本色 - 高对比灰白 */
+  --text-pure: #ffffff;
+  --text-bright: #e6e6e6;
+  --text-primary: #d0d0d5;
+  --text-secondary: #a0a0a8;
+  --text-dim: #6e7681;
+  
+  /* 霓虹强调色 - 精致调色 */
+  --neon-cyan: #00F2FE;
+  --neon-cyan-rgb: 0, 242, 254;
+  --neon-cyan-soft: rgba(0, 242, 254, 0.15);
+  --neon-cyan-glow: rgba(0, 242, 254, 0.4);
+  
+  --neon-pink: #FF00A2;
+  --neon-pink-rgb: 255, 0, 162;
+  --neon-pink-soft: rgba(255, 0, 162, 0.15);
+  --neon-pink-glow: rgba(255, 0, 162, 0.4);
+  
+  /* 限定黄色 - 仅作点缀 */
+  --cyber-yellow: #F7E000;
+  --cyber-yellow-rgb: 247, 224, 0;
+  --cyber-yellow-soft: rgba(247, 224, 0, 0.15);
+  --cyber-yellow-glow: rgba(247, 224, 0, 0.4);
+  
+  /* 故障艺术红色 */
+  --glitch-red: #FF003C;
+  --glitch-red-rgb: 255, 0, 60;
+  --glitch-red-soft: rgba(255, 0, 60, 0.1);
+  
+  /* 发光效果预设 */
+  --glow-cyan-sm: 0 0 5px var(--neon-cyan-glow), 0 0 10px rgba(var(--neon-cyan-rgb), 0.2);
+  --glow-cyan-md: 0 0 8px var(--neon-cyan-glow), 0 0 16px rgba(var(--neon-cyan-rgb), 0.3), 0 0 24px rgba(var(--neon-cyan-rgb), 0.15);
+  --glow-cyan-lg: 0 0 12px var(--neon-cyan-glow), 0 0 24px rgba(var(--neon-cyan-rgb), 0.4), 0 0 36px rgba(var(--neon-cyan-rgb), 0.2);
+  
+  --glow-pink-sm: 0 0 5px var(--neon-pink-glow), 0 0 10px rgba(var(--neon-pink-rgb), 0.2);
+  --glow-pink-md: 0 0 8px var(--neon-pink-glow), 0 0 16px rgba(var(--neon-pink-rgb), 0.3), 0 0 24px rgba(var(--neon-pink-rgb), 0.15);
+  --glow-pink-lg: 0 0 12px var(--neon-pink-glow), 0 0 24px rgba(var(--neon-pink-rgb), 0.4), 0 0 36px rgba(var(--neon-pink-rgb), 0.2);
+  
+  --glow-yellow-sm: 0 0 5px var(--cyber-yellow-glow), 0 0 10px rgba(var(--cyber-yellow-rgb), 0.2);
+  
+  /* 文本发光 */
+  --text-glow-cyan: 0 0 8px rgba(var(--neon-cyan-rgb), 0.8), 0 0 16px rgba(var(--neon-cyan-rgb), 0.4);
+  --text-glow-pink: 0 0 8px rgba(var(--neon-pink-rgb), 0.8), 0 0 16px rgba(var(--neon-pink-rgb), 0.4);
+  --text-glow-yellow: 0 0 8px rgba(var(--cyber-yellow-rgb), 0.8), 0 0 16px rgba(var(--cyber-yellow-rgb), 0.4);
+}
+
+/* ============================================
+   第二部分：Obsidian核心变量重写
+   ============================================ */
+
+.theme-dark {
+  /* 强调色系统 - 霓虹青为主 */
+  --accent-h: 186;
+  --accent-s: 100%;
+  --accent-l: 50%;
+  --color-accent: var(--neon-cyan);
+  --color-accent-1: rgba(var(--neon-cyan-rgb), 0.8);
+  --color-accent-2: rgba(var(--neon-cyan-rgb), 0.6);
+  
+  /* 基础色彩 - 深碳灰体系 */
+  --color-base-00: var(--carbon-deep);
+  --color-base-05: var(--carbon-base);
+  --color-base-10: var(--carbon-mid);
+  --color-base-20: var(--carbon-light);
+  --color-base-25: #25252A;
+  --color-base-30: var(--carbon-border);
+  --color-base-35: #303036;
+  --color-base-40: #3A3A42;
+  --color-base-50: var(--text-dim);
+  --color-base-60: var(--text-secondary);
+  --color-base-70: var(--text-primary);
+  --color-base-100: var(--text-bright);
+  
+  /* 背景色 - 统一的深碳灰 */
+  --background-primary: var(--carbon-deep);
+  --background-primary-alt: var(--carbon-base);
+  --background-secondary: var(--carbon-mid);
+  --background-secondary-alt: var(--carbon-light);
+  --background-modifier-hover: rgba(var(--neon-cyan-rgb), 0.08);
+  --background-modifier-active-hover: rgba(var(--neon-cyan-rgb), 0.12);
+  --background-modifier-border: var(--carbon-border);
+  --background-modifier-border-hover: rgba(var(--neon-cyan-rgb), 0.4);
+  --background-modifier-border-focus: var(--neon-cyan);
+  --background-modifier-error: rgba(var(--glitch-red-rgb), 0.15);
+  --background-modifier-error-hover: rgba(var(--glitch-red-rgb), 0.25);
+  --background-modifier-success: rgba(0, 255, 136, 0.15);
+  --background-modifier-message: rgba(0, 0, 0, 0.9);
+  
+  /* 文本颜色 - 高对比灰白 */
+  --text-normal: var(--text-primary);
+  --text-muted: var(--text-secondary);
+  --text-faint: var(--text-dim);
+  --text-on-accent: var(--carbon-deep);
+  --text-error: var(--glitch-red);
+  --text-success: #00ff88;
+  --text-selection: rgba(var(--neon-cyan-rgb), 0.25);
+  --text-highlight-bg: rgba(var(--cyber-yellow-rgb), 0.25);
+  --text-highlight-fg: var(--cyber-yellow);
+  
+  /* 交互元素 */
+  --interactive-normal: var(--carbon-light);
+  --interactive-hover: rgba(var(--neon-cyan-rgb), 0.15);
+  --interactive-accent: var(--neon-cyan);
+  --interactive-accent-hover: var(--neon-pink);
+  
+  /* 滚动条 */
+  --scrollbar-bg: transparent;
+  --scrollbar-thumb-bg: var(--carbon-border);
+  --scrollbar-active-thumb-bg: var(--neon-cyan);
+  
+  /* 标题颜色 - 霓虹递进 */
+  --h1-color: var(--neon-cyan);
+  --h2-color: var(--neon-pink);
+  --h3-color: var(--cyber-yellow);
+  --h4-color: var(--neon-cyan);
+  --h5-color: var(--neon-pink);
+  --h6-color: var(--text-secondary);
+  
+  /* 链接 - 霓虹青为主 */
+  --link-color: var(--neon-cyan);
+  --link-color-hover: var(--neon-pink);
+  --link-external-color: var(--neon-cyan);
+  --link-external-color-hover: var(--neon-pink);
+  --link-decoration: none;
+  --link-decoration-hover: underline;
+  --link-external-decoration: none;
+  --link-external-decoration-hover: underline;
+  
+  /* 标签 */
+  --tag-color: var(--neon-cyan);
+  --tag-background: rgba(var(--neon-cyan-rgb), 0.1);
+  --tag-background-hover: rgba(var(--neon-pink-rgb), 0.2);
+  --tag-border-color: rgba(var(--neon-cyan-rgb), 0.4);
+  --tag-border-width: 1px;
+  --tag-padding-x: 0.5em;
+  --tag-padding-y: 0.2em;
+  --tag-radius: 2px;
+  
+  /* 代码块 */
+  --code-normal: var(--neon-cyan);
+  --code-comment: var(--text-dim);
+  --code-function: var(--neon-pink);
+  --code-important: var(--glitch-red);
+  --code-keyword: var(--cyber-yellow);
+  --code-operator: var(--neon-cyan);
+  --code-property: var(--neon-pink);
+  --code-punctuation: var(--text-secondary);
+  --code-string: #00ff88;
+  --code-tag: var(--glitch-red);
+  --code-value: var(--cyber-yellow);
+  --code-background: var(--carbon-base);
+  
+  /* 引用块 - 粉色发光边线 */
+  --blockquote-background-color: rgba(var(--neon-pink-rgb), 0.05);
+  --blockquote-border-color: var(--neon-pink);
+  --blockquote-border-thickness: 3px;
+  --blockquote-color: var(--text-primary);
+  --blockquote-padding: 1em 1em 1em 1.5em;
+  
+  /* 表格 */
+  --table-header-background: var(--carbon-light);
+  --table-header-background-hover: rgba(var(--neon-cyan-rgb), 0.15);
+  --table-row-even-background: rgba(var(--neon-cyan-rgb), 0.03);
+  --table-row-odd-background: transparent;
+  --table-row-background-hover: rgba(var(--neon-cyan-rgb), 0.08);
+  --table-border-color: var(--carbon-border);
+  --table-header-color: var(--neon-cyan);
+  
+  /* 列表 */
+  --list-marker-color: var(--neon-cyan);
+  --list-marker-color-collapsed: var(--neon-pink);
+  --list-bullet-radius: 0;
+  
+  /* 复选框 */
+  --checkbox-color: var(--neon-cyan);
+  --checkbox-color-hover: var(--neon-pink);
+  --checkbox-border-color: var(--neon-cyan);
+  --checkbox-border-color-hover: var(--neon-pink);
+  --checkbox-radius: 2px;
+  --checklist-done-color: var(--text-dim);
+  --checklist-done-decoration: line-through;
+  
+  /* 输入框 */
+  --input-radius: 2px;
+  
+  /* 标签页 */
+  --tab-radius: 2px;
+  --tab-radius-active: 2px;
+  --tab-text-color: var(--text-secondary);
+  --tab-text-color-active: var(--neon-cyan);
+  --tab-text-color-focused: var(--text-primary);
+  --tab-text-color-focused-active: var(--neon-cyan);
+  --tab-text-color-focused-active-current: var(--neon-cyan);
+  --tab-text-color-hover: var(--neon-pink);
+  --tab-outline-color: var(--carbon-border);
+  --tab-outline-width: 1px;
+  --tab-curve: 0;
+  
+  /* 导航 */
+  --nav-item-color: var(--text-secondary);
+  --nav-item-color-hover: var(--neon-pink);
+  --nav-item-color-active: var(--neon-cyan);
+  --nav-item-color-selected: var(--neon-cyan);
+  --nav-item-color-highlighted: var(--cyber-yellow);
+  --nav-collapse-icon-color: var(--text-dim);
+  --nav-collapse-icon-color-collapsed: var(--neon-cyan);
+  
+  /* 模态框 */
+  --modal-background: var(--carbon-mid);
+  --modal-border-color: var(--carbon-border);
+  
+  /* 提示框 */
+  --tooltip-background: var(--carbon-deep);
+  --tooltip-border-color: var(--neon-cyan);
+  
+  /* 标题栏 */
+  --titlebar-background: var(--carbon-mid);
+  --titlebar-background-focused: var(--carbon-light);
+  --titlebar-text-color: var(--text-secondary);
+  --titlebar-text-color-focused: var(--neon-cyan);
+  
+  /* 内联标题 */
+  --inline-title-color: var(--neon-cyan);
+  --inline-title-weight: 700;
+  
+  /* 粗体和斜体 */
+  --bold-color: var(--neon-pink);
+  --bold-weight: 700;
+  --italic-color: var(--neon-cyan);
+  
+  /* 分割线 */
+  --hr-color: rgba(var(--neon-cyan-rgb), 0.3);
+  --hr-thickness: 1px;
+  
+  /* 图标 */
+  --icon-color: var(--text-secondary);
+  --icon-color-hover: var(--neon-pink);
+  --icon-color-active: var(--neon-cyan);
+  --icon-color-focused: var(--neon-cyan);
+  
+  /* 图表 */
+  --graph-line: var(--carbon-border);
+  --graph-node: var(--text-primary);
+  --graph-node-tag: var(--neon-cyan);
+  --graph-node-attachment: var(--neon-pink);
+  --graph-node-unresolved: var(--glitch-red);
+  --graph-node-focused: var(--cyber-yellow);
+  
+  /* 字体 */
+  --font-interface: 'Fira Code', 'JetBrains Mono', 'Consolas', 'Monaco', 'Courier New', monospace;
+  --font-text: 'Fira Code', 'JetBrains Mono', 'Consolas', 'Monaco', 'Courier New', monospace;
+  --font-monospace: 'Fira Code', 'JetBrains Mono', 'Consolas', 'Monaco', 'Courier New', monospace;
+}
+
+/* ============================================
+   第三部分：全局字体设置 - 终端风格
+   ============================================ */
+
+.theme-dark,
+.theme-dark .markdown-source-view,
+.theme-dark .markdown-rendered {
+  font-family: var(--font-text);
+}
+
+/* 代码块、YAML区和标签使用等宽字体 */
+.theme-dark .cm-inline-code,
+.theme-dark .HyperMD-codeblock,
+.theme-dark .markdown-rendered code,
+.theme-dark pre[class*="language-"],
+.theme-dark .frontmatter,
+.theme-dark .tag,
+.theme-dark .cm-hashtag,
+.theme-dark .cm-hmd-frontmatter,
+.theme-dark .cm-s-obsidian .cm-math {
+  font-family: 'Fira Code', 'JetBrains Mono', 'Consolas', 'Monaco', 'Courier New', monospace !important;
+}
+
+/* 标题强制使用等宽字体 */
+.theme-dark .markdown-rendered h1,
+.theme-dark .markdown-rendered h2,
+.theme-dark .markdown-rendered h3,
+.theme-dark .markdown-rendered h4,
+.theme-dark .markdown-rendered h5,
+.theme-dark .markdown-rendered h6,
+.theme-dark .HyperMD-header {
+  font-family: 'Fira Code', 'JetBrains Mono', 'Consolas', 'Monaco', 'Courier New', monospace !important;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+}
+
+/* ============================================
+   第四部分：标题样式 - 多层次霓虹发光
+   ============================================ */
+
+/* H1 - 青色霓虹 + 故障艺术效果 */
+.theme-dark .markdown-rendered h1,
+.theme-dark .HyperMD-header-1 {
+  color: var(--neon-cyan);
+  font-weight: 800;
+  text-shadow: var(--text-glow-cyan);
+  border-bottom: 2px solid var(--neon-cyan);
+  padding-bottom: 0.4em;
+  margin-bottom: 0.8em;
+  position: relative;
+}
+
+/* H1 故障艺术效果 - 顶部红色扫描线 */
+.theme-dark .markdown-rendered h1::before,
+.theme-dark .HyperMD-header-1::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--glitch-red) 20%,
+    transparent 40%,
+    var(--glitch-red) 60%,
+    transparent 80%,
+    var(--glitch-red) 100%
+  );
+  opacity: 0.6;
+}
+
+.theme-dark .markdown-rendered h1::after,
+.theme-dark .HyperMD-header-1::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--neon-cyan),
+    var(--neon-pink),
+    var(--neon-cyan)
+  );
+  box-shadow: var(--glow-cyan-sm);
+}
+
+/* H2 - 粉色霓虹 */
+.theme-dark .markdown-rendered h2,
+.theme-dark .HyperMD-header-2 {
+  color: var(--neon-pink);
+  font-weight: 700;
+  text-shadow: var(--text-glow-pink);
+  border-bottom: 1px solid rgba(var(--neon-pink-rgb), 0.5);
+  padding-bottom: 0.3em;
+  margin-bottom: 0.6em;
+}
+
+/* H3 - 限定黄色霓虹 */
+.theme-dark .markdown-rendered h3,
+.theme-dark .HyperMD-header-3 {
+  color: var(--cyber-yellow);
+  font-weight: 700;
+  text-shadow: var(--text-glow-yellow);
+  border-left: 4px solid var(--cyber-yellow);
+  padding-left: 0.5em;
+}
+
+/* H4 - 青色 */
+.theme-dark .markdown-rendered h4,
+.theme-dark .HyperMD-header-4 {
+  color: var(--neon-cyan);
+  font-weight: 600;
+  border-left: 3px solid var(--neon-cyan);
+  padding-left: 0.5em;
+}
+
+/* H5 - 粉色 */
+.theme-dark .markdown-rendered h5,
+.theme-dark .HyperMD-header-5 {
+  color: var(--neon-pink);
+  font-weight: 600;
+  border-left: 2px solid var(--neon-pink);
+  padding-left: 0.5em;
+}
+
+/* H6 - 次级灰 */
+.theme-dark .markdown-rendered h6,
+.theme-dark .HyperMD-header-6 {
+  color: var(--text-secondary);
+  font-weight: 600;
+  border-left: 2px solid var(--text-dim);
+  padding-left: 0.5em;
+}
+
+/* ============================================
+   第五部分：链接样式 - 霓虹青为主
+   ============================================ */
+
+/* 内部链接 */
+.theme-dark .markdown-rendered a.internal-link,
+.theme-dark .cm-hmd-internal-link {
+  color: var(--neon-cyan);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(var(--neon-cyan-rgb), 0.4);
+  transition: all 0.2s ease;
+}
+
+.theme-dark .markdown-rendered a.internal-link:hover,
+.theme-dark .cm-hmd-internal-link:hover {
+  color: var(--neon-pink);
+  border-bottom-color: var(--neon-pink);
+  text-shadow: var(--text-glow-pink);
+}
+
+/* 外部链接 */
+.theme-dark .markdown-rendered a.external-link,
+.theme-dark .cm-link,
+.theme-dark .cm-url {
+  color: var(--neon-cyan);
+  text-decoration: none;
+  border-bottom: 1px dashed rgba(var(--neon-cyan-rgb), 0.4);
+  transition: all 0.2s ease;
+}
+
+.theme-dark .markdown-rendered a.external-link:hover,
+.theme-dark .cm-link:hover,
+.theme-dark .cm-url:hover {
+  color: var(--neon-pink);
+  border-bottom-color: var(--neon-pink);
+  text-shadow: var(--text-glow-pink);
+}
+
+/* ============================================
+   第六部分：强调样式（粗体、斜体、高亮）
+   ============================================ */
+
+/* 粗体 - 粉色霓虹 */
+.theme-dark .markdown-rendered strong,
+.theme-dark .cm-strong {
+  color: var(--neon-pink);
+  font-weight: 700;
+  text-shadow: 0 0 8px rgba(var(--neon-pink-rgb), 0.4);
+}
+
+/* 斜体 - 青色霓虹 */
+.theme-dark .markdown-rendered em,
+.theme-dark .cm-em {
+  color: var(--neon-cyan);
+  font-style: italic;
+  text-shadow: 0 0 5px rgba(var(--neon-cyan-rgb), 0.3);
+}
+
+/* 高亮 ==text== - 限定黄色 */
+.theme-dark .markdown-rendered mark,
+.theme-dark .cm-highlight {
+  background: linear-gradient(
+    180deg,
+    transparent 50%,
+    rgba(var(--cyber-yellow-rgb), 0.3) 50%
+  );
+  color: var(--cyber-yellow);
+  padding: 0 0.2em;
+  text-shadow: 0 0 5px rgba(var(--cyber-yellow-rgb), 0.5);
+}
+
+/* ============================================
+   第七部分：引用块样式 - 粉色发光边线
+   ============================================ */
+
+.theme-dark .markdown-rendered blockquote,
+.theme-dark .HyperMD-quote {
+  background-color: rgba(var(--neon-pink-rgb), 0.05);
+  border-left: 3px solid var(--neon-pink);
+  border-radius: 0 2px 2px 0;
+  padding: 1em 1em 1em 1.5em;
+  margin: 1.2em 0;
+  box-shadow: 
+    inset 0 0 20px rgba(var(--neon-pink-rgb), 0.03),
+    var(--glow-pink-sm);
+  position: relative;
+}
+
+.theme-dark .markdown-rendered blockquote::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    var(--neon-pink),
+    transparent
+  );
+  opacity: 0.5;
+}
+
+.theme-dark .markdown-rendered blockquote p {
+  color: var(--text-primary);
+  margin: 0;
+}
+
+/* ============================================
+   第八部分：代码块样式
+   ============================================ */
+
+/* 内联代码 */
+.theme-dark .markdown-rendered code,
+.theme-dark .cm-inline-code {
+  background-color: rgba(var(--neon-cyan-rgb), 0.08);
+  color: var(--neon-cyan);
+  padding: 0.15em 0.4em;
+  border-radius: 2px;
+  font-size: 0.9em;
+  border: 1px solid rgba(var(--neon-cyan-rgb), 0.25);
+}
+
+/* 代码块容器 */
+.theme-dark .markdown-rendered pre,
+.theme-dark .HyperMD-codeblock-begin,
+.theme-dark .HyperMD-codeblock-end {
+  background-color: var(--code-background);
+  border: 1px solid var(--carbon-border);
+  border-radius: 2px;
+}
+
+.theme-dark .markdown-rendered pre {
+  padding: 1.2em;
+  position: relative;
+  box-shadow: 
+    inset 0 0 40px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(var(--neon-cyan-rgb), 0.05);
+}
+
+/* 代码块顶部霓虹装饰线 */
+.theme-dark .markdown-rendered pre::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--neon-pink),
+    var(--neon-cyan),
+    var(--cyber-yellow),
+    var(--neon-cyan),
+    var(--neon-pink)
+  );
+  box-shadow: var(--glow-cyan-sm);
+}
+
+/* 代码块内的代码 */
+.theme-dark .markdown-rendered pre code {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  color: var(--text-primary);
+}
+
+/* 代码块语言标签 */
+.theme-dark .markdown-rendered pre[class*="language-"]::after {
+  content: attr(class);
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.25em 0.6em;
+  font-size: 0.65em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  background: rgba(var(--neon-cyan-rgb), 0.08);
+  border-bottom-left-radius: 2px;
+  font-family: 'Fira Code', 'JetBrains Mono', monospace;
+  letter-spacing: 0.1em;
+}
+
+/* 复制代码按钮 */
+.theme-dark .markdown-rendered .copy-code-button {
+  background-color: rgba(var(--neon-cyan-rgb), 0.15);
+  color: var(--neon-cyan);
+  border: 1px solid rgba(var(--neon-cyan-rgb), 0.4);
+  border-radius: 2px;
+  transition: all 0.2s ease;
+  font-family: 'Fira Code', 'JetBrains Mono', monospace;
+  text-transform: uppercase;
+  font-size: 0.75em;
+  letter-spacing: 0.05em;
+}
+
+.theme-dark .markdown-rendered .copy-code-button:hover {
+  background-color: rgba(var(--neon-cyan-rgb), 0.3);
+  box-shadow: var(--glow-cyan-sm);
+}
+
+/* ============================================
+   第九部分：标签样式
+   ============================================ */
+
+.theme-dark .tag,
+.theme-dark .cm-hashtag {
+  background-color: rgba(var(--neon-cyan-rgb), 0.1);
+  color: var(--neon-cyan);
+  border: 1px solid rgba(var(--neon-cyan-rgb), 0.35);
+  border-radius: 2px;
+  padding: 0.15em 0.5em;
+  font-size: 0.8em;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  font-family: 'Fira Code', 'JetBrains Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.theme-dark .tag:hover,
+.theme-dark .cm-hashtag:hover {
+  background-color: rgba(var(--neon-pink-rgb), 0.2);
+  color: var(--neon-pink);
+  border-color: var(--neon-pink);
+  box-shadow: var(--glow-pink-sm);
+  text-decoration: none;
+}
+
+/* ============================================
+   第十部分：标签页样式
+   ============================================ */
+
+/* 标签页容器 */
+.theme-dark .workspace-tab-header-container {
+  background-color: var(--carbon-mid);
+  border-bottom: 1px solid var(--carbon-border);
+}
+
+/* 单个标签页 */
+.theme-dark .workspace-tab-header {
+  background-color: transparent;
+  border-radius: 2px;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.theme-dark .workspace-tab-header:hover {
+  background-color: rgba(var(--neon-cyan-rgb), 0.08);
+}
+
+/* 活动标签页 */
+.theme-dark .workspace-tab-header.is-active {
+  background-color: rgba(var(--neon-cyan-rgb), 0.12);
+  border-bottom: 2px solid var(--neon-cyan);
+  box-shadow: var(--glow-cyan-sm);
+}
+
+.theme-dark .workspace-tab-header.is-active .workspace-tab-header-inner-title {
+  color: var(--neon-cyan);
+  text-shadow: var(--text-glow-cyan);
+}
+
+/* ============================================
+   第十一部分：侧边栏样式 - 限定黄色分割线
+   ============================================ */
+
+/* 侧边栏背景 */
+.theme-dark .workspace-split.mod-left-split,
+.theme-dark .workspace-split.mod-right-split {
+  background-color: var(--carbon-mid);
+}
+
+/* 限定黄色分割线 - 侧边栏与主内容区之间 */
+.theme-dark .workspace-split.mod-left-split {
+  border-right: 1px solid rgba(var(--cyber-yellow-rgb), 0.3);
+}
+
+.theme-dark .workspace-split.mod-right-split {
+  border-left: 1px solid rgba(var(--cyber-yellow-rgb), 0.3);
+}
+
+/* 文件浏览器 */
+.theme-dark .nav-folder-title,
+.theme-dark .nav-file-title {
+  border-radius: 2px;
+  transition: background-color 0.15s ease, color 0.15s ease;
+  color: var(--text-secondary);
+}
+
+.theme-dark .nav-folder-title:hover,
+.theme-dark .nav-file-title:hover {
+  background-color: rgba(var(--neon-cyan-rgb), 0.08);
+  color: var(--neon-pink);
+}
+
+/* 使用 box-shadow 代替 border-left 避免布局抖动 */
+.theme-dark .nav-file-title.is-active {
+  background-color: rgba(var(--neon-cyan-rgb), 0.12);
+  color: var(--neon-cyan);
+  box-shadow: inset 3px 0 0 0 var(--neon-cyan);
+  text-shadow: var(--text-glow-cyan);
+}
+
+/* 文件夹图标 */
+.theme-dark .nav-folder-collapse-indicator {
+  color: var(--neon-cyan);
+}
+
+/* ============================================
+   第十二部分：表格样式
+   ============================================ */
+
+.theme-dark .markdown-rendered table {
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid var(--carbon-border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.theme-dark .markdown-rendered th {
+  background-color: var(--carbon-light);
+  color: var(--neon-cyan);
+  font-weight: 600;
+  border: none;
+  border-bottom: 2px solid var(--neon-cyan);
+  padding: 0.75em 1em;
+  font-family: 'Fira Code', 'JetBrains Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.theme-dark .markdown-rendered td {
+  border: none;
+  border-bottom: 1px solid var(--carbon-border);
+  padding: 0.6em 1em;
+  color: var(--text-primary);
+}
+
+.theme-dark .markdown-rendered tr:last-child td {
+  border-bottom: none;
+}
+
+/* ============================================
+   第十三部分：列表样式
+   ============================================ */
+
+/* 无序列表 - 青色 */
+.theme-dark .markdown-rendered ul li::marker,
+.theme-dark .cm-formatting-list-ul {
+  color: var(--neon-cyan);
+}
+
+/* 有序列表 - 粉色 */
+.theme-dark .markdown-rendered ol li::marker,
+.theme-dark .cm-formatting-list-ol {
+  color: var(--neon-pink);
+  font-weight: 600;
+}
+
+/* ============================================
+   第十四部分：复选框样式
+   ============================================ */
+
+.theme-dark .task-list-item-checkbox {
+  border: 2px solid var(--neon-cyan);
+  border-radius: 2px;
+  background-color: transparent;
+  transition: all 0.2s ease;
+}
+
+.theme-dark .task-list-item-checkbox:hover {
+  border-color: var(--neon-pink);
+  box-shadow: var(--glow-pink-sm);
+}
+
+.theme-dark .task-list-item-checkbox:checked {
+  background-color: var(--neon-cyan);
+  border-color: var(--neon-cyan);
+  box-shadow: var(--glow-cyan-sm);
+}
+
+.theme-dark .task-list-item-checkbox:checked::after {
+  background-color: var(--carbon-deep);
+  mask-size: 70%;
+}
+
+/* ============================================
+   第十五部分：输入框和按钮样式
+   ============================================ */
+
+/* 输入框 */
+.theme-dark input[type="text"],
+.theme-dark input[type="search"],
+.theme-dark textarea {
+  background-color: var(--carbon-base);
+  border: 1px solid var(--carbon-border);
+  border-radius: 2px;
+  color: var(--text-primary);
+  transition: all 0.2s ease;
+}
+
+.theme-dark input[type="text"]:focus,
+.theme-dark input[type="search"]:focus,
+.theme-dark textarea:focus {
+  border-color: var(--neon-cyan);
+  box-shadow: var(--glow-cyan-sm);
+  outline: none;
+}
+
+/* 按钮 */
+.theme-dark button,
+.theme-dark .mod-cta {
+  background-color: rgba(var(--neon-cyan-rgb), 0.15);
+  border: 1px solid rgba(var(--neon-cyan-rgb), 0.4);
+  border-radius: 2px;
+  color: var(--neon-cyan);
+  transition: all 0.2s ease;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.85em;
+}
+
+.theme-dark button:hover,
+.theme-dark .mod-cta:hover {
+  background-color: rgba(var(--neon-pink-rgb), 0.25);
+  border-color: var(--neon-pink);
+  color: var(--neon-pink);
+  box-shadow: var(--glow-pink-sm);
+}
+
+/* ============================================
+   第十六部分：滚动条样式
+   ============================================ */
+
+.theme-dark ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.theme-dark ::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.theme-dark ::-webkit-scrollbar-thumb {
+  background: var(--carbon-border);
+  border-radius: 4px;
+}
+
+.theme-dark ::-webkit-scrollbar-thumb:hover {
+  background: var(--neon-cyan);
+}
+
+/* ============================================
+   第十七部分：分割线样式
+   ============================================ */
+
+.theme-dark .markdown-rendered hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(var(--neon-cyan-rgb), 0.5),
+    var(--neon-cyan),
+    rgba(var(--neon-cyan-rgb), 0.5),
+    transparent
+  );
+  margin: 2em 0;
+  position: relative;
+}
+
+.theme-dark .markdown-rendered hr::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 6px;
+  height: 6px;
+  background: var(--neon-cyan);
+  border-radius: 50%;
+  box-shadow: var(--glow-cyan-sm);
+}
+
+/* ============================================
+   第十八部分：Callout 样式
+   ============================================ */
+
+.theme-dark .callout {
+  background-color: rgba(var(--neon-cyan-rgb), 0.05);
+  border: 1px solid rgba(var(--neon-cyan-rgb), 0.25);
+  border-radius: 2px;
+  border-left-width: 4px;
+}
+
+.theme-dark .callout[data-callout="info"] {
+  border-left-color: var(--neon-cyan);
+  background-color: rgba(var(--neon-cyan-rgb), 0.06);
+}
+
+.theme-dark .callout[data-callout="warning"] {
+  border-left-color: var(--cyber-yellow);
+  background-color: rgba(var(--cyber-yellow-rgb), 0.06);
+}
+
+.theme-dark .callout[data-callout="error"],
+.theme-dark .callout[data-callout="danger"] {
+  border-left-color: var(--glitch-red);
+  background-color: rgba(var(--glitch-red-rgb), 0.06);
+}
+
+.theme-dark .callout[data-callout="success"] {
+  border-left-color: #00ff88;
+  background-color: rgba(0, 255, 136, 0.06);
+}
+
+.theme-dark .callout[data-callout="tip"] {
+  border-left-color: var(--neon-pink);
+  background-color: rgba(var(--neon-pink-rgb), 0.06);
+}
+
+/* ============================================
+   第十九部分：搜索高亮
+   ============================================ */
+
+.theme-dark .search-result-file-matched-text {
+  background-color: rgba(var(--cyber-yellow-rgb), 0.3);
+  color: var(--cyber-yellow);
+  border-radius: 2px;
+  padding: 0 0.2em;
+  text-shadow: 0 0 5px rgba(var(--cyber-yellow-rgb), 0.4);
+}
+
+.theme-dark .suggestion-highlight {
+  color: var(--neon-pink);
+  font-weight: 600;
+  text-shadow: 0 0 5px rgba(var(--neon-pink-rgb), 0.4);
+}
+
+/* ============================================
+   第二十部分：图表样式
+   ============================================ */
+
+.theme-dark .graph-view.color-fill {
+  color: var(--text-primary);
+}
+
+.theme-dark .graph-view.color-fill-focused {
+  color: var(--cyber-yellow);
+}
+
+.theme-dark .graph-view.color-fill-tag {
+  color: var(--neon-cyan);
+}
+
+.theme-dark .graph-view.color-fill-attachment {
+  color: var(--neon-pink);
+}
+
+.theme-dark .graph-view.color-fill-unresolved {
+  color: var(--glitch-red);
+  opacity: 0.7;
+}
+
+.theme-dark .graph-view.color-line {
+  color: var(--carbon-border);
+}
+
+.theme-dark .graph-view.color-line-highlight {
+  color: var(--neon-cyan);
+}
+
+.theme-dark .graph-view.color-text {
+  color: var(--text-primary);
+}
+
+/* ============================================
+   第二十一部分：动画与交互效果
+   ============================================ */
+
+/* 光标 - 青色霓虹 */
+.theme-dark .cm-cursor {
+  border-left-color: var(--neon-cyan);
+  border-left-width: 2px;
+}
+
+/* 选中文字 */
+.theme-dark ::selection {
+  background-color: rgba(var(--neon-cyan-rgb), 0.3);
+  color: var(--text-pure);
+}
+
+/* 闪烁背景（搜索跳转等） */
+.theme-dark .is-flashing {
+  background-color: rgba(var(--cyber-yellow-rgb), 0.2) !important;
+  box-shadow: var(--glow-yellow-sm);
+}
+
+/* ============================================
+   第二十二部分：模态框和提示框
+   ============================================ */
+
+.theme-dark .modal {
+  background-color: var(--carbon-mid);
+  border: 1px solid var(--carbon-border);
+  border-radius: 2px;
+  box-shadow: 
+    0 0 0 1px rgba(0, 0, 0, 0.5),
+    0 20px 60px rgba(0, 0, 0, 0.8),
+    0 0 30px rgba(var(--neon-cyan-rgb), 0.1);
+}
+
+.theme-dark .modal-title {
+  color: var(--neon-cyan);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-shadow: var(--text-glow-cyan);
+}
+
+.theme-dark .tooltip {
+  background-color: var(--carbon-deep);
+  border: 1px solid var(--neon-cyan);
+  border-radius: 2px;
+  color: var(--neon-cyan);
+  box-shadow: var(--glow-cyan-sm);
+  font-family: 'Fira Code', 'JetBrains Mono', monospace;
+  text-transform: uppercase;
+  font-size: 0.75em;
+  letter-spacing: 0.05em;
+}
+
+/* ============================================
+   第二十三部分：YAML Frontmatter - 故障艺术
+   ============================================ */
+
+.theme-dark .frontmatter {
+  background-color: rgba(var(--neon-pink-rgb), 0.06);
+  border: 1px solid rgba(var(--neon-pink-rgb), 0.25);
+  border-radius: 2px;
+  color: var(--text-secondary);
+  font-family: 'Fira Code', 'JetBrains Mono', monospace;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 故障艺术 - 顶部红色扫描线 */
+.theme-dark .frontmatter::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--glitch-red),
+    transparent 15%,
+    var(--glitch-red) 30%,
+    transparent 45%,
+    var(--glitch-red) 60%,
+    transparent 75%,
+    var(--glitch-red) 90%,
+    transparent
+  );
+  opacity: 0.6;
+}
+
+/* 故障艺术 - 二进制噪点 */
+.theme-dark .frontmatter::after {
+  content: '01001000 01000101 01000011 01010100 01001001 01000011';
+  position: absolute;
+  top: 4px;
+  right: 8px;
+  font-size: 0.55em;
+  color: var(--glitch-red);
+  opacity: 0.25;
+  font-family: 'Fira Code', 'JetBrains Mono', monospace;
+  letter-spacing: 0.15em;
+}
+
+.theme-dark .frontmatter .frontmatter-container-header {
+  color: var(--neon-pink);
+  border-bottom: 1px solid rgba(var(--neon-pink-rgb), 0.25);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding-bottom: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+/* YAML 关键字段 - 粉色 */
+.theme-dark .frontmatter .frontmatter-field-key {
+  color: var(--neon-pink);
+  font-weight: 600;
+}
+
+.theme-dark .frontmatter .frontmatter-field-value {
+  color: var(--neon-cyan);
+}
+
+/* ============================================
+   第二十四部分：标题栏样式
+   ============================================ */
+
+.theme-dark .titlebar {
+  background-color: var(--carbon-mid);
+  border-bottom: 1px solid var(--carbon-border);
+}
+
+.theme-dark .titlebar-text {
+  color: var(--neon-cyan);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.theme-dark .titlebar-button {
+  color: var(--text-secondary);
+  opacity: 0.8;
+  transition: all 0.2s ease;
+}
+
+.theme-dark .titlebar-button:hover {
+  opacity: 1;
+  color: var(--neon-pink);
+  background-color: rgba(var(--neon-pink-rgb), 0.1);
+}
+
+/* ============================================
+   第二十五部分：Ribbon工具栏
+   ============================================ */
+
+.theme-dark .workspace-ribbon {
+  background-color: var(--carbon-mid);
+  border-right: 1px solid var(--carbon-border);
+}
+
+.theme-dark .workspace-ribbon .clickable-icon {
+  color: var(--text-secondary);
+  opacity: 0.8;
+  transition: all 0.2s ease;
+}
+
+.theme-dark .workspace-ribbon .clickable-icon:hover {
+  opacity: 1;
+  color: var(--neon-cyan);
+  background-color: rgba(var(--neon-cyan-rgb), 0.1);
+}
+
+/* ============================================
+   第二十六部分：移动端适配
+   ============================================ */
+
+.is-mobile.theme-dark {
+  --background-primary: var(--carbon-deep);
+  --background-secondary: var(--carbon-mid);
+}
+
+.is-mobile.theme-dark .workspace-drawer {
+  background-color: var(--carbon-mid);
+  border-left: 1px solid var(--carbon-border);
+}
+
+/* ============================================
+   第二十七部分：内联标题样式
+   ============================================ */
+
+.theme-dark .inline-title {
+  color: var(--neon-cyan);
+  font-weight: 800;
+  text-shadow: var(--text-glow-cyan);
+  border-bottom: 2px solid var(--neon-cyan);
+  padding-bottom: 0.3em;
+  margin-bottom: 0.8em;
+  position: relative;
+}
+
+.theme-dark .inline-title::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--neon-cyan),
+    var(--neon-pink),
+    var(--neon-cyan)
+  );
+  box-shadow: var(--glow-cyan-sm);
+}
+
+/* ============================================
+   主题完成 - System Online
+   ============================================ */
