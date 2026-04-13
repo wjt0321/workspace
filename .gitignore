@@ -101,3 +101,6 @@ iFlow配置合并指南.md
 
 # Auto Claude data directory
 .auto-claude/
+
+# Trae data directory
+.trae/
