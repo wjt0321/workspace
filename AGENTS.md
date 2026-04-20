@@ -8,24 +8,38 @@
 
 | 模块 | 路径 | 说明 |
 | :--- | :--- | :--- |
-| 美文收集系统 | `.skills/`, `美文库/` | 9步标准化工作流，5级分级体系 |
+| 美文收集系统 | `skills/`, `美文库/` | 9步标准化工作流，5级分级体系 |
 | OpenSpec 规范管理 | `openspec/` | Spec-driven 开发流程 |
 | n8n 自动化参考 | `n8n实战之美文收集/` | 工作流案例与 MCP 配置 |
-| AI 人设系统 | `docs/jiatong_skills/` | 佳桐人格与记忆规则 |
 | 智能体学习 | `智能体学习/` | Datawhale Hello-Agents 教程（16章） |
+| 智能体语言学习 | `智能体英语日语学习/` | NotebookLM 语言学习项目 |
 | Claude Code 技能 | `claude code skills/` | Claude Code 技能使用教程 |
-| Python 资源库 | `Python资源库/` | Python 零基础教程与教学大纲 |
+| Claude Code 源码 | `Claude_Code源码解析/` | 13章深度源码分析 |
+| OpenHarness 源码 | `OpenHarness源码解析/` | 11章源码分析 |
+| Python 资源库 | `Python资源库/` | Python 零基础教程（40天）与教学大纲 |
 | 外语学习 | `外语学习/` | 英语日语双修计划 |
 | 自动化工作流参考 | `自动化工作流参考资料库/` | n8n/Dify/Coze 参考资料 |
+| 自动化写作 | `自动化写作/` | 写作自动化项目 |
 | 可视化设计 | `canvas/`, `Excalidraw/` | Obsidian Canvas 与 Excalidraw 图表 |
 | 股票研究 | `股票研究报告/` | A股分析报告存储 |
 | GitHub 热点 | `Github一周热点/` | AI 工具速递与周报 |
 | NAS 安全 | `NAS_Security/` | 飞牛NAS安全配置、WireGuard 教程 |
 | OpenCode 教程 | `opencode/` | OpenCode CLI 工具深度教程 |
 | OpenFang 教程 | `openfang-tutorial/` | OpenFang 框架完整教程（12章） |
-| OpenClaw 教程 | `openclaw-tutorial/` | OpenClaw 工具教程 |
-| Vibe Coding | `vibe-coding/` | Vibe Coding 学习资料 |
+| OpenClaw 教程 | `OpenClaw使用文档/` | OpenClaw 工具教程与部署指南 |
+| Vibe Coding | `vibe-coding/` | Vibe Coding 学习资料（10章） |
 | Godot 教程 | `Godot/` | Godot 游戏引擎教程 |
+| EntroCamp 学习 | `EntroCamp学习笔记/` | AI 学习框架（4大主题） |
+| Copilot 配置 | `copilot/` | 对话记录和自定义提示词 |
+| 迁移方案 | `migration-plans/` | 跨平台迁移文档 |
+| 日记系统 | `日记/` | 每日一记与日记模板 |
+| 道教养生 | `道教养身秘诀/` | 养生笔记（每周更新） |
+| AI 活动项目 | `AI春节嘉年华/` | AI 新春活动项目 |
+| Agent 研究 | `Hermes Agent研究/` | Agent 框架研究 |
+| VPS 机场 | `机场攻略/` | VPS 节点搭建指南 |
+| 纺丝技术 | `纺丝技术研究方向/` | 专业技术研究资料 |
+| 样品库设计 | `样品库设计文件/` | 设计文档与需求 |
+| 赛博朋克主题 | `赛博朋克CSS/` | 赛博朋克主题样式 |
 
 **注意**：这是文档与知识管理仓库，**没有构建、测试或 lint 命令**。
 

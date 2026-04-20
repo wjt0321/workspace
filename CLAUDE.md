@@ -63,6 +63,7 @@ OpenSpec 是 spec-driven 开发规范，详情见该文件。
 | :--- | :--- |
 | `openspec/` | Spec-driven 开发规范 |
 | `美文库/` | 分级作文库（5级体系） |
+| `skills/` | 已安装的 Claude Code 技能 |
 | `canvas/` | Obsidian Canvas 可视化 |
 | `Excalidraw/` | Excalidraw 图表文件 |
 | `*.canvas` | Canvas 文件（Obsidian） |
@@ -70,8 +71,31 @@ OpenSpec 是 spec-driven 开发规范，详情见该文件。
 | `Github一周热点/` | AI 工具周报 |
 | `n8n实战之美文收集/` | n8n 工作流案例 |
 | `自动化工作流参考资料库/` | n8n/Dify/Coze 参考 |
-| `智能体学习/` | Datawhale Hello-Agents 教程 |
-| `外语学习/` | 英语日语学习资料 |
+| `智能体学习/` | Datawhale Hello-Agents 教程（16章） |
+| `智能体英语日语学习/` | NotebookLM 语言学习项目 |
+| `外语学习/` | 英语日语学习资料与计划 |
+| `日记/` | 每日一记与日记模板 |
+| `EntroCamp学习笔记/` | AI 学习框架（4大主题） |
+| `Claude_Code源码解析/` | 13章深度源码分析 |
+| `OpenHarness源码解析/` | 11章源码分析 |
+| `openfang-tutorial/` | OpenFang 框架完整教程（12章） |
+| `OpenClaw使用文档/` | OpenClaw 工具教程 |
+| `opencode/` | OpenCode CLI 工具教程 |
+| `vibe-coding/` | Vibe Coding 学习资料（10章） |
+| `migration-plans/` | 迁移方案文档（Windows/Mac） |
+| `copilot/` | Copilot 对话记录和提示词 |
+| `自动化写作/` | 写作自动化项目 |
+| `赛博朋克CSS/` | 赛博朋克主题样式 |
+| `道教养身秘诀/` | 养生笔记（每周更新） |
+| `AI春节嘉年华/` | AI 新春活动项目 |
+| `Hermes Agent研究/` | Agent 框架研究 |
+| `机场攻略/` | VPS 节点搭建指南 |
+| `纺丝技术研究方向/` | 专业技术研究资料 |
+| `样品库设计文件/` | 设计文档与需求 |
+| `Python资源库/` | Python 零基础教程（40天） |
+| `claude code skills/` | Claude Code 技能教程 |
+| `Godot/` | Godot 游戏引擎教程 |
+| `NAS_Security/` | 飞牛NAS安全配置、WireGuard 教程 |
 
 ## 开发规范
 
