@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>今日AI热点新闻 - 2026年5月6日</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        header p {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.1rem;
+        }
+
+        .news-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 5px solid #667eea;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+        }
+
+        .news-rank {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 36px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-right: 15px;
+            float: left;
+        }
+
+        .news-content {
+            overflow: hidden;
+        }
+
+        .news-title {
+            font-size: 1.3rem;
+            color: #1a1a2e;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .news-summary {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .news-source {
+            display: inline-block;
+            background: #f0f0f0;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #888;
+        }
+
+        .trend-section {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 24px;
+            margin-top: 30px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .trend-title {
+            color: white;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .trend-title::before {
+            content: '';
+            width: 4px;
+            height: 24px;
+            background: #ffd700;
+            border-radius: 2px;
+            margin-right: 12px;
+        }
+
+        .trend-content {
+            color: rgba(255,255,255,0.95);
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .news-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 10px;
+            margin-top: 15px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .news-image::before {
+            content: '📷 AI新闻配图';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        .image-1 {
+            background-image: url('https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=AI%20technology%20concept%20with%20neural%20network%20visualization%20and%20futuristic%20interface&image_size=landscape_16_9');
+        }
+
+        .image-2 {
+            background-image: url('https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Google%20cloud%20computing%20data%20center%20with%20AI%20processing%20visualization&image_size=landscape_16_9');
+        }
+
+        .image-3 {
+            background-image: url('https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=GPT%20AI%20chatbot%20interface%20with%20futuristic%20design&image_size=landscape_16_9');
+        }
+
+        .image-4 {
+            background-image: url('https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=smartphone%20with%20AI%20features%20futuristic%20mobile%20technology&image_size=landscape_16_9');
+        }
+
+        .image-5 {
+            background-image: url('https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Apple%20iOS%20interface%20with%20AI%20integration%20modern%20design&image_size=landscape_16_9');
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            .news-card {
+                padding: 18px;
+            }
+
+            .news-title {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🤖 今日AI热点新闻</h1>
+            <p>2026年5月6日 | AI行业最新动态</p>
+        </header>
+
+        <div class="news-card">
+            <div class="news-rank">1</div>
+            <div class="news-content">
+                <div class="news-title">Anthropic砸2000亿美元绑定Google Cloud</div>
+                <div class="news-summary">Anthropic与Google Cloud达成五年战略合作，投入规模达2000亿美元，占Google收入积压40%以上，标志着AI巨头加速囤算力的竞争升级。</div>
+                <div class="news-source">来源：今日头条</div>
+                <div class="news-image image-1"></div>
+            </div>
+        </div>
+
+        <div class="news-card">
+            <div class="news-rank">2</div>
+            <div class="news-content">
+                <div class="news-title">GPT-5.5正式发布，OpenAI投入500亿美元算力</div>
+                <div class="news-summary">OpenAI宣布GPT-5.5正式发布，2026年计划投入500亿美元用于算力建设，算力成本预计8年持续下降。</div>
+                <div class="news-source">来源：AI新闻日报</div>
+                <div class="news-image image-3"></div>
+            </div>
+        </div>
+
+        <div class="news-card">
+            <div class="news-rank">3</div>
+            <div class="news-content">
+                <div class="news-title">iOS 27重大AI开放：用户可自选第三方AI模型</div>
+                <div class="news-summary">苹果iOS 27系统将允许用户自由选择第三方AI模型，谷歌、Anthropic等厂商将获得新的移动端生态入口。</div>
+                <div class="news-source">来源：今日头条</div>
+                <div class="news-image image-5"></div>
+            </div>
+        </div>
+
+        <div class="news-card">
+            <div class="news-rank">4</div>
+            <div class="news-content">
+                <div class="news-title">OpenAI首款AI手机项目加速，目标2027年上半年量产</div>
+                <div class="news-summary">知名分析师郭明錤披露，OpenAI正在加速推进首款AI手机项目，将搭载联发科定制版Dimensity 9600芯片。</div>
+                <div class="news-source">来源：今日科技圈</div>
+                <div class="news-image image-4"></div>
+            </div>
+        </div>
+
+        <div class="news-card">
+            <div class="news-rank">5</div>
+            <div class="news-content">
+                <div class="news-title">谷歌内部代码75%由AI生成，AI研发效率大幅提升</div>
+                <div class="news-summary">谷歌宣布其内部代码已有75%由AI生成，标志着AI在软件开发领域的应用达到新高度。</div>
+                <div class="news-source">来源：AI新闻日报</div>
+                <div class="news-image image-2"></div>
+            </div>
+        </div>
+
+        <div class="trend-section">
+            <div class="trend-title">📊 今日趋势点评</div>
+            <div class="trend-content">
+                今日AI行业最显著的趋势是算力军备竞赛升级，Anthropic与Google的2000亿美元合作彰显了AI巨头对基础设施的持续加码。同时，移动端AI生态正在重塑，苹果开放第三方AI选择标志着AI应用场景从云端向终端加速渗透。此外，AI在医疗诊断（哈佛研究显示AI急诊诊断超越人类医生）和芯片领域（寒武纪营收暴涨159%）的突破，预示着AI产业化落地正在全面提速。
+            </div>
+        </div>
+    </div>
+</body>
+</html>
