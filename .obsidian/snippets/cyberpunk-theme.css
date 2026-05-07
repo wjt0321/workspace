@@ -1,0 +1,553 @@
+/* ============================================
+   Cyberpunk Terminal — 赛博终端主题
+   版本: 4.0.0
+   设计: 暗蓝灰底 + 低饱和霓虹点缀 + 护眼优先
+   理念: 赛博朋克的魂，终端的美，眼睛的舒适
+   ============================================ */
+
+/* ============================================
+   变量 —— 柔光霓虹体系
+   ============================================ */
+:root {
+  /* 背景 —— 深蓝灰，不是纯黑 */
+  --cp-bg-deep:   #0a0e14;
+  --cp-bg-base:   #0f141a;
+  --cp-bg-mid:    #151a22;
+  --cp-bg-light:  #1c222b;
+  --cp-bg-hover:  #232a35;
+  --cp-border:    #2a3240;
+
+  /* 文本 —— 柔白，不刺眼 */
+  --cp-text:      #c8ccd4;
+  --cp-text-dim:  #7a8290;
+  --cp-text-muted:#5a6270;
+  --cp-text-bright:#e8ecf2;
+
+  /* 主色调 —— 电光青（降饱和） */
+  --cp-cyan:      #4dc9c0;
+  --cp-cyan-dim:  rgba(77, 201, 192, 0.12);
+  --cp-cyan-soft: rgba(77, 201, 192, 0.06);
+
+  /* 次色调 —— 暖琥珀 */
+  --cp-amber:     #d4a853;
+  --cp-amber-dim: rgba(212, 168, 83, 0.12);
+  --cp-amber-soft:rgba(212, 168, 83, 0.06);
+
+  /* 强调色 —— 品红（仅限交互） */
+  --cp-magenta:   #c0618a;
+  --cp-magenta-dim:rgba(192, 97, 138, 0.12);
+  --cp-magenta-soft:rgba(192, 97, 138, 0.06);
+
+  /* 成功/错误 */
+  --cp-green:     #5cb878;
+  --cp-red:       #d95764;
+
+  /* 发光 —— 极其克制 */
+  --cp-glow-cyan:   0 0 6px rgba(77, 201, 192, 0.25);
+  --cp-glow-amber:  0 0 6px rgba(212, 168, 83, 0.25);
+}
+
+/* ============================================
+   Obsidian 变量注入
+   ============================================ */
+.theme-dark {
+  --color-accent: var(--cp-cyan);
+  --color-accent-1: rgba(77, 201, 192, 0.7);
+  --color-accent-2: rgba(77, 201, 192, 0.5);
+
+  --color-base-00: var(--cp-bg-deep);
+  --color-base-05: var(--cp-bg-base);
+  --color-base-10: var(--cp-bg-mid);
+  --color-base-20: var(--cp-bg-light);
+  --color-base-25: #1e2630;
+  --color-base-30: var(--cp-border);
+  --color-base-35: #303845;
+  --color-base-40: #384250;
+  --color-base-50: var(--cp-text-dim);
+  --color-base-60: var(--cp-text-muted);
+  --color-base-70: var(--cp-text);
+  --color-base-100: var(--cp-text-bright);
+
+  --background-primary: var(--cp-bg-deep);
+  --background-primary-alt: var(--cp-bg-base);
+  --background-secondary: var(--cp-bg-mid);
+  --background-secondary-alt: var(--cp-bg-light);
+  --background-modifier-hover: var(--cp-cyan-soft);
+  --background-modifier-active-hover: var(--cp-cyan-dim);
+  --background-modifier-border: var(--cp-border);
+  --background-modifier-border-hover: rgba(77, 201, 192, 0.3);
+  --background-modifier-border-focus: var(--cp-cyan);
+  --background-modifier-error: rgba(217, 87, 100, 0.1);
+  --background-modifier-error-hover: rgba(217, 87, 100, 0.2);
+  --background-modifier-success: rgba(92, 184, 120, 0.1);
+  --background-modifier-message: rgba(0, 0, 0, 0.85);
+
+  --text-normal: var(--cp-text);
+  --text-muted: var(--cp-text-muted);
+  --text-faint: var(--cp-text-dim);
+  --text-on-accent: var(--cp-bg-deep);
+  --text-error: var(--cp-red);
+  --text-success: var(--cp-green);
+  --text-selection: rgba(77, 201, 192, 0.2);
+  --text-highlight-bg: rgba(212, 168, 83, 0.2);
+  --text-highlight-fg: var(--cp-amber);
+
+  --interactive-normal: var(--cp-bg-light);
+  --interactive-hover: var(--cp-cyan-dim);
+  --interactive-accent: var(--cp-cyan);
+  --interactive-accent-hover: var(--cp-magenta);
+
+  --scrollbar-bg: transparent;
+  --scrollbar-thumb-bg: var(--cp-border);
+  --scrollbar-active-thumb-bg: var(--cp-cyan);
+
+  /* 标题 —— 单色递进，不花哨 */
+  --h1-color: var(--cp-cyan);
+  --h2-color: var(--cp-text-bright);
+  --h3-color: var(--cp-amber);
+  --h4-color: var(--cp-text);
+  --h5-color: var(--cp-magenta);
+  --h6-color: var(--cp-text-dim);
+
+  --link-color: var(--cp-cyan);
+  --link-color-hover: var(--cp-magenta);
+  --link-external-color: var(--cp-cyan);
+  --link-external-color-hover: var(--cp-magenta);
+  --link-decoration: none;
+  --link-decoration-hover: underline;
+  --link-external-decoration: none;
+  --link-external-decoration-hover: underline;
+
+  --tag-color: var(--cp-cyan);
+  --tag-background: var(--cp-cyan-dim);
+  --tag-background-hover: var(--cp-magenta-dim);
+  --tag-border-color: rgba(77, 201, 192, 0.3);
+  --tag-border-width: 1px;
+  --tag-padding-x: 0.45em;
+  --tag-padding-y: 0.15em;
+  --tag-radius: 3px;
+
+  --code-normal: var(--cp-cyan);
+  --code-comment: var(--cp-text-dim);
+  --code-function: var(--cp-magenta);
+  --code-important: var(--cp-red);
+  --code-keyword: var(--cp-amber);
+  --code-operator: var(--cp-cyan);
+  --code-property: var(--cp-magenta);
+  --code-punctuation: var(--cp-text-muted);
+  --code-string: var(--cp-green);
+  --code-tag: var(--cp-red);
+  --code-value: var(--cp-amber);
+  --code-background: var(--cp-bg-base);
+
+  --blockquote-background-color: rgba(192, 97, 138, 0.05);
+  --blockquote-border-color: var(--cp-magenta);
+  --blockquote-border-thickness: 2px;
+  --blockquote-color: var(--cp-text);
+  --blockquote-padding: 0.8em 1em 0.8em 1.4em;
+
+  --table-header-background: var(--cp-bg-light);
+  --table-header-background-hover: var(--cp-cyan-dim);
+  --table-row-even-background: var(--cp-cyan-soft);
+  --table-row-odd-background: transparent;
+  --table-row-background-hover: var(--cp-cyan-dim);
+  --table-border-color: var(--cp-border);
+  --table-header-color: var(--cp-cyan);
+
+  --list-marker-color: var(--cp-cyan);
+  --list-marker-color-collapsed: var(--cp-magenta);
+  --list-bullet-radius: 0;
+
+  --checkbox-color: var(--cp-cyan);
+  --checkbox-color-hover: var(--cp-magenta);
+  --checkbox-border-color: var(--cp-border);
+  --checkbox-border-color-hover: var(--cp-cyan);
+  --checklist-done-color: var(--cp-text-muted);
+  --checklist-done-decoration: line-through;
+
+  --nav-item-color: var(--cp-text-dim);
+  --nav-item-color-hover: var(--cp-text);
+  --nav-item-color-active: var(--cp-cyan);
+  --nav-item-background-hover: var(--cp-cyan-soft);
+  --nav-item-background-active: var(--cp-cyan-dim);
+  --nav-item-weight-active: 600;
+  --nav-indentation-guide-color: var(--cp-border);
+
+  --titlebar-background: var(--cp-bg-deep);
+  --titlebar-background-focused: var(--cp-bg-base);
+  --titlebar-text-color: var(--cp-text-dim);
+
+  --ribbon-background: var(--cp-bg-base);
+  --ribbon-background-collapsed: var(--cp-bg-deep);
+
+  --file-header-background: var(--cp-bg-base);
+  --file-header-border: var(--cp-border);
+
+  --modal-background: var(--cp-bg-mid);
+  --modal-border-color: var(--cp-border);
+
+  --prompt-background: var(--cp-bg-mid);
+  --prompt-border-color: var(--cp-border);
+
+  --divider-color: var(--cp-border);
+  --divider-color-hover: var(--cp-cyan);
+
+  --calendar-background: var(--cp-bg-mid);
+  --calendar-dot-color: var(--cp-cyan);
+
+  --indentation-guide-color: rgba(77, 201, 192, 0.1);
+  --indentation-guide-color-active: rgba(77, 201, 192, 0.25);
+
+  --vault-name-color: var(--cp-cyan);
+  --vault-name-font-weight: 700;
+}
+
+/* ============================================
+   全局排版 —— 舒适可读
+   ============================================ */
+body {
+  --font-text-size: 15px;
+  --font-ui-small: 12px;
+  --line-height-normal: 1.7;
+  --file-line-width: 780px;
+  font-variant-ligatures: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 行内代码 —— 琥珀色，不发光 */
+.cm-inline-code,
+.markdown-rendered code {
+  color: var(--cp-amber) !important;
+  background: var(--cp-amber-soft) !important;
+  padding: 0.15em 0.4em;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+/* 代码块 —— 干净终端感 */
+.markdown-rendered pre,
+.cm-s-obsidian .HyperMD-codeblock {
+  background: var(--cp-bg-base) !important;
+  border: 1px solid var(--cp-border);
+  border-radius: 6px;
+}
+
+.markdown-rendered pre code {
+  color: var(--cp-text) !important;
+  background: transparent !important;
+}
+
+/* 标题 —— 仅 H1 有微弱下划线发光 */
+.markdown-rendered h1,
+.cm-header-1 {
+  border-bottom: 1px solid var(--cp-cyan-dim);
+  padding-bottom: 0.3em;
+}
+
+.markdown-rendered h2,
+.cm-header-2 {
+  border-bottom: 1px solid transparent;
+}
+
+/* 标题无 text-shadow —— 去掉伤眼光晕 */
+.markdown-rendered h1,
+.markdown-rendered h2,
+.markdown-rendered h3,
+.markdown-rendered h4,
+.markdown-rendered h5,
+.markdown-rendered h6,
+.cm-header-1, .cm-header-2, .cm-header-3,
+.cm-header-4, .cm-header-5, .cm-header-6 {
+  text-shadow: none !important;
+}
+
+/* 粗体 —— 琥珀微光（仅此一处） */
+.markdown-rendered strong,
+.cm-strong {
+  color: var(--cp-amber) !important;
+  text-shadow: var(--cp-glow-amber);
+}
+
+/* 斜体 —— 品红 */
+.markdown-rendered em,
+.cm-em {
+  color: var(--cp-magenta) !important;
+}
+
+/* 链接 —— 干净无光 */
+.markdown-rendered a,
+.cm-link,
+.cm-url {
+  text-shadow: none !important;
+}
+
+/* 外部链接小箭头 */
+.markdown-rendered .external-link {
+  color: var(--cp-cyan);
+  opacity: 0.6;
+}
+
+/* ============================================
+   标签 —— 赛博芯片风
+   ============================================ */
+.tag,
+.cm-hashtag {
+  font-family: var(--font-monospace);
+  font-size: 0.8em;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* ============================================
+   Callout —— 精致边框，不强发光
+   ============================================ */
+.callout {
+  border-radius: 6px;
+  border-left-width: 3px !important;
+  box-shadow: none !important;
+}
+
+.callout[data-callout="note"],
+.callout[data-callout="info"] {
+  --callout-color: 169, 200, 200;
+  background: rgba(77, 201, 192, 0.04);
+}
+
+.callout[data-callout="warning"],
+.callout[data-callout="important"] {
+  --callout-color: 212, 168, 83;
+  background: rgba(212, 168, 83, 0.04);
+}
+
+.callout[data-callout="danger"],
+.callout[data-callout="error"] {
+  --callout-color: 217, 87, 100;
+  background: rgba(217, 87, 100, 0.04);
+}
+
+.callout[data-callout="tip"],
+.callout[data-callout="success"] {
+  --callout-color: 92, 184, 120;
+  background: rgba(92, 184, 120, 0.04);
+}
+
+/* ============================================
+   引用块 —— 细品红线
+   ============================================ */
+.markdown-rendered blockquote {
+  border-radius: 0 4px 4px 0;
+  margin-left: 0;
+}
+
+/* ============================================
+   表格 —— 赛博网格
+   ============================================ */
+.markdown-rendered table {
+  border-collapse: collapse;
+}
+
+.markdown-rendered th {
+  border-bottom: 2px solid var(--cp-cyan) !important;
+  font-family: var(--font-monospace);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.8em;
+}
+
+.markdown-rendered td {
+  border-bottom: 1px solid var(--cp-border);
+}
+
+/* ============================================
+   列表 —— 方块标记
+   ============================================ */
+.markdown-rendered ul > li::marker {
+  color: var(--cp-cyan);
+}
+
+.markdown-rendered ol > li::marker {
+  color: var(--cp-amber);
+  font-family: var(--font-monospace);
+}
+
+/* ============================================
+   复选框 —— 赛博勾选
+   ============================================ */
+.markdown-rendered .task-list-item-checkbox {
+  border: 1px solid var(--cp-border) !important;
+  border-radius: 2px !important;
+}
+
+.markdown-rendered .task-list-item-checkbox:checked {
+  background-color: var(--cp-cyan) !important;
+  border-color: var(--cp-cyan) !important;
+}
+
+/* ============================================
+   水平线 —— 霓虹光栅
+   ============================================ */
+.markdown-rendered hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--cp-cyan-dim), var(--cp-cyan), var(--cp-cyan-dim), transparent);
+  margin: 2em 0;
+}
+
+/* ============================================
+   文件浏览器 —— 简洁无光
+   ============================================ */
+.nav-file-title.is-active,
+.nav-folder-title.is-active {
+  border-left: 2px solid var(--cp-cyan);
+  background: var(--cp-cyan-dim) !important;
+}
+
+.nav-file-title:hover,
+.nav-folder-title:hover {
+  background: var(--cp-cyan-soft) !important;
+}
+
+/* ============================================
+   状态栏 —— 暗底终端风
+   ============================================ */
+.status-bar {
+  background: var(--cp-bg-base) !important;
+  border-top: 1px solid var(--cp-border);
+  font-family: var(--font-monospace);
+  font-size: 11px;
+  color: var(--cp-text-dim);
+}
+
+.status-bar-item {
+  border-right: 1px solid var(--cp-border);
+}
+
+/* ============================================
+   滚动条 —— 细窄暗色
+   ============================================ */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+}
+
+/* ============================================
+   搜索高亮 —— 琥珀标记
+   ============================================ */
+.markdown-rendered mark,
+.cm-s-obsidian span.cm-highlight,
+.search-result-file-matched-text {
+  background: var(--cp-amber-dim) !important;
+  color: var(--cp-amber) !important;
+  border-radius: 2px;
+}
+
+/* 当前搜索结果 */
+.cm-s-obsidian span.cm-searching,
+.search-result-file-match-destination {
+  background: rgba(192, 97, 138, 0.3) !important;
+  color: var(--cp-magenta) !important;
+}
+
+/* ============================================
+   属性面板 / YAML frontmatter
+   ============================================ */
+.metadata-container,
+.cm-hmd-frontmatter {
+  color: var(--cp-text-dim);
+  font-family: var(--font-monospace);
+  font-size: 0.85em;
+}
+
+.metadata-property-key {
+  color: var(--cp-cyan) !important;
+}
+
+.metadata-property-value {
+  color: var(--cp-text) !important;
+}
+
+/* ============================================
+   标签页 —— 终端风格
+   ============================================ */
+.workspace-tab-header {
+  border-radius: 4px 4px 0 0;
+}
+
+.workspace-tab-header.is-active {
+  background: var(--cp-bg-mid);
+  border-bottom: 2px solid var(--cp-cyan);
+}
+
+/* ============================================
+   悬浮预览 —— 赛博卡片
+   ============================================ */
+.popover {
+  border: 1px solid var(--cp-border);
+  border-radius: 6px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* ============================================
+   输入框 —— 终端感
+   ============================================ */
+input[type="text"],
+input[type="search"],
+textarea,
+select {
+  background: var(--cp-bg-base) !important;
+  border: 1px solid var(--cp-border) !important;
+  border-radius: 4px !important;
+  color: var(--cp-text) !important;
+  font-family: var(--font-monospace);
+}
+
+input[type="text"]:focus,
+input[type="search"]:focus,
+textarea:focus {
+  border-color: var(--cp-cyan) !important;
+  box-shadow: 0 0 0 2px var(--cp-cyan-dim) !important;
+}
+
+/* ============================================
+   社区插件适配
+   ============================================ */
+
+/* Dataview */
+.dataview-result-list li,
+.dataview-result-table {
+  font-size: 0.9em;
+}
+
+/* Kanban */
+.kanban-plugin__item {
+  border-left: 2px solid var(--cp-cyan) !important;
+}
+
+.kanban-plugin__lane {
+  background: var(--cp-bg-base) !important;
+  border: 1px solid var(--cp-border);
+}
+
+/* Calendar */
+#calendar-container .day {
+  border-radius: 3px;
+}
+
+#calendar-container .day.today {
+  background: var(--cp-cyan-dim) !important;
+  color: var(--cp-cyan) !important;
+  font-weight: bold;
+}
+
+/* Excalidraw */
+.excalidraw .App-menu_top .buttonList label {
+  color: var(--cp-text);
+}
+
+/* ============================================
+   EOF
+   ============================================ */
