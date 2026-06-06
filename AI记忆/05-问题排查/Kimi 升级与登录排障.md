@@ -48,3 +48,9 @@ tags:
 - [[Kimi Code 使用规则]]
 - [[问题排查地图]]
 - [[当前工作台]]
+
+## 2026-06-06 补充：npm 全局升级验证
+- 已验证 Kimi Code 可通过 `npm install -g @moonshot-ai/kimi-code@latest` 从 `0.10.1` 升级到 `0.11.0`。
+- 升级前先定位入口：`where kimi`；再确认包名：`npm list -g --depth=0 | findstr /i kimi`。
+- 升级后用双重验证：`kimi --version` 与 `npm list -g --depth=0 | findstr /i kimi`。
+- 若用户追问更新内容，优先查官方 changelog/README；若没有发布说明，可用 `npm pack` 或 `npm diff` 对比相邻版本，但结论应标明“基于包差异反推”。
