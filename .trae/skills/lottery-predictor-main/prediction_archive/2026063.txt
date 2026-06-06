@@ -1,9 +1,0 @@
-period=2026063
-generated_at=2026-06-04 16:47:57
-ticket_count=5
-lead_summary=factor=1.00;mode=team;agents=hot,cold,missing,balanced,random;report=策略风格=保守;领跑Agent=hot;权重稳定度=0.056;团队健康=5/5
-ticket1=02 04 06 13 18 24+01|balanced,cold,hot,missing,random
-ticket2=06 14 19 20 26 30+08|cold,hot,missing
-ticket3=02 11 22 26 29 32+14|cold,hot,random
-ticket4=01 04 05 08 13 28+02|cold,hot,missing,random
-ticket5=01 12 20 22 24 28+05|cold,hot
