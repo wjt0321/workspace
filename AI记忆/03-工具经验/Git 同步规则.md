@@ -45,3 +45,10 @@ tags:
 - 但执行 `git push` 前，必须先向教主确认并取得本人明确同意。
 - 未获同意时，只能本地修改、本地整理、本地提交建议；不得实际 push。
 
+
+
+## 2026-06-07 补充：已跟踪文件的忽略流程
+- 若目录已被 Git 跟踪，仅写入 `.gitignore` 不会停止管理。
+- 标准流程：先 `git ls-files <path>` 确认历史跟踪，再 `git rm --cached -r <path>` 保留本地文件并从仓库索引移除。
+- 提交后用 `git status --short --ignored <path>` 验证显示 `!! <path>/`，说明本地仍在但已被忽略。
+- 推送 GitHub 时若需代理，临时开启 V2Ray 并显式设置 `HTTP_PROXY` / `HTTPS_PROXY`；推送后必须关闭 V2Ray。
